@@ -1,0 +1,2474 @@
+﻿[
+  {
+    "case_id": "CWE259_Hard_Coded_Password__w32_char_51",
+    "cwe": "CWE259",
+    "variant": "51",
+    "root_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_51a.c",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_51a.c",
+      "line": 37,
+      "code": "strcpy(password, PASSWORD);"
+    },
+    "source_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_51a.c",
+      "line": 37,
+      "code": "strcpy(password, PASSWORD);"
+    },
+    "sink_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_51b.c",
+      "line": 12,
+      "code": "*    BadSink : Authenticate the user using LogonUserA()"
+    },
+    "flow_chain": [
+      "CWE259_Hard_Coded_Password__w32_char_51a.c",
+      "CWE259_Hard_Coded_Password__w32_char_51b.c"
+    ],
+    "prompt_tokens": 410,
+    "completion_tokens": 47,
+    "total_tokens": 457,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows a hard-coded password reaches LogonUserA in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE259_Hard_Coded_Password__w32_char_51a.c",
+      "bad sink file: CWE259_Hard_Coded_Password__w32_char_51b.c",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_51a.c -> CWE259_Hard_Coded_Password__w32_char_51b.c"
+    ]
+  },
+  {
+    "case_id": "CWE259_Hard_Coded_Password__w32_char_52",
+    "cwe": "CWE259",
+    "variant": "52",
+    "root_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_52a.c",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_52a.c",
+      "line": 37,
+      "code": "strcpy(password, PASSWORD);"
+    },
+    "source_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_52a.c",
+      "line": 37,
+      "code": "strcpy(password, PASSWORD);"
+    },
+    "sink_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_52c.c",
+      "line": 12,
+      "code": "*    BadSink : Authenticate the user using LogonUserA()"
+    },
+    "flow_chain": [
+      "CWE259_Hard_Coded_Password__w32_char_52a.c",
+      "CWE259_Hard_Coded_Password__w32_char_52c.c"
+    ],
+    "prompt_tokens": 414,
+    "completion_tokens": 47,
+    "total_tokens": 461,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows a hard-coded password reaches LogonUserA in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE259_Hard_Coded_Password__w32_char_52a.c",
+      "bad sink file: CWE259_Hard_Coded_Password__w32_char_52c.c",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_52a.c -> CWE259_Hard_Coded_Password__w32_char_52c.c"
+    ]
+  },
+  {
+    "case_id": "CWE259_Hard_Coded_Password__w32_char_53",
+    "cwe": "CWE259",
+    "variant": "53",
+    "root_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_53a.c",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_53a.c",
+      "line": 37,
+      "code": "strcpy(password, PASSWORD);"
+    },
+    "source_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_53a.c",
+      "line": 37,
+      "code": "strcpy(password, PASSWORD);"
+    },
+    "sink_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_53d.c",
+      "line": 12,
+      "code": "*    BadSink : Authenticate the user using LogonUserA()"
+    },
+    "flow_chain": [
+      "CWE259_Hard_Coded_Password__w32_char_53a.c",
+      "CWE259_Hard_Coded_Password__w32_char_53d.c"
+    ],
+    "prompt_tokens": 421,
+    "completion_tokens": 47,
+    "total_tokens": 468,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows a hard-coded password reaches LogonUserA in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE259_Hard_Coded_Password__w32_char_53a.c",
+      "bad sink file: CWE259_Hard_Coded_Password__w32_char_53d.c",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_53a.c -> CWE259_Hard_Coded_Password__w32_char_53d.c"
+    ]
+  },
+  {
+    "case_id": "CWE259_Hard_Coded_Password__w32_char_54",
+    "cwe": "CWE259",
+    "variant": "54",
+    "root_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_54a.c",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_54a.c",
+      "line": 37,
+      "code": "strcpy(password, PASSWORD);"
+    },
+    "source_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_54a.c",
+      "line": 37,
+      "code": "strcpy(password, PASSWORD);"
+    },
+    "sink_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_54e.c",
+      "line": 12,
+      "code": "*    BadSink : Authenticate the user using LogonUserA()"
+    },
+    "flow_chain": [
+      "CWE259_Hard_Coded_Password__w32_char_54a.c",
+      "CWE259_Hard_Coded_Password__w32_char_54e.c"
+    ],
+    "prompt_tokens": 421,
+    "completion_tokens": 47,
+    "total_tokens": 468,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows a hard-coded password reaches LogonUserA in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE259_Hard_Coded_Password__w32_char_54a.c",
+      "bad sink file: CWE259_Hard_Coded_Password__w32_char_54e.c",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_54a.c -> CWE259_Hard_Coded_Password__w32_char_54e.c"
+    ]
+  },
+  {
+    "case_id": "CWE259_Hard_Coded_Password__w32_char_61",
+    "cwe": "CWE259",
+    "variant": "61",
+    "root_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_61a.c",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_61b.c",
+      "line": 31,
+      "code": "strcpy(password, PASSWORD);"
+    },
+    "source_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_61b.c",
+      "line": 31,
+      "code": "strcpy(password, PASSWORD);"
+    },
+    "sink_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_61a.c",
+      "line": 12,
+      "code": "*    BadSink : Authenticate the user using LogonUserA()"
+    },
+    "flow_chain": [
+      "CWE259_Hard_Coded_Password__w32_char_61b.c",
+      "CWE259_Hard_Coded_Password__w32_char_61a.c"
+    ],
+    "prompt_tokens": 399,
+    "completion_tokens": 47,
+    "total_tokens": 446,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows a hard-coded password reaches LogonUserA in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE259_Hard_Coded_Password__w32_char_61b.c",
+      "bad sink file: CWE259_Hard_Coded_Password__w32_char_61a.c",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_61b.c -> CWE259_Hard_Coded_Password__w32_char_61a.c"
+    ]
+  },
+  {
+    "case_id": "CWE259_Hard_Coded_Password__w32_char_62",
+    "cwe": "CWE259",
+    "variant": "62",
+    "root_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_62a.cpp",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_62b.cpp",
+      "line": 31,
+      "code": "strcpy(password, PASSWORD);"
+    },
+    "source_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_62b.cpp",
+      "line": 31,
+      "code": "strcpy(password, PASSWORD);"
+    },
+    "sink_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_62a.cpp",
+      "line": 12,
+      "code": "*    BadSink : Authenticate the user using LogonUserA()"
+    },
+    "flow_chain": [
+      "CWE259_Hard_Coded_Password__w32_char_62b.cpp",
+      "CWE259_Hard_Coded_Password__w32_char_62a.cpp"
+    ],
+    "prompt_tokens": 398,
+    "completion_tokens": 47,
+    "total_tokens": 445,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows a hard-coded password reaches LogonUserA in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE259_Hard_Coded_Password__w32_char_62b.cpp",
+      "bad sink file: CWE259_Hard_Coded_Password__w32_char_62a.cpp",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_62b.cpp -> CWE259_Hard_Coded_Password__w32_char_62a.cpp"
+    ]
+  },
+  {
+    "case_id": "CWE259_Hard_Coded_Password__w32_char_81",
+    "cwe": "CWE259",
+    "variant": "81",
+    "root_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_81a.cpp",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_81a.cpp",
+      "line": 33,
+      "code": "strcpy(password, PASSWORD);"
+    },
+    "source_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_81a.cpp",
+      "line": 33,
+      "code": "strcpy(password, PASSWORD);"
+    },
+    "sink_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_81_bad.cpp",
+      "line": 12,
+      "code": "*    BadSink : Authenticate the user using LogonUserA()"
+    },
+    "flow_chain": [
+      "CWE259_Hard_Coded_Password__w32_char_81a.cpp",
+      "CWE259_Hard_Coded_Password__w32_char_81_bad.cpp"
+    ],
+    "prompt_tokens": 436,
+    "completion_tokens": 47,
+    "total_tokens": 483,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows a hard-coded password reaches LogonUserA in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE259_Hard_Coded_Password__w32_char_81a.cpp",
+      "bad sink file: CWE259_Hard_Coded_Password__w32_char_81_bad.cpp",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_81a.cpp -> CWE259_Hard_Coded_Password__w32_char_81_bad.cpp"
+    ]
+  },
+  {
+    "case_id": "CWE259_Hard_Coded_Password__w32_char_82",
+    "cwe": "CWE259",
+    "variant": "82",
+    "root_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_82a.cpp",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_82a.cpp",
+      "line": 33,
+      "code": "strcpy(password, PASSWORD);"
+    },
+    "source_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_82a.cpp",
+      "line": 33,
+      "code": "strcpy(password, PASSWORD);"
+    },
+    "sink_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_82_bad.cpp",
+      "line": 12,
+      "code": "*    BadSink : Authenticate the user using LogonUserA()"
+    },
+    "flow_chain": [
+      "CWE259_Hard_Coded_Password__w32_char_82a.cpp",
+      "CWE259_Hard_Coded_Password__w32_char_82_bad.cpp"
+    ],
+    "prompt_tokens": 440,
+    "completion_tokens": 47,
+    "total_tokens": 487,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows a hard-coded password reaches LogonUserA in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE259_Hard_Coded_Password__w32_char_82a.cpp",
+      "bad sink file: CWE259_Hard_Coded_Password__w32_char_82_bad.cpp",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_82a.cpp -> CWE259_Hard_Coded_Password__w32_char_82_bad.cpp"
+    ]
+  },
+  {
+    "case_id": "CWE259_Hard_Coded_Password__w32_char_83",
+    "cwe": "CWE259",
+    "variant": "83",
+    "root_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_83a.cpp",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_83_bad.cpp",
+      "line": 32,
+      "code": "strcpy(password, PASSWORD);"
+    },
+    "source_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_83_bad.cpp",
+      "line": 32,
+      "code": "strcpy(password, PASSWORD);"
+    },
+    "sink_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_83_bad.cpp",
+      "line": 12,
+      "code": "*    BadSink : Authenticate the user using LogonUserA()"
+    },
+    "flow_chain": [
+      "CWE259_Hard_Coded_Password__w32_char_83a.cpp",
+      "CWE259_Hard_Coded_Password__w32_char_83_bad.cpp::constructor",
+      "CWE259_Hard_Coded_Password__w32_char_83_bad.cpp::destructor"
+    ],
+    "prompt_tokens": 458,
+    "completion_tokens": 47,
+    "total_tokens": 505,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows a hard-coded password reaches LogonUserA in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE259_Hard_Coded_Password__w32_char_83_bad.cpp",
+      "bad sink file: CWE259_Hard_Coded_Password__w32_char_83_bad.cpp",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_83a.cpp -> CWE259_Hard_Coded_Password__w32_char_83_bad.cpp::constructor -> CWE259_Hard_Coded_Password__w32_char_83_bad.cpp::destructor"
+    ]
+  },
+  {
+    "case_id": "CWE259_Hard_Coded_Password__w32_char_84",
+    "cwe": "CWE259",
+    "variant": "84",
+    "root_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_84a.cpp",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_84_bad.cpp",
+      "line": 32,
+      "code": "strcpy(password, PASSWORD);"
+    },
+    "source_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_84_bad.cpp",
+      "line": 32,
+      "code": "strcpy(password, PASSWORD);"
+    },
+    "sink_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_84_bad.cpp",
+      "line": 12,
+      "code": "*    BadSink : Authenticate the user using LogonUserA()"
+    },
+    "flow_chain": [
+      "CWE259_Hard_Coded_Password__w32_char_84a.cpp",
+      "CWE259_Hard_Coded_Password__w32_char_84_bad.cpp::constructor",
+      "CWE259_Hard_Coded_Password__w32_char_84_bad.cpp::destructor"
+    ],
+    "prompt_tokens": 465,
+    "completion_tokens": 47,
+    "total_tokens": 512,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows a hard-coded password reaches LogonUserA in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE259_Hard_Coded_Password__w32_char_84_bad.cpp",
+      "bad sink file: CWE259_Hard_Coded_Password__w32_char_84_bad.cpp",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_84a.cpp -> CWE259_Hard_Coded_Password__w32_char_84_bad.cpp::constructor -> CWE259_Hard_Coded_Password__w32_char_84_bad.cpp::destructor"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_51",
+    "cwe": "CWE78",
+    "variant": "51",
+    "root_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_51a.c",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_51b.c",
+      "line": 71,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_51a.c",
+      "line": 9,
+      "code": "* BadSource: connect_socket Read data using a connect socket (client side)"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_51b.c",
+      "line": 71,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_51a.c",
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_51b.c"
+    ],
+    "prompt_tokens": 485,
+    "completion_tokens": 46,
+    "total_tokens": 531,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_connect_socket_execl_51a.c",
+      "bad sink file: CWE78_OS_Command_Injection__char_connect_socket_execl_51b.c",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_51a.c -> CWE78_OS_Command_Injection__char_connect_socket_execl_51b.c"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_52",
+    "cwe": "CWE78",
+    "variant": "52",
+    "root_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_52a.c",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_52c.c",
+      "line": 71,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_52a.c",
+      "line": 9,
+      "code": "* BadSource: connect_socket Read data using a connect socket (client side)"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_52c.c",
+      "line": 71,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_52a.c",
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_52c.c"
+    ],
+    "prompt_tokens": 485,
+    "completion_tokens": 46,
+    "total_tokens": 531,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_connect_socket_execl_52a.c",
+      "bad sink file: CWE78_OS_Command_Injection__char_connect_socket_execl_52c.c",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_52a.c -> CWE78_OS_Command_Injection__char_connect_socket_execl_52c.c"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_53",
+    "cwe": "CWE78",
+    "variant": "53",
+    "root_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_53a.c",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_53d.c",
+      "line": 71,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_53a.c",
+      "line": 9,
+      "code": "* BadSource: connect_socket Read data using a connect socket (client side)"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_53d.c",
+      "line": 71,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_53a.c",
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_53d.c"
+    ],
+    "prompt_tokens": 485,
+    "completion_tokens": 46,
+    "total_tokens": 531,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_connect_socket_execl_53a.c",
+      "bad sink file: CWE78_OS_Command_Injection__char_connect_socket_execl_53d.c",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_53a.c -> CWE78_OS_Command_Injection__char_connect_socket_execl_53d.c"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_54",
+    "cwe": "CWE78",
+    "variant": "54",
+    "root_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_54a.c",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_54e.c",
+      "line": 71,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_54a.c",
+      "line": 9,
+      "code": "* BadSource: connect_socket Read data using a connect socket (client side)"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_54e.c",
+      "line": 71,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_54a.c",
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_54e.c"
+    ],
+    "prompt_tokens": 485,
+    "completion_tokens": 46,
+    "total_tokens": 531,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_connect_socket_execl_54a.c",
+      "bad sink file: CWE78_OS_Command_Injection__char_connect_socket_execl_54e.c",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_54a.c -> CWE78_OS_Command_Injection__char_connect_socket_execl_54e.c"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_61",
+    "cwe": "CWE78",
+    "variant": "61",
+    "root_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_61a.c",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_61a.c",
+      "line": 76,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_61b.c",
+      "line": 9,
+      "code": "* BadSource: connect_socket Read data using a connect socket (client side)"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_61a.c",
+      "line": 76,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_61b.c",
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_61a.c"
+    ],
+    "prompt_tokens": 507,
+    "completion_tokens": 46,
+    "total_tokens": 553,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_connect_socket_execl_61b.c",
+      "bad sink file: CWE78_OS_Command_Injection__char_connect_socket_execl_61a.c",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_61b.c -> CWE78_OS_Command_Injection__char_connect_socket_execl_61a.c"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_62",
+    "cwe": "CWE78",
+    "variant": "62",
+    "root_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_62a.cpp",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_62a.cpp",
+      "line": 59,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_62b.cpp",
+      "line": 9,
+      "code": "* BadSource: connect_socket Read data using a connect socket (client side)"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_62a.cpp",
+      "line": 59,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_62b.cpp",
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_62a.cpp"
+    ],
+    "prompt_tokens": 495,
+    "completion_tokens": 46,
+    "total_tokens": 541,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_connect_socket_execl_62b.cpp",
+      "bad sink file: CWE78_OS_Command_Injection__char_connect_socket_execl_62a.cpp",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_62b.cpp -> CWE78_OS_Command_Injection__char_connect_socket_execl_62a.cpp"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_81",
+    "cwe": "CWE78",
+    "variant": "81",
+    "root_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_81a.cpp",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_81_bad.cpp",
+      "line": 35,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_81a.cpp",
+      "line": 9,
+      "code": "* BadSource: connect_socket Read data using a connect socket (client side)"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_81_bad.cpp",
+      "line": 35,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_81a.cpp",
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_81_bad.cpp"
+    ],
+    "prompt_tokens": 489,
+    "completion_tokens": 46,
+    "total_tokens": 535,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_connect_socket_execl_81a.cpp",
+      "bad sink file: CWE78_OS_Command_Injection__char_connect_socket_execl_81_bad.cpp",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_81a.cpp -> CWE78_OS_Command_Injection__char_connect_socket_execl_81_bad.cpp"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_82",
+    "cwe": "CWE78",
+    "variant": "82",
+    "root_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_82a.cpp",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_82_bad.cpp",
+      "line": 35,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_82a.cpp",
+      "line": 9,
+      "code": "* BadSource: connect_socket Read data using a connect socket (client side)"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_82_bad.cpp",
+      "line": 35,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_82a.cpp",
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_82_bad.cpp"
+    ],
+    "prompt_tokens": 489,
+    "completion_tokens": 46,
+    "total_tokens": 535,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_connect_socket_execl_82a.cpp",
+      "bad sink file: CWE78_OS_Command_Injection__char_connect_socket_execl_82_bad.cpp",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_82a.cpp -> CWE78_OS_Command_Injection__char_connect_socket_execl_82_bad.cpp"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_83",
+    "cwe": "CWE78",
+    "variant": "83",
+    "root_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_83a.cpp",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_83_bad.cpp",
+      "line": 127,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_83_bad.cpp",
+      "line": 9,
+      "code": "* BadSource: connect_socket Read data using a connect socket (client side)"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_83_bad.cpp",
+      "line": 127,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_83a.cpp",
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_83_bad.cpp::constructor",
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_83_bad.cpp::destructor"
+    ],
+    "prompt_tokens": 543,
+    "completion_tokens": 46,
+    "total_tokens": 589,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_connect_socket_execl_83_bad.cpp",
+      "bad sink file: CWE78_OS_Command_Injection__char_connect_socket_execl_83_bad.cpp",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_83a.cpp -> CWE78_OS_Command_Injection__char_connect_socket_execl_83_bad.cpp::constructor -> CWE78_OS_Command_Injection__char_connect_socket_execl_83_bad.cpp::destructor"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_84",
+    "cwe": "CWE78",
+    "variant": "84",
+    "root_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_84a.cpp",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_84_bad.cpp",
+      "line": 127,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_84_bad.cpp",
+      "line": 9,
+      "code": "* BadSource: connect_socket Read data using a connect socket (client side)"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_84_bad.cpp",
+      "line": 127,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_84a.cpp",
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_84_bad.cpp::constructor",
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_84_bad.cpp::destructor"
+    ],
+    "prompt_tokens": 543,
+    "completion_tokens": 46,
+    "total_tokens": 589,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_connect_socket_execl_84_bad.cpp",
+      "bad sink file: CWE78_OS_Command_Injection__char_connect_socket_execl_84_bad.cpp",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_84a.cpp -> CWE78_OS_Command_Injection__char_connect_socket_execl_84_bad.cpp::constructor -> CWE78_OS_Command_Injection__char_connect_socket_execl_84_bad.cpp::destructor"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_console_execl_51",
+    "cwe": "CWE78",
+    "variant": "51",
+    "root_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_51a.c",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_51b.c",
+      "line": 51,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_51a.c",
+      "line": 9,
+      "code": "* BadSource: console Read input from the console"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_51b.c",
+      "line": 51,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_console_execl_51a.c",
+      "CWE78_OS_Command_Injection__char_console_execl_51b.c"
+    ],
+    "prompt_tokens": 455,
+    "completion_tokens": 46,
+    "total_tokens": 501,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_console_execl_51a.c",
+      "bad sink file: CWE78_OS_Command_Injection__char_console_execl_51b.c",
+      "flow chain: CWE78_OS_Command_Injection__char_console_execl_51a.c -> CWE78_OS_Command_Injection__char_console_execl_51b.c"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_console_execl_52",
+    "cwe": "CWE78",
+    "variant": "52",
+    "root_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_52a.c",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_52c.c",
+      "line": 51,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_52a.c",
+      "line": 9,
+      "code": "* BadSource: console Read input from the console"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_52c.c",
+      "line": 51,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_console_execl_52a.c",
+      "CWE78_OS_Command_Injection__char_console_execl_52c.c"
+    ],
+    "prompt_tokens": 455,
+    "completion_tokens": 46,
+    "total_tokens": 501,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_console_execl_52a.c",
+      "bad sink file: CWE78_OS_Command_Injection__char_console_execl_52c.c",
+      "flow chain: CWE78_OS_Command_Injection__char_console_execl_52a.c -> CWE78_OS_Command_Injection__char_console_execl_52c.c"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_console_execl_53",
+    "cwe": "CWE78",
+    "variant": "53",
+    "root_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_53a.c",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_53d.c",
+      "line": 51,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_53a.c",
+      "line": 9,
+      "code": "* BadSource: console Read input from the console"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_53d.c",
+      "line": 51,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_console_execl_53a.c",
+      "CWE78_OS_Command_Injection__char_console_execl_53d.c"
+    ],
+    "prompt_tokens": 455,
+    "completion_tokens": 46,
+    "total_tokens": 501,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_console_execl_53a.c",
+      "bad sink file: CWE78_OS_Command_Injection__char_console_execl_53d.c",
+      "flow chain: CWE78_OS_Command_Injection__char_console_execl_53a.c -> CWE78_OS_Command_Injection__char_console_execl_53d.c"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_console_execl_54",
+    "cwe": "CWE78",
+    "variant": "54",
+    "root_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_54a.c",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_54e.c",
+      "line": 51,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_54a.c",
+      "line": 9,
+      "code": "* BadSource: console Read input from the console"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_54e.c",
+      "line": 51,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_console_execl_54a.c",
+      "CWE78_OS_Command_Injection__char_console_execl_54e.c"
+    ],
+    "prompt_tokens": 455,
+    "completion_tokens": 46,
+    "total_tokens": 501,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_console_execl_54a.c",
+      "bad sink file: CWE78_OS_Command_Injection__char_console_execl_54e.c",
+      "flow chain: CWE78_OS_Command_Injection__char_console_execl_54a.c -> CWE78_OS_Command_Injection__char_console_execl_54e.c"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_console_execl_61",
+    "cwe": "CWE78",
+    "variant": "61",
+    "root_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_61a.c",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_61a.c",
+      "line": 56,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_61b.c",
+      "line": 9,
+      "code": "* BadSource: console Read input from the console"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_61a.c",
+      "line": 56,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_console_execl_61b.c",
+      "CWE78_OS_Command_Injection__char_console_execl_61a.c"
+    ],
+    "prompt_tokens": 474,
+    "completion_tokens": 46,
+    "total_tokens": 520,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_console_execl_61b.c",
+      "bad sink file: CWE78_OS_Command_Injection__char_console_execl_61a.c",
+      "flow chain: CWE78_OS_Command_Injection__char_console_execl_61b.c -> CWE78_OS_Command_Injection__char_console_execl_61a.c"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_console_execl_62",
+    "cwe": "CWE78",
+    "variant": "62",
+    "root_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_62a.cpp",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_62a.cpp",
+      "line": 59,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_62b.cpp",
+      "line": 9,
+      "code": "* BadSource: console Read input from the console"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_62a.cpp",
+      "line": 59,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_console_execl_62b.cpp",
+      "CWE78_OS_Command_Injection__char_console_execl_62a.cpp"
+    ],
+    "prompt_tokens": 464,
+    "completion_tokens": 46,
+    "total_tokens": 510,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_console_execl_62b.cpp",
+      "bad sink file: CWE78_OS_Command_Injection__char_console_execl_62a.cpp",
+      "flow chain: CWE78_OS_Command_Injection__char_console_execl_62b.cpp -> CWE78_OS_Command_Injection__char_console_execl_62a.cpp"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_console_execl_81",
+    "cwe": "CWE78",
+    "variant": "81",
+    "root_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_81a.cpp",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_81_bad.cpp",
+      "line": 35,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_81a.cpp",
+      "line": 9,
+      "code": "* BadSource: console Read input from the console"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_81_bad.cpp",
+      "line": 35,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_console_execl_81a.cpp",
+      "CWE78_OS_Command_Injection__char_console_execl_81_bad.cpp"
+    ],
+    "prompt_tokens": 459,
+    "completion_tokens": 46,
+    "total_tokens": 505,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_console_execl_81a.cpp",
+      "bad sink file: CWE78_OS_Command_Injection__char_console_execl_81_bad.cpp",
+      "flow chain: CWE78_OS_Command_Injection__char_console_execl_81a.cpp -> CWE78_OS_Command_Injection__char_console_execl_81_bad.cpp"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_console_execl_82",
+    "cwe": "CWE78",
+    "variant": "82",
+    "root_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_82a.cpp",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_82_bad.cpp",
+      "line": 35,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_82a.cpp",
+      "line": 9,
+      "code": "* BadSource: console Read input from the console"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_82_bad.cpp",
+      "line": 35,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_console_execl_82a.cpp",
+      "CWE78_OS_Command_Injection__char_console_execl_82_bad.cpp"
+    ],
+    "prompt_tokens": 459,
+    "completion_tokens": 46,
+    "total_tokens": 505,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_console_execl_82a.cpp",
+      "bad sink file: CWE78_OS_Command_Injection__char_console_execl_82_bad.cpp",
+      "flow chain: CWE78_OS_Command_Injection__char_console_execl_82a.cpp -> CWE78_OS_Command_Injection__char_console_execl_82_bad.cpp"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_console_execl_83",
+    "cwe": "CWE78",
+    "variant": "83",
+    "root_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_83a.cpp",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_83_bad.cpp",
+      "line": 64,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_83_bad.cpp",
+      "line": 9,
+      "code": "* BadSource: console Read input from the console"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_83_bad.cpp",
+      "line": 64,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_console_execl_83a.cpp",
+      "CWE78_OS_Command_Injection__char_console_execl_83_bad.cpp::constructor",
+      "CWE78_OS_Command_Injection__char_console_execl_83_bad.cpp::destructor"
+    ],
+    "prompt_tokens": 508,
+    "completion_tokens": 46,
+    "total_tokens": 554,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_console_execl_83_bad.cpp",
+      "bad sink file: CWE78_OS_Command_Injection__char_console_execl_83_bad.cpp",
+      "flow chain: CWE78_OS_Command_Injection__char_console_execl_83a.cpp -> CWE78_OS_Command_Injection__char_console_execl_83_bad.cpp::constructor -> CWE78_OS_Command_Injection__char_console_execl_83_bad.cpp::destructor"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_console_execl_84",
+    "cwe": "CWE78",
+    "variant": "84",
+    "root_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_84a.cpp",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_84_bad.cpp",
+      "line": 64,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_84_bad.cpp",
+      "line": 9,
+      "code": "* BadSource: console Read input from the console"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_console_execl_84_bad.cpp",
+      "line": 64,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_console_execl_84a.cpp",
+      "CWE78_OS_Command_Injection__char_console_execl_84_bad.cpp::constructor",
+      "CWE78_OS_Command_Injection__char_console_execl_84_bad.cpp::destructor"
+    ],
+    "prompt_tokens": 508,
+    "completion_tokens": 46,
+    "total_tokens": 554,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_console_execl_84_bad.cpp",
+      "bad sink file: CWE78_OS_Command_Injection__char_console_execl_84_bad.cpp",
+      "flow chain: CWE78_OS_Command_Injection__char_console_execl_84a.cpp -> CWE78_OS_Command_Injection__char_console_execl_84_bad.cpp::constructor -> CWE78_OS_Command_Injection__char_console_execl_84_bad.cpp::destructor"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_environment_execl_51",
+    "cwe": "CWE78",
+    "variant": "51",
+    "root_file": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_51a.c",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_51b.c",
+      "line": 59,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_51a.c",
+      "line": 68,
+      "code": "/* POTENTIAL FLAW: Read data from an environment variable */"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_51b.c",
+      "line": 59,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_environment_execl_51a.c",
+      "CWE78_OS_Command_Injection__char_environment_execl_51b.c"
+    ],
+    "prompt_tokens": 485,
+    "completion_tokens": 46,
+    "total_tokens": 531,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_environment_execl_51a.c",
+      "bad sink file: CWE78_OS_Command_Injection__char_environment_execl_51b.c",
+      "flow chain: CWE78_OS_Command_Injection__char_environment_execl_51a.c -> CWE78_OS_Command_Injection__char_environment_execl_51b.c"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_environment_execl_52",
+    "cwe": "CWE78",
+    "variant": "52",
+    "root_file": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_52a.c",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_52c.c",
+      "line": 59,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_52a.c",
+      "line": 68,
+      "code": "/* POTENTIAL FLAW: Read data from an environment variable */"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_52c.c",
+      "line": 59,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_environment_execl_52a.c",
+      "CWE78_OS_Command_Injection__char_environment_execl_52c.c"
+    ],
+    "prompt_tokens": 485,
+    "completion_tokens": 46,
+    "total_tokens": 531,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_environment_execl_52a.c",
+      "bad sink file: CWE78_OS_Command_Injection__char_environment_execl_52c.c",
+      "flow chain: CWE78_OS_Command_Injection__char_environment_execl_52a.c -> CWE78_OS_Command_Injection__char_environment_execl_52c.c"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_environment_execl_53",
+    "cwe": "CWE78",
+    "variant": "53",
+    "root_file": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_53a.c",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_53d.c",
+      "line": 59,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_53a.c",
+      "line": 68,
+      "code": "/* POTENTIAL FLAW: Read data from an environment variable */"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_53d.c",
+      "line": 59,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_environment_execl_53a.c",
+      "CWE78_OS_Command_Injection__char_environment_execl_53d.c"
+    ],
+    "prompt_tokens": 485,
+    "completion_tokens": 46,
+    "total_tokens": 531,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_environment_execl_53a.c",
+      "bad sink file: CWE78_OS_Command_Injection__char_environment_execl_53d.c",
+      "flow chain: CWE78_OS_Command_Injection__char_environment_execl_53a.c -> CWE78_OS_Command_Injection__char_environment_execl_53d.c"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_environment_execl_54",
+    "cwe": "CWE78",
+    "variant": "54",
+    "root_file": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_54a.c",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_54e.c",
+      "line": 59,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_54a.c",
+      "line": 68,
+      "code": "/* POTENTIAL FLAW: Read data from an environment variable */"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_54e.c",
+      "line": 59,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_environment_execl_54a.c",
+      "CWE78_OS_Command_Injection__char_environment_execl_54e.c"
+    ],
+    "prompt_tokens": 485,
+    "completion_tokens": 46,
+    "total_tokens": 531,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_environment_execl_54a.c",
+      "bad sink file: CWE78_OS_Command_Injection__char_environment_execl_54e.c",
+      "flow chain: CWE78_OS_Command_Injection__char_environment_execl_54a.c -> CWE78_OS_Command_Injection__char_environment_execl_54e.c"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_environment_execl_61",
+    "cwe": "CWE78",
+    "variant": "61",
+    "root_file": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_61a.c",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_61a.c",
+      "line": 64,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_61b.c",
+      "line": 62,
+      "code": "/* POTENTIAL FLAW: Read data from an environment variable */"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_61a.c",
+      "line": 64,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_environment_execl_61b.c",
+      "CWE78_OS_Command_Injection__char_environment_execl_61a.c"
+    ],
+    "prompt_tokens": 505,
+    "completion_tokens": 46,
+    "total_tokens": 551,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_environment_execl_61b.c",
+      "bad sink file: CWE78_OS_Command_Injection__char_environment_execl_61a.c",
+      "flow chain: CWE78_OS_Command_Injection__char_environment_execl_61b.c -> CWE78_OS_Command_Injection__char_environment_execl_61a.c"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_environment_execl_62",
+    "cwe": "CWE78",
+    "variant": "62",
+    "root_file": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_62a.cpp",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_62a.cpp",
+      "line": 59,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_62b.cpp",
+      "line": 58,
+      "code": "/* POTENTIAL FLAW: Read data from an environment variable */"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_62a.cpp",
+      "line": 59,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_environment_execl_62b.cpp",
+      "CWE78_OS_Command_Injection__char_environment_execl_62a.cpp"
+    ],
+    "prompt_tokens": 494,
+    "completion_tokens": 46,
+    "total_tokens": 540,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_environment_execl_62b.cpp",
+      "bad sink file: CWE78_OS_Command_Injection__char_environment_execl_62a.cpp",
+      "flow chain: CWE78_OS_Command_Injection__char_environment_execl_62b.cpp -> CWE78_OS_Command_Injection__char_environment_execl_62a.cpp"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_environment_execl_81",
+    "cwe": "CWE78",
+    "variant": "81",
+    "root_file": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_81a.cpp",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_81_bad.cpp",
+      "line": 35,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_81a.cpp",
+      "line": 45,
+      "code": "/* POTENTIAL FLAW: Read data from an environment variable */"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_81_bad.cpp",
+      "line": 35,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_environment_execl_81a.cpp",
+      "CWE78_OS_Command_Injection__char_environment_execl_81_bad.cpp"
+    ],
+    "prompt_tokens": 488,
+    "completion_tokens": 46,
+    "total_tokens": 534,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_environment_execl_81a.cpp",
+      "bad sink file: CWE78_OS_Command_Injection__char_environment_execl_81_bad.cpp",
+      "flow chain: CWE78_OS_Command_Injection__char_environment_execl_81a.cpp -> CWE78_OS_Command_Injection__char_environment_execl_81_bad.cpp"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_environment_execl_82",
+    "cwe": "CWE78",
+    "variant": "82",
+    "root_file": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_82a.cpp",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_82_bad.cpp",
+      "line": 35,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_82a.cpp",
+      "line": 45,
+      "code": "/* POTENTIAL FLAW: Read data from an environment variable */"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_82_bad.cpp",
+      "line": 35,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_environment_execl_82a.cpp",
+      "CWE78_OS_Command_Injection__char_environment_execl_82_bad.cpp"
+    ],
+    "prompt_tokens": 488,
+    "completion_tokens": 46,
+    "total_tokens": 534,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_environment_execl_82a.cpp",
+      "bad sink file: CWE78_OS_Command_Injection__char_environment_execl_82_bad.cpp",
+      "flow chain: CWE78_OS_Command_Injection__char_environment_execl_82a.cpp -> CWE78_OS_Command_Injection__char_environment_execl_82_bad.cpp"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_environment_execl_83",
+    "cwe": "CWE78",
+    "variant": "83",
+    "root_file": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_83a.cpp",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_83_bad.cpp",
+      "line": 58,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_83_bad.cpp",
+      "line": 48,
+      "code": "/* POTENTIAL FLAW: Read data from an environment variable */"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_83_bad.cpp",
+      "line": 58,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_environment_execl_83a.cpp",
+      "CWE78_OS_Command_Injection__char_environment_execl_83_bad.cpp::constructor",
+      "CWE78_OS_Command_Injection__char_environment_execl_83_bad.cpp::destructor"
+    ],
+    "prompt_tokens": 540,
+    "completion_tokens": 46,
+    "total_tokens": 586,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_environment_execl_83_bad.cpp",
+      "bad sink file: CWE78_OS_Command_Injection__char_environment_execl_83_bad.cpp",
+      "flow chain: CWE78_OS_Command_Injection__char_environment_execl_83a.cpp -> CWE78_OS_Command_Injection__char_environment_execl_83_bad.cpp::constructor -> CWE78_OS_Command_Injection__char_environment_execl_83_bad.cpp::destructor"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_environment_execl_84",
+    "cwe": "CWE78",
+    "variant": "84",
+    "root_file": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_84a.cpp",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_84_bad.cpp",
+      "line": 58,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_84_bad.cpp",
+      "line": 48,
+      "code": "/* POTENTIAL FLAW: Read data from an environment variable */"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s02/CWE78_OS_Command_Injection__char_environment_execl_84_bad.cpp",
+      "line": 58,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_environment_execl_84a.cpp",
+      "CWE78_OS_Command_Injection__char_environment_execl_84_bad.cpp::constructor",
+      "CWE78_OS_Command_Injection__char_environment_execl_84_bad.cpp::destructor"
+    ],
+    "prompt_tokens": 540,
+    "completion_tokens": 46,
+    "total_tokens": 586,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_environment_execl_84_bad.cpp",
+      "bad sink file: CWE78_OS_Command_Injection__char_environment_execl_84_bad.cpp",
+      "flow chain: CWE78_OS_Command_Injection__char_environment_execl_84a.cpp -> CWE78_OS_Command_Injection__char_environment_execl_84_bad.cpp::constructor -> CWE78_OS_Command_Injection__char_environment_execl_84_bad.cpp::destructor"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_file_execl_51",
+    "cwe": "CWE78",
+    "variant": "51",
+    "root_file": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_51a.c",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_51b.c",
+      "line": 57,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_51a.c",
+      "line": 69,
+      "code": "/* POTENTIAL FLAW: Read data from a file */"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_51b.c",
+      "line": 57,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_file_execl_51a.c",
+      "CWE78_OS_Command_Injection__char_file_execl_51b.c"
+    ],
+    "prompt_tokens": 472,
+    "completion_tokens": 46,
+    "total_tokens": 518,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_file_execl_51a.c",
+      "bad sink file: CWE78_OS_Command_Injection__char_file_execl_51b.c",
+      "flow chain: CWE78_OS_Command_Injection__char_file_execl_51a.c -> CWE78_OS_Command_Injection__char_file_execl_51b.c"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_file_execl_52",
+    "cwe": "CWE78",
+    "variant": "52",
+    "root_file": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_52a.c",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_52c.c",
+      "line": 57,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_52a.c",
+      "line": 69,
+      "code": "/* POTENTIAL FLAW: Read data from a file */"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_52c.c",
+      "line": 57,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_file_execl_52a.c",
+      "CWE78_OS_Command_Injection__char_file_execl_52c.c"
+    ],
+    "prompt_tokens": 472,
+    "completion_tokens": 46,
+    "total_tokens": 518,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_file_execl_52a.c",
+      "bad sink file: CWE78_OS_Command_Injection__char_file_execl_52c.c",
+      "flow chain: CWE78_OS_Command_Injection__char_file_execl_52a.c -> CWE78_OS_Command_Injection__char_file_execl_52c.c"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_file_execl_53",
+    "cwe": "CWE78",
+    "variant": "53",
+    "root_file": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_53a.c",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_53d.c",
+      "line": 57,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_53a.c",
+      "line": 69,
+      "code": "/* POTENTIAL FLAW: Read data from a file */"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_53d.c",
+      "line": 57,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_file_execl_53a.c",
+      "CWE78_OS_Command_Injection__char_file_execl_53d.c"
+    ],
+    "prompt_tokens": 472,
+    "completion_tokens": 46,
+    "total_tokens": 518,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_file_execl_53a.c",
+      "bad sink file: CWE78_OS_Command_Injection__char_file_execl_53d.c",
+      "flow chain: CWE78_OS_Command_Injection__char_file_execl_53a.c -> CWE78_OS_Command_Injection__char_file_execl_53d.c"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_file_execl_54",
+    "cwe": "CWE78",
+    "variant": "54",
+    "root_file": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_54a.c",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_54e.c",
+      "line": 57,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_54a.c",
+      "line": 69,
+      "code": "/* POTENTIAL FLAW: Read data from a file */"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_54e.c",
+      "line": 57,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_file_execl_54a.c",
+      "CWE78_OS_Command_Injection__char_file_execl_54e.c"
+    ],
+    "prompt_tokens": 472,
+    "completion_tokens": 46,
+    "total_tokens": 518,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_file_execl_54a.c",
+      "bad sink file: CWE78_OS_Command_Injection__char_file_execl_54e.c",
+      "flow chain: CWE78_OS_Command_Injection__char_file_execl_54a.c -> CWE78_OS_Command_Injection__char_file_execl_54e.c"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_file_execl_61",
+    "cwe": "CWE78",
+    "variant": "61",
+    "root_file": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_61a.c",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_61a.c",
+      "line": 62,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_61b.c",
+      "line": 63,
+      "code": "/* POTENTIAL FLAW: Read data from a file */"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_61a.c",
+      "line": 62,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_file_execl_61b.c",
+      "CWE78_OS_Command_Injection__char_file_execl_61a.c"
+    ],
+    "prompt_tokens": 491,
+    "completion_tokens": 46,
+    "total_tokens": 537,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_file_execl_61b.c",
+      "bad sink file: CWE78_OS_Command_Injection__char_file_execl_61a.c",
+      "flow chain: CWE78_OS_Command_Injection__char_file_execl_61b.c -> CWE78_OS_Command_Injection__char_file_execl_61a.c"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_file_execl_62",
+    "cwe": "CWE78",
+    "variant": "62",
+    "root_file": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_62a.cpp",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_62a.cpp",
+      "line": 59,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_62b.cpp",
+      "line": 59,
+      "code": "/* POTENTIAL FLAW: Read data from a file */"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_62a.cpp",
+      "line": 59,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_file_execl_62b.cpp",
+      "CWE78_OS_Command_Injection__char_file_execl_62a.cpp"
+    ],
+    "prompt_tokens": 481,
+    "completion_tokens": 46,
+    "total_tokens": 527,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_file_execl_62b.cpp",
+      "bad sink file: CWE78_OS_Command_Injection__char_file_execl_62a.cpp",
+      "flow chain: CWE78_OS_Command_Injection__char_file_execl_62b.cpp -> CWE78_OS_Command_Injection__char_file_execl_62a.cpp"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_file_execl_81",
+    "cwe": "CWE78",
+    "variant": "81",
+    "root_file": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_81a.cpp",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_81_bad.cpp",
+      "line": 35,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_81a.cpp",
+      "line": 46,
+      "code": "/* POTENTIAL FLAW: Read data from a file */"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_81_bad.cpp",
+      "line": 35,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_file_execl_81a.cpp",
+      "CWE78_OS_Command_Injection__char_file_execl_81_bad.cpp"
+    ],
+    "prompt_tokens": 476,
+    "completion_tokens": 46,
+    "total_tokens": 522,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_file_execl_81a.cpp",
+      "bad sink file: CWE78_OS_Command_Injection__char_file_execl_81_bad.cpp",
+      "flow chain: CWE78_OS_Command_Injection__char_file_execl_81a.cpp -> CWE78_OS_Command_Injection__char_file_execl_81_bad.cpp"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_file_execl_82",
+    "cwe": "CWE78",
+    "variant": "82",
+    "root_file": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_82a.cpp",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_82_bad.cpp",
+      "line": 35,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_82a.cpp",
+      "line": 46,
+      "code": "/* POTENTIAL FLAW: Read data from a file */"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_82_bad.cpp",
+      "line": 35,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_file_execl_82a.cpp",
+      "CWE78_OS_Command_Injection__char_file_execl_82_bad.cpp"
+    ],
+    "prompt_tokens": 476,
+    "completion_tokens": 46,
+    "total_tokens": 522,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_file_execl_82a.cpp",
+      "bad sink file: CWE78_OS_Command_Injection__char_file_execl_82_bad.cpp",
+      "flow chain: CWE78_OS_Command_Injection__char_file_execl_82a.cpp -> CWE78_OS_Command_Injection__char_file_execl_82_bad.cpp"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_file_execl_83",
+    "cwe": "CWE78",
+    "variant": "83",
+    "root_file": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_83a.cpp",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_83_bad.cpp",
+      "line": 66,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_83_bad.cpp",
+      "line": 49,
+      "code": "/* POTENTIAL FLAW: Read data from a file */"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_83_bad.cpp",
+      "line": 66,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_file_execl_83a.cpp",
+      "CWE78_OS_Command_Injection__char_file_execl_83_bad.cpp::constructor",
+      "CWE78_OS_Command_Injection__char_file_execl_83_bad.cpp::destructor"
+    ],
+    "prompt_tokens": 524,
+    "completion_tokens": 46,
+    "total_tokens": 570,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_file_execl_83_bad.cpp",
+      "bad sink file: CWE78_OS_Command_Injection__char_file_execl_83_bad.cpp",
+      "flow chain: CWE78_OS_Command_Injection__char_file_execl_83a.cpp -> CWE78_OS_Command_Injection__char_file_execl_83_bad.cpp::constructor -> CWE78_OS_Command_Injection__char_file_execl_83_bad.cpp::destructor"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_file_execl_84",
+    "cwe": "CWE78",
+    "variant": "84",
+    "root_file": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_84a.cpp",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_84_bad.cpp",
+      "line": 66,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_84_bad.cpp",
+      "line": 49,
+      "code": "/* POTENTIAL FLAW: Read data from a file */"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s03/CWE78_OS_Command_Injection__char_file_execl_84_bad.cpp",
+      "line": 66,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_file_execl_84a.cpp",
+      "CWE78_OS_Command_Injection__char_file_execl_84_bad.cpp::constructor",
+      "CWE78_OS_Command_Injection__char_file_execl_84_bad.cpp::destructor"
+    ],
+    "prompt_tokens": 524,
+    "completion_tokens": 46,
+    "total_tokens": 570,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_file_execl_84_bad.cpp",
+      "bad sink file: CWE78_OS_Command_Injection__char_file_execl_84_bad.cpp",
+      "flow chain: CWE78_OS_Command_Injection__char_file_execl_84a.cpp -> CWE78_OS_Command_Injection__char_file_execl_84_bad.cpp::constructor -> CWE78_OS_Command_Injection__char_file_execl_84_bad.cpp::destructor"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_listen_socket_execl_51",
+    "cwe": "CWE78",
+    "variant": "51",
+    "root_file": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_51a.c",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_51b.c",
+      "line": 71,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_51a.c",
+      "line": 9,
+      "code": "* BadSource: listen_socket Read data using a listen socket (server side)"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_51b.c",
+      "line": 71,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_listen_socket_execl_51a.c",
+      "CWE78_OS_Command_Injection__char_listen_socket_execl_51b.c"
+    ],
+    "prompt_tokens": 482,
+    "completion_tokens": 46,
+    "total_tokens": 528,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_listen_socket_execl_51a.c",
+      "bad sink file: CWE78_OS_Command_Injection__char_listen_socket_execl_51b.c",
+      "flow chain: CWE78_OS_Command_Injection__char_listen_socket_execl_51a.c -> CWE78_OS_Command_Injection__char_listen_socket_execl_51b.c"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_listen_socket_execl_52",
+    "cwe": "CWE78",
+    "variant": "52",
+    "root_file": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_52a.c",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_52c.c",
+      "line": 71,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_52a.c",
+      "line": 9,
+      "code": "* BadSource: listen_socket Read data using a listen socket (server side)"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_52c.c",
+      "line": 71,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_listen_socket_execl_52a.c",
+      "CWE78_OS_Command_Injection__char_listen_socket_execl_52c.c"
+    ],
+    "prompt_tokens": 482,
+    "completion_tokens": 46,
+    "total_tokens": 528,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_listen_socket_execl_52a.c",
+      "bad sink file: CWE78_OS_Command_Injection__char_listen_socket_execl_52c.c",
+      "flow chain: CWE78_OS_Command_Injection__char_listen_socket_execl_52a.c -> CWE78_OS_Command_Injection__char_listen_socket_execl_52c.c"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_listen_socket_execl_53",
+    "cwe": "CWE78",
+    "variant": "53",
+    "root_file": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_53a.c",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_53d.c",
+      "line": 71,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_53a.c",
+      "line": 9,
+      "code": "* BadSource: listen_socket Read data using a listen socket (server side)"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_53d.c",
+      "line": 71,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_listen_socket_execl_53a.c",
+      "CWE78_OS_Command_Injection__char_listen_socket_execl_53d.c"
+    ],
+    "prompt_tokens": 482,
+    "completion_tokens": 46,
+    "total_tokens": 528,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_listen_socket_execl_53a.c",
+      "bad sink file: CWE78_OS_Command_Injection__char_listen_socket_execl_53d.c",
+      "flow chain: CWE78_OS_Command_Injection__char_listen_socket_execl_53a.c -> CWE78_OS_Command_Injection__char_listen_socket_execl_53d.c"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_listen_socket_execl_54",
+    "cwe": "CWE78",
+    "variant": "54",
+    "root_file": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_54a.c",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_54e.c",
+      "line": 71,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_54a.c",
+      "line": 9,
+      "code": "* BadSource: listen_socket Read data using a listen socket (server side)"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_54e.c",
+      "line": 71,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_listen_socket_execl_54a.c",
+      "CWE78_OS_Command_Injection__char_listen_socket_execl_54e.c"
+    ],
+    "prompt_tokens": 482,
+    "completion_tokens": 46,
+    "total_tokens": 528,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_listen_socket_execl_54a.c",
+      "bad sink file: CWE78_OS_Command_Injection__char_listen_socket_execl_54e.c",
+      "flow chain: CWE78_OS_Command_Injection__char_listen_socket_execl_54a.c -> CWE78_OS_Command_Injection__char_listen_socket_execl_54e.c"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_listen_socket_execl_61",
+    "cwe": "CWE78",
+    "variant": "61",
+    "root_file": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_61a.c",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_61a.c",
+      "line": 76,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_61b.c",
+      "line": 9,
+      "code": "* BadSource: listen_socket Read data using a listen socket (server side)"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_61a.c",
+      "line": 76,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_listen_socket_execl_61b.c",
+      "CWE78_OS_Command_Injection__char_listen_socket_execl_61a.c"
+    ],
+    "prompt_tokens": 503,
+    "completion_tokens": 46,
+    "total_tokens": 549,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_listen_socket_execl_61b.c",
+      "bad sink file: CWE78_OS_Command_Injection__char_listen_socket_execl_61a.c",
+      "flow chain: CWE78_OS_Command_Injection__char_listen_socket_execl_61b.c -> CWE78_OS_Command_Injection__char_listen_socket_execl_61a.c"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_listen_socket_execl_62",
+    "cwe": "CWE78",
+    "variant": "62",
+    "root_file": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_62a.cpp",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_62a.cpp",
+      "line": 59,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_62b.cpp",
+      "line": 9,
+      "code": "* BadSource: listen_socket Read data using a listen socket (server side)"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_62a.cpp",
+      "line": 59,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_listen_socket_execl_62b.cpp",
+      "CWE78_OS_Command_Injection__char_listen_socket_execl_62a.cpp"
+    ],
+    "prompt_tokens": 491,
+    "completion_tokens": 46,
+    "total_tokens": 537,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_listen_socket_execl_62b.cpp",
+      "bad sink file: CWE78_OS_Command_Injection__char_listen_socket_execl_62a.cpp",
+      "flow chain: CWE78_OS_Command_Injection__char_listen_socket_execl_62b.cpp -> CWE78_OS_Command_Injection__char_listen_socket_execl_62a.cpp"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_listen_socket_execl_81",
+    "cwe": "CWE78",
+    "variant": "81",
+    "root_file": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_81a.cpp",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_81_bad.cpp",
+      "line": 35,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_81a.cpp",
+      "line": 9,
+      "code": "* BadSource: listen_socket Read data using a listen socket (server side)"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_81_bad.cpp",
+      "line": 35,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_listen_socket_execl_81a.cpp",
+      "CWE78_OS_Command_Injection__char_listen_socket_execl_81_bad.cpp"
+    ],
+    "prompt_tokens": 486,
+    "completion_tokens": 46,
+    "total_tokens": 532,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_listen_socket_execl_81a.cpp",
+      "bad sink file: CWE78_OS_Command_Injection__char_listen_socket_execl_81_bad.cpp",
+      "flow chain: CWE78_OS_Command_Injection__char_listen_socket_execl_81a.cpp -> CWE78_OS_Command_Injection__char_listen_socket_execl_81_bad.cpp"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_listen_socket_execl_82",
+    "cwe": "CWE78",
+    "variant": "82",
+    "root_file": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_82a.cpp",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_82_bad.cpp",
+      "line": 35,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_82a.cpp",
+      "line": 9,
+      "code": "* BadSource: listen_socket Read data using a listen socket (server side)"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_82_bad.cpp",
+      "line": 35,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_listen_socket_execl_82a.cpp",
+      "CWE78_OS_Command_Injection__char_listen_socket_execl_82_bad.cpp"
+    ],
+    "prompt_tokens": 486,
+    "completion_tokens": 46,
+    "total_tokens": 532,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_listen_socket_execl_82a.cpp",
+      "bad sink file: CWE78_OS_Command_Injection__char_listen_socket_execl_82_bad.cpp",
+      "flow chain: CWE78_OS_Command_Injection__char_listen_socket_execl_82a.cpp -> CWE78_OS_Command_Injection__char_listen_socket_execl_82_bad.cpp"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_listen_socket_execl_83",
+    "cwe": "CWE78",
+    "variant": "83",
+    "root_file": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_83a.cpp",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_83_bad.cpp",
+      "line": 139,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_83_bad.cpp",
+      "line": 9,
+      "code": "* BadSource: listen_socket Read data using a listen socket (server side)"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_83_bad.cpp",
+      "line": 139,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_listen_socket_execl_83a.cpp",
+      "CWE78_OS_Command_Injection__char_listen_socket_execl_83_bad.cpp::constructor",
+      "CWE78_OS_Command_Injection__char_listen_socket_execl_83_bad.cpp::destructor"
+    ],
+    "prompt_tokens": 539,
+    "completion_tokens": 46,
+    "total_tokens": 585,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_listen_socket_execl_83_bad.cpp",
+      "bad sink file: CWE78_OS_Command_Injection__char_listen_socket_execl_83_bad.cpp",
+      "flow chain: CWE78_OS_Command_Injection__char_listen_socket_execl_83a.cpp -> CWE78_OS_Command_Injection__char_listen_socket_execl_83_bad.cpp::constructor -> CWE78_OS_Command_Injection__char_listen_socket_execl_83_bad.cpp::destructor"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_listen_socket_execl_84",
+    "cwe": "CWE78",
+    "variant": "84",
+    "root_file": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_84a.cpp",
+    "vulnerable": true,
+    "expected_vulnerable": true,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_84_bad.cpp",
+      "line": 139,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "source_location": {
+      "path": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_84_bad.cpp",
+      "line": 9,
+      "code": "* BadSource: listen_socket Read data using a listen socket (server side)"
+    },
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s04/CWE78_OS_Command_Injection__char_listen_socket_execl_84_bad.cpp",
+      "line": 139,
+      "code": "EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);"
+    },
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_listen_socket_execl_84a.cpp",
+      "CWE78_OS_Command_Injection__char_listen_socket_execl_84_bad.cpp::constructor",
+      "CWE78_OS_Command_Injection__char_listen_socket_execl_84_bad.cpp::destructor"
+    ],
+    "prompt_tokens": 539,
+    "completion_tokens": 46,
+    "total_tokens": 585,
+    "llm_mode": "offline-estimate",
+    "llm_model": "deepseek-reasoner",
+    "reason": "Static evidence shows untrusted command input reaches EXECL in the bad path.",
+    "static_confidence": 0.99,
+    "review_confidence": 0.99,
+    "notes": [
+      "bad source file: CWE78_OS_Command_Injection__char_listen_socket_execl_84_bad.cpp",
+      "bad sink file: CWE78_OS_Command_Injection__char_listen_socket_execl_84_bad.cpp",
+      "flow chain: CWE78_OS_Command_Injection__char_listen_socket_execl_84a.cpp -> CWE78_OS_Command_Injection__char_listen_socket_execl_84_bad.cpp::constructor -> CWE78_OS_Command_Injection__char_listen_socket_execl_84_bad.cpp::destructor"
+    ]
+  }
+]
