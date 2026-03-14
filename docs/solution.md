@@ -2,10 +2,11 @@
 
 ## 1. 任务理解
 
-题目要求实现一个“智能体 + 静态分析”的漏洞检测工具，统一使用 Python，并面向以下 Juliet 基准子集：
+题目要求实现一个“智能体 + 静态分析”的漏洞检测工具，统一使用 Python。当前提交版本保留并分析以下 Juliet 基准子集：
 
-- `CWE78_OS_Command_Injection` 中 `char + execl + 51/52/53/54/61/62/81/82/83/84`
+- `CWE78_OS_Command_Injection` 中 `char_connect_socket_execl + 51/52/53/54/61/62/81/82/83/84`
 - `CWE259_Hard_Coded_Password` 中 `w32_char + 51/52/53/54/61/62/81/82/83/84`
+- 合计 `20` 个顶层实例
 
 ## 2. 总体架构
 
@@ -34,21 +35,27 @@
 
 这样每个实例的 prompt 明显更短，避免把大量模板代码重复喂给模型。
 
-## 4. 静态分析策略
+## 4. 当前数据规模
 
-### 4.1 CWE78
+- `CWE78`：`10` 个实例
+- `CWE259`：`10` 个实例
+- 总计：`20` 个实例
+
+## 5. 静态分析策略
+
+### 5.1 CWE78
 
 - bad source 从外部输入读入命令片段；
 - bad sink 调用 `EXECL(...)`；
 - `primary_line` 默认取 sink 行。
 
-### 4.2 CWE259
+### 5.2 CWE259
 
 - bad source 使用硬编码口令；
 - sink 使用 `LogonUserA(...)`；
 - `primary_line` 默认取 source 行。
 
-## 5. 变体处理
+## 6. 变体处理
 
 - `51`: `a -> b`
 - `52`: `a -> b -> c`
@@ -59,7 +66,7 @@
 - `81/82/83`: `a -> _bad.cpp`
 - `84`: `_bad.cpp` 内部构造函数写 source，析构函数落 sink
 
-## 6. DeepSeek-R1 接入
+## 7. DeepSeek-R1 接入
 
 工程默认按 OpenAI-compatible 接口访问 DeepSeek：
 
@@ -72,7 +79,7 @@
 - token 使用提示词长度估算；
 - 代码层面已经支持后续直接切换到真实 DeepSeek-R1。
 
-## 7. 实验结果文件
+## 8. 实验结果文件
 
 运行后会输出：
 
