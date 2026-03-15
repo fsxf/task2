@@ -1,0 +1,626 @@
+﻿[
+  {
+    "case_id": "CWE259_Hard_Coded_Password__w32_char_51_good_path",
+    "cwe": "CWE259",
+    "variant": "51",
+    "analysis_scope": "good",
+    "root_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_51a.c",
+    "source_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_51a.c",
+    "sink_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_51b.c",
+    "flow_chain": [
+      "CWE259_Hard_Coded_Password__w32_char_51a.c",
+      "CWE259_Hard_Coded_Password__w32_char_51b.c"
+    ],
+    "vulnerable": false,
+    "expected_vulnerable": false,
+    "correct": true,
+    "primary_location": null,
+    "source_location": null,
+    "sink_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_51b.c",
+      "line": 67,
+      "code": "LogonUserA(                     username,                     domain,                     password,                     LOGON32_LOGON_NETWORK,                     LOGON32_PROVIDER_DEFAULT,                     &pHandle)"
+    },
+    "static_confidence": 0.7,
+    "notes": [
+      "static backend: joern",
+      "joern script: find_case_findings.sc",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_51a.c -> CWE259_Hard_Coded_Password__w32_char_51b.c"
+    ]
+  },
+  {
+    "case_id": "CWE259_Hard_Coded_Password__w32_char_52_good_path",
+    "cwe": "CWE259",
+    "variant": "52",
+    "analysis_scope": "good",
+    "root_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_52a.c",
+    "source_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_52a.c",
+    "sink_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_52c.c",
+    "flow_chain": [
+      "CWE259_Hard_Coded_Password__w32_char_52a.c",
+      "CWE259_Hard_Coded_Password__w32_char_52c.c"
+    ],
+    "vulnerable": false,
+    "expected_vulnerable": false,
+    "correct": true,
+    "primary_location": null,
+    "source_location": null,
+    "sink_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_52c.c",
+      "line": 67,
+      "code": "LogonUserA(                     username,                     domain,                     password,                     LOGON32_LOGON_NETWORK,                     LOGON32_PROVIDER_DEFAULT,                     &pHandle)"
+    },
+    "static_confidence": 0.7,
+    "notes": [
+      "static backend: joern",
+      "joern script: find_case_findings.sc",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_52a.c -> CWE259_Hard_Coded_Password__w32_char_52c.c"
+    ]
+  },
+  {
+    "case_id": "CWE259_Hard_Coded_Password__w32_char_53_good_path",
+    "cwe": "CWE259",
+    "variant": "53",
+    "analysis_scope": "good",
+    "root_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_53a.c",
+    "source_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_53a.c",
+    "sink_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_53d.c",
+    "flow_chain": [
+      "CWE259_Hard_Coded_Password__w32_char_53a.c",
+      "CWE259_Hard_Coded_Password__w32_char_53d.c"
+    ],
+    "vulnerable": false,
+    "expected_vulnerable": false,
+    "correct": true,
+    "primary_location": null,
+    "source_location": null,
+    "sink_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_53d.c",
+      "line": 67,
+      "code": "LogonUserA(                     username,                     domain,                     password,                     LOGON32_LOGON_NETWORK,                     LOGON32_PROVIDER_DEFAULT,                     &pHandle)"
+    },
+    "static_confidence": 0.7,
+    "notes": [
+      "static backend: joern",
+      "joern script: find_case_findings.sc",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_53a.c -> CWE259_Hard_Coded_Password__w32_char_53d.c"
+    ]
+  },
+  {
+    "case_id": "CWE259_Hard_Coded_Password__w32_char_54_good_path",
+    "cwe": "CWE259",
+    "variant": "54",
+    "analysis_scope": "good",
+    "root_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_54a.c",
+    "source_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_54a.c",
+    "sink_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_54e.c",
+    "flow_chain": [
+      "CWE259_Hard_Coded_Password__w32_char_54a.c",
+      "CWE259_Hard_Coded_Password__w32_char_54e.c"
+    ],
+    "vulnerable": false,
+    "expected_vulnerable": false,
+    "correct": true,
+    "primary_location": null,
+    "source_location": null,
+    "sink_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_54e.c",
+      "line": 67,
+      "code": "LogonUserA(                     username,                     domain,                     password,                     LOGON32_LOGON_NETWORK,                     LOGON32_PROVIDER_DEFAULT,                     &pHandle)"
+    },
+    "static_confidence": 0.7,
+    "notes": [
+      "static backend: joern",
+      "joern script: find_case_findings.sc",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_54a.c -> CWE259_Hard_Coded_Password__w32_char_54e.c"
+    ]
+  },
+  {
+    "case_id": "CWE259_Hard_Coded_Password__w32_char_61_good_path",
+    "cwe": "CWE259",
+    "variant": "61",
+    "analysis_scope": "good",
+    "root_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_61a.c",
+    "source_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_61b.c",
+    "sink_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_61a.c",
+    "flow_chain": [
+      "CWE259_Hard_Coded_Password__w32_char_61b.c",
+      "CWE259_Hard_Coded_Password__w32_char_61a.c"
+    ],
+    "vulnerable": false,
+    "expected_vulnerable": false,
+    "correct": true,
+    "primary_location": null,
+    "source_location": null,
+    "sink_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_61a.c",
+      "line": 78,
+      "code": "LogonUserA(                     username,                     domain,                     password,                     LOGON32_LOGON_NETWORK,                     LOGON32_PROVIDER_DEFAULT,                     &pHandle)"
+    },
+    "static_confidence": 0.7,
+    "notes": [
+      "static backend: joern",
+      "joern script: find_case_findings.sc",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_61b.c -> CWE259_Hard_Coded_Password__w32_char_61a.c"
+    ]
+  },
+  {
+    "case_id": "CWE259_Hard_Coded_Password__w32_char_62_good_path",
+    "cwe": "CWE259",
+    "variant": "62",
+    "analysis_scope": "good",
+    "root_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_62a.cpp",
+    "source_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_62b.cpp",
+    "sink_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_62a.cpp",
+    "flow_chain": [
+      "CWE259_Hard_Coded_Password__w32_char_62b.cpp",
+      "CWE259_Hard_Coded_Password__w32_char_62a.cpp"
+    ],
+    "vulnerable": false,
+    "expected_vulnerable": false,
+    "correct": true,
+    "primary_location": null,
+    "source_location": null,
+    "sink_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_62a.cpp",
+      "line": 79,
+      "code": "LogonUserA(                     username,                     domain,                     password,                     LOGON32_LOGON_NETWORK,                     LOGON32_PROVIDER_DEFAULT,                     &pHandle)"
+    },
+    "static_confidence": 0.7,
+    "notes": [
+      "static backend: joern",
+      "joern script: find_case_findings.sc",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_62b.cpp -> CWE259_Hard_Coded_Password__w32_char_62a.cpp"
+    ]
+  },
+  {
+    "case_id": "CWE259_Hard_Coded_Password__w32_char_81_good_path",
+    "cwe": "CWE259",
+    "variant": "81",
+    "analysis_scope": "good",
+    "root_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_81a.cpp",
+    "source_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_81a.cpp",
+    "sink_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_81_goodG2B.cpp",
+    "flow_chain": [
+      "CWE259_Hard_Coded_Password__w32_char_81a.cpp",
+      "CWE259_Hard_Coded_Password__w32_char_81_goodG2B.cpp"
+    ],
+    "vulnerable": false,
+    "expected_vulnerable": false,
+    "correct": true,
+    "primary_location": null,
+    "source_location": null,
+    "sink_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_81_goodG2B.cpp",
+      "line": 34,
+      "code": "LogonUserA(                     username,                     domain,                     password,                     LOGON32_LOGON_NETWORK,                     LOGON32_PROVIDER_DEFAULT,                     &pHandle)"
+    },
+    "static_confidence": 0.7,
+    "notes": [
+      "static backend: joern",
+      "joern script: find_case_findings.sc",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_81a.cpp -> CWE259_Hard_Coded_Password__w32_char_81_goodG2B.cpp"
+    ]
+  },
+  {
+    "case_id": "CWE259_Hard_Coded_Password__w32_char_82_good_path",
+    "cwe": "CWE259",
+    "variant": "82",
+    "analysis_scope": "good",
+    "root_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_82a.cpp",
+    "source_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_82a.cpp",
+    "sink_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_82_goodG2B.cpp",
+    "flow_chain": [
+      "CWE259_Hard_Coded_Password__w32_char_82a.cpp",
+      "CWE259_Hard_Coded_Password__w32_char_82_goodG2B.cpp"
+    ],
+    "vulnerable": false,
+    "expected_vulnerable": false,
+    "correct": true,
+    "primary_location": null,
+    "source_location": null,
+    "sink_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_82_goodG2B.cpp",
+      "line": 34,
+      "code": "LogonUserA(                     username,                     domain,                     password,                     LOGON32_LOGON_NETWORK,                     LOGON32_PROVIDER_DEFAULT,                     &pHandle)"
+    },
+    "static_confidence": 0.7,
+    "notes": [
+      "static backend: joern",
+      "joern script: find_case_findings.sc",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_82a.cpp -> CWE259_Hard_Coded_Password__w32_char_82_goodG2B.cpp"
+    ]
+  },
+  {
+    "case_id": "CWE259_Hard_Coded_Password__w32_char_83_good_path",
+    "cwe": "CWE259",
+    "variant": "83",
+    "analysis_scope": "good",
+    "root_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_83a.cpp",
+    "source_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_83_goodG2B.cpp",
+    "sink_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_83_goodG2B.cpp",
+    "flow_chain": [
+      "CWE259_Hard_Coded_Password__w32_char_83a.cpp",
+      "CWE259_Hard_Coded_Password__w32_char_83_goodG2B.cpp::constructor",
+      "CWE259_Hard_Coded_Password__w32_char_83_goodG2B.cpp::destructor"
+    ],
+    "vulnerable": false,
+    "expected_vulnerable": false,
+    "correct": true,
+    "primary_location": null,
+    "source_location": null,
+    "sink_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_83_goodG2B.cpp",
+      "line": 54,
+      "code": "LogonUserA(                     username,                     domain,                     password,                     LOGON32_LOGON_NETWORK,                     LOGON32_PROVIDER_DEFAULT,                     &pHandle)"
+    },
+    "static_confidence": 0.7,
+    "notes": [
+      "static backend: joern",
+      "joern script: find_case_findings.sc",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_83a.cpp -> CWE259_Hard_Coded_Password__w32_char_83_goodG2B.cpp::constructor -> CWE259_Hard_Coded_Password__w32_char_83_goodG2B.cpp::destructor"
+    ]
+  },
+  {
+    "case_id": "CWE259_Hard_Coded_Password__w32_char_84_good_path",
+    "cwe": "CWE259",
+    "variant": "84",
+    "analysis_scope": "good",
+    "root_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_84a.cpp",
+    "source_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_84_goodG2B.cpp",
+    "sink_file": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_84_goodG2B.cpp",
+    "flow_chain": [
+      "CWE259_Hard_Coded_Password__w32_char_84a.cpp",
+      "CWE259_Hard_Coded_Password__w32_char_84_goodG2B.cpp::constructor",
+      "CWE259_Hard_Coded_Password__w32_char_84_goodG2B.cpp::destructor"
+    ],
+    "vulnerable": false,
+    "expected_vulnerable": false,
+    "correct": true,
+    "primary_location": null,
+    "source_location": null,
+    "sink_location": {
+      "path": "CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_84_goodG2B.cpp",
+      "line": 54,
+      "code": "LogonUserA(                     username,                     domain,                     password,                     LOGON32_LOGON_NETWORK,                     LOGON32_PROVIDER_DEFAULT,                     &pHandle)"
+    },
+    "static_confidence": 0.7,
+    "notes": [
+      "static backend: joern",
+      "joern script: find_case_findings.sc",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_84a.cpp -> CWE259_Hard_Coded_Password__w32_char_84_goodG2B.cpp::constructor -> CWE259_Hard_Coded_Password__w32_char_84_goodG2B.cpp::destructor"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_51_good_path",
+    "cwe": "CWE78",
+    "variant": "51",
+    "analysis_scope": "good",
+    "root_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_51a.c",
+    "source_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_51a.c",
+    "sink_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_51b.c",
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_51a.c",
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_51b.c"
+    ],
+    "vulnerable": false,
+    "expected_vulnerable": false,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_51b.c",
+      "line": 83,
+      "code": "execl(\"/bin/sh\", \"/bin/sh\", \"-c\", data, NULL)"
+    },
+    "source_location": null,
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_51b.c",
+      "line": 83,
+      "code": "execl(\"/bin/sh\", \"/bin/sh\", \"-c\", data, NULL)"
+    },
+    "static_confidence": 0.7,
+    "notes": [
+      "static backend: joern",
+      "joern script: find_case_findings.sc",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_51a.c -> CWE78_OS_Command_Injection__char_connect_socket_execl_51b.c"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_52_good_path",
+    "cwe": "CWE78",
+    "variant": "52",
+    "analysis_scope": "good",
+    "root_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_52a.c",
+    "source_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_52a.c",
+    "sink_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_52c.c",
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_52a.c",
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_52c.c"
+    ],
+    "vulnerable": false,
+    "expected_vulnerable": false,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_52c.c",
+      "line": 83,
+      "code": "execl(\"/bin/sh\", \"/bin/sh\", \"-c\", data, NULL)"
+    },
+    "source_location": null,
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_52c.c",
+      "line": 83,
+      "code": "execl(\"/bin/sh\", \"/bin/sh\", \"-c\", data, NULL)"
+    },
+    "static_confidence": 0.7,
+    "notes": [
+      "static backend: joern",
+      "joern script: find_case_findings.sc",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_52a.c -> CWE78_OS_Command_Injection__char_connect_socket_execl_52c.c"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_53_good_path",
+    "cwe": "CWE78",
+    "variant": "53",
+    "analysis_scope": "good",
+    "root_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_53a.c",
+    "source_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_53a.c",
+    "sink_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_53d.c",
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_53a.c",
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_53d.c"
+    ],
+    "vulnerable": false,
+    "expected_vulnerable": false,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_53d.c",
+      "line": 83,
+      "code": "execl(\"/bin/sh\", \"/bin/sh\", \"-c\", data, NULL)"
+    },
+    "source_location": null,
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_53d.c",
+      "line": 83,
+      "code": "execl(\"/bin/sh\", \"/bin/sh\", \"-c\", data, NULL)"
+    },
+    "static_confidence": 0.7,
+    "notes": [
+      "static backend: joern",
+      "joern script: find_case_findings.sc",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_53a.c -> CWE78_OS_Command_Injection__char_connect_socket_execl_53d.c"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_54_good_path",
+    "cwe": "CWE78",
+    "variant": "54",
+    "analysis_scope": "good",
+    "root_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_54a.c",
+    "source_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_54a.c",
+    "sink_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_54e.c",
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_54a.c",
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_54e.c"
+    ],
+    "vulnerable": false,
+    "expected_vulnerable": false,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_54e.c",
+      "line": 83,
+      "code": "execl(\"/bin/sh\", \"/bin/sh\", \"-c\", data, NULL)"
+    },
+    "source_location": null,
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_54e.c",
+      "line": 83,
+      "code": "execl(\"/bin/sh\", \"/bin/sh\", \"-c\", data, NULL)"
+    },
+    "static_confidence": 0.7,
+    "notes": [
+      "static backend: joern",
+      "joern script: find_case_findings.sc",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_54a.c -> CWE78_OS_Command_Injection__char_connect_socket_execl_54e.c"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_61_good_path",
+    "cwe": "CWE78",
+    "variant": "61",
+    "analysis_scope": "good",
+    "root_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_61a.c",
+    "source_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_61b.c",
+    "sink_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_61a.c",
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_61b.c",
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_61a.c"
+    ],
+    "vulnerable": false,
+    "expected_vulnerable": false,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_61a.c",
+      "line": 94,
+      "code": "execl(\"/bin/sh\", \"/bin/sh\", \"-c\", data, NULL)"
+    },
+    "source_location": null,
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_61a.c",
+      "line": 94,
+      "code": "execl(\"/bin/sh\", \"/bin/sh\", \"-c\", data, NULL)"
+    },
+    "static_confidence": 0.7,
+    "notes": [
+      "static backend: joern",
+      "joern script: find_case_findings.sc",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_61b.c -> CWE78_OS_Command_Injection__char_connect_socket_execl_61a.c"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_62_good_path",
+    "cwe": "CWE78",
+    "variant": "62",
+    "analysis_scope": "good",
+    "root_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_62a.cpp",
+    "source_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_62b.cpp",
+    "sink_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_62a.cpp",
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_62b.cpp",
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_62a.cpp"
+    ],
+    "vulnerable": false,
+    "expected_vulnerable": false,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_62a.cpp",
+      "line": 77,
+      "code": "execl(\"/bin/sh\", \"/bin/sh\", \"-c\", data, NULL)"
+    },
+    "source_location": null,
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_62a.cpp",
+      "line": 77,
+      "code": "execl(\"/bin/sh\", \"/bin/sh\", \"-c\", data, NULL)"
+    },
+    "static_confidence": 0.7,
+    "notes": [
+      "static backend: joern",
+      "joern script: find_case_findings.sc",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_62b.cpp -> CWE78_OS_Command_Injection__char_connect_socket_execl_62a.cpp"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_81_good_path",
+    "cwe": "CWE78",
+    "variant": "81",
+    "analysis_scope": "good",
+    "root_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_81a.cpp",
+    "source_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_81a.cpp",
+    "sink_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_81_goodG2B.cpp",
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_81a.cpp",
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_81_goodG2B.cpp"
+    ],
+    "vulnerable": false,
+    "expected_vulnerable": false,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_81_goodG2B.cpp",
+      "line": 35,
+      "code": "execl(\"/bin/sh\", \"/bin/sh\", \"-c\", data, NULL)"
+    },
+    "source_location": null,
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_81_goodG2B.cpp",
+      "line": 35,
+      "code": "execl(\"/bin/sh\", \"/bin/sh\", \"-c\", data, NULL)"
+    },
+    "static_confidence": 0.7,
+    "notes": [
+      "static backend: joern",
+      "joern script: find_case_findings.sc",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_81a.cpp -> CWE78_OS_Command_Injection__char_connect_socket_execl_81_goodG2B.cpp"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_82_good_path",
+    "cwe": "CWE78",
+    "variant": "82",
+    "analysis_scope": "good",
+    "root_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_82a.cpp",
+    "source_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_82a.cpp",
+    "sink_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_82_goodG2B.cpp",
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_82a.cpp",
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_82_goodG2B.cpp"
+    ],
+    "vulnerable": false,
+    "expected_vulnerable": false,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_82_goodG2B.cpp",
+      "line": 35,
+      "code": "execl(\"/bin/sh\", \"/bin/sh\", \"-c\", data, NULL)"
+    },
+    "source_location": null,
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_82_goodG2B.cpp",
+      "line": 35,
+      "code": "execl(\"/bin/sh\", \"/bin/sh\", \"-c\", data, NULL)"
+    },
+    "static_confidence": 0.7,
+    "notes": [
+      "static backend: joern",
+      "joern script: find_case_findings.sc",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_82a.cpp -> CWE78_OS_Command_Injection__char_connect_socket_execl_82_goodG2B.cpp"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_83_good_path",
+    "cwe": "CWE78",
+    "variant": "83",
+    "analysis_scope": "good",
+    "root_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_83a.cpp",
+    "source_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_83_goodG2B.cpp",
+    "sink_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_83_goodG2B.cpp",
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_83a.cpp",
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_83_goodG2B.cpp::constructor",
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_83_goodG2B.cpp::destructor"
+    ],
+    "vulnerable": false,
+    "expected_vulnerable": false,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_83_goodG2B.cpp",
+      "line": 41,
+      "code": "execl(\"/bin/sh\", \"/bin/sh\", \"-c\", data, NULL)"
+    },
+    "source_location": null,
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_83_goodG2B.cpp",
+      "line": 41,
+      "code": "execl(\"/bin/sh\", \"/bin/sh\", \"-c\", data, NULL)"
+    },
+    "static_confidence": 0.7,
+    "notes": [
+      "static backend: joern",
+      "joern script: find_case_findings.sc",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_83a.cpp -> CWE78_OS_Command_Injection__char_connect_socket_execl_83_goodG2B.cpp::constructor -> CWE78_OS_Command_Injection__char_connect_socket_execl_83_goodG2B.cpp::destructor"
+    ]
+  },
+  {
+    "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_84_good_path",
+    "cwe": "CWE78",
+    "variant": "84",
+    "analysis_scope": "good",
+    "root_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_84a.cpp",
+    "source_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_84_goodG2B.cpp",
+    "sink_file": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_84_goodG2B.cpp",
+    "flow_chain": [
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_84a.cpp",
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_84_goodG2B.cpp::constructor",
+      "CWE78_OS_Command_Injection__char_connect_socket_execl_84_goodG2B.cpp::destructor"
+    ],
+    "vulnerable": false,
+    "expected_vulnerable": false,
+    "correct": true,
+    "primary_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_84_goodG2B.cpp",
+      "line": 41,
+      "code": "execl(\"/bin/sh\", \"/bin/sh\", \"-c\", data, NULL)"
+    },
+    "source_location": null,
+    "sink_location": {
+      "path": "CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_84_goodG2B.cpp",
+      "line": 41,
+      "code": "execl(\"/bin/sh\", \"/bin/sh\", \"-c\", data, NULL)"
+    },
+    "static_confidence": 0.7,
+    "notes": [
+      "static backend: joern",
+      "joern script: find_case_findings.sc",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_84a.cpp -> CWE78_OS_Command_Injection__char_connect_socket_execl_84_goodG2B.cpp::constructor -> CWE78_OS_Command_Injection__char_connect_socket_execl_84_goodG2B.cpp::destructor"
+    ]
+  }
+]

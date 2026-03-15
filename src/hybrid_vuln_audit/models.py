@@ -27,6 +27,7 @@ class CaseContext:
     sink_file: Path
     flow_chain: list[str]
     expected_vulnerable: bool = True
+    analysis_scope: str = "bad"
 
     def relative_root(self, base: Path) -> str:
         return self.root_file.relative_to(base).as_posix()

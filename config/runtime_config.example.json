@@ -1,0 +1,11 @@
+{
+  "deepseek_base_url": "https://api.deepseek.com/v1",
+  "deepseek_model": "deepseek-reasoner",
+  "deepseek_timeout_seconds": 180,
+  "static_analysis_backend": "joern",
+  "java_home": "",
+  "joern_cli_path": "AUTO_DETECT",
+  "joern_script_path": "joern_scripts/find_case_findings.sc",
+  "joern_workspace_root": "",
+  "joern_case_temp_root": ""
+}

@@ -46,6 +46,7 @@ def enumerate_target_cases(dataset_root: Path) -> list[CaseContext]:
                 source_file=resolution.source_file,
                 sink_file=resolution.sink_file,
                 flow_chain=resolution.flow_chain,
+                analysis_scope="bad",
             )
         )
     return cases

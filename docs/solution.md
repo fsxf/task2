@@ -1,61 +1,65 @@
 # 方案说明
 
-## 1. 任务理解
+## 1. 任务目标
 
-题目要求实现一个“智能体 + 静态分析”的漏洞检测工具，统一使用 Python。当前提交版本保留并分析以下 Juliet 基准子集：
+本工程实现了一个面向精简 Juliet 基准集的漏洞检测系统，要求：
 
-- `CWE78_OS_Command_Injection` 中 `char_connect_socket_execl + 51/52/53/54/61/62/81/82/83/84`
-- `CWE259_Hard_Coded_Password` 中 `w32_char + 51/52/53/54/61/62/81/82/83/84`
-- 合计 `20` 个顶层实例
+- 使用 Python 统一组织工程
+- 引入静态分析工具
+- 接入大模型进行复核
+- 给出可运行代码、测试和实验结果
 
-## 2. 总体架构
+当前工程聚焦两个 CWE：
 
-第一阶段：静态分析初筛
+- `CWE78_OS_Command_Injection`
+- `CWE259_Hard_Coded_Password`
 
-- 根据文件命名规则枚举目标实例。
-- 按流转变体定位 bad path 里的 source 文件与 sink 文件。
-- 提取 source 行、sink 行、流转链和最小代码窗口。
+每个 CWE 保留 `10` 个目标变体，总计 `20` 个主基准实例。
 
-第二阶段：智能体复核
+## 2. 总体方案
 
-- 把静态分析提取出的最小证据拼成紧凑 prompt。
-- 交给 DeepSeek-R1 判断：
-  - 是否存在漏洞
-  - 主要漏洞位置
-  - 原因说明
+系统采用两阶段流程。
 
-## 3. 为什么这样能省 token
+### 第一阶段：静态分析初筛
 
-本工程只发送：
+- 根据 Juliet 文件命名规则枚举目标实例
+- 结合变体编号解析 source / sink 所在文件
+- 优先调用 `Joern` 从 CPG 中抽取 source/sink 证据
+- 如果 `Joern` 不可用，再回退到规则匹配后端
 
-- 结构化元信息
-- 1 个 source 片段
-- 1 个 sink 片段
-- 1 条流转链
+### 第二阶段：DeepSeek-R1 复核
 
-这样每个实例的 prompt 明显更短，避免把大量模板代码重复喂给模型。
+- 将静态分析结果压缩成最小证据包
+- 只提供 source/sink、局部代码窗口和 flow chain
+- 调用 `DeepSeek-R1` 输出最终判断和解释
 
-## 4. 当前数据规模
+该方案兼顾了两点：
 
-- `CWE78`：`10` 个实例
-- `CWE259`：`10` 个实例
-- 总计：`20` 个实例
+- 静态分析负责确定候选证据
+- 大模型负责利用上下文做语义复核
 
-## 5. 静态分析策略
+## 3. 静态分析实现
 
-### 5.1 CWE78
+### 3.1 Joern 后端
 
-- bad source 从外部输入读入命令片段；
-- bad sink 调用 `EXECL(...)`；
-- `primary_line` 默认取 sink 行。
+本工程当前默认使用 `Joern`。
 
-### 5.2 CWE259
+查询规则如下：
 
-- bad source 使用硬编码口令；
-- sink 使用 `LogonUserA(...)`；
-- `primary_line` 默认取 source 行。
+- `CWE78`
+  - source: `recv`
+  - sink: `EXECL/execl/_execl`
+- `CWE259`
+  - source: `strcpy(..., PASSWORD)`
+  - sink: `LogonUserA`
 
-## 6. 变体处理
+查询脚本位于：
+
+- `joern_scripts/find_case_findings.sc`
+
+### 3.2 变体解析
+
+变体到数据流的映射为：
 
 - `51`: `a -> b`
 - `52`: `a -> b -> c`
@@ -63,39 +67,88 @@
 - `54`: `a -> b -> c -> d -> e`
 - `61`: `b -> a`
 - `62`: `b -> a`
-- `81/82/83`: `a -> _bad.cpp`
-- `84`: `_bad.cpp` 内部构造函数写 source，析构函数落 sink
+- `81`: `a -> virtual dispatch`
+- `82`: `a -> virtual dispatch`
+- `83`: `constructor -> destructor`
+- `84`: `constructor -> destructor`
 
-## 7. DeepSeek-R1 接入
+## 4. Good Path 设计
 
-工程默认按 OpenAI-compatible 接口访问 DeepSeek：
+工程除了主基准结果，还额外支持 Good Path 验证。
 
-- Base URL：`https://api.deepseek.com/v1`
-- Model：`deepseek-reasoner`
+这里强调是 Good Path，而不是 Good 文件。
 
-当前环境未发现 API Key，因此默认实验结果以离线模式导出：
+原因是 Juliet 中很多变体存在以下情况：
 
-- 复核结果使用静态证据的确定性结论；
-- token 使用提示词长度估算；
-- 代码层面已经支持后续直接切换到真实 DeepSeek-R1。
+- 同一个文件组里既有 `bad()` 又有 `good()`
+- 同一个文件里既有 `badSource` 又有 `goodG2BSource`
+- 同一个文件里既有 `badSink` 又有 `goodG2BSink`
 
-## 8. 实验结果文件
+因此，判断一个样例是否安全，不能只靠文件名，而要结合“当前分析的是 good 作用域还是 bad 作用域”。
 
-运行后会输出：
+本工程通过 `analysis_scope` 区分：
 
-- `analysis_results.json`
-- `analysis_results.csv`
-- `summary.md`
+- `bad`：主基准漏洞路径
+- `good`：安全路径验证
 
-其中逐实例结果包含：
+Joern 查询和规则回退都会按该作用域过滤。
 
-- `case_id`
-- `cwe`
-- `variant`
-- `vulnerable`
-- `primary_location`
-- `source_location`
-- `sink_location`
-- `prompt_tokens`
-- `completion_tokens`
-- `total_tokens`
+## 5. 配置方式
+
+推荐采用以下方式：
+
+- 工具安装在项目外
+- API key 和工具路径使用环境变量
+- 项目内只保留极简本地配置文件
+
+环境变量优先级高于本地配置文件。
+
+关键变量包括：
+
+- `DEEPSEEK_API_KEY`
+- `DEEPSEEK_BASE_URL`
+- `DEEPSEEK_MODEL`
+- `DEEPSEEK_TIMEOUT_SECONDS`
+- `STATIC_ANALYSIS_BACKEND`
+- `JAVA_HOME`
+- `JOERN_CLI_PATH`
+- `JOERN_WORKSPACE_ROOT`
+- `JOERN_CASE_TEMP_ROOT`
+
+## 6. 关于 `workspace`
+
+`workspace` 是 Joern 的运行工作区，不是工程源码目录。
+
+旧版本会把它直接生成在项目根目录。当前版本已经支持：
+
+- 把 Joern 工作区放到系统临时目录
+- 或通过配置显式放到项目外部目录
+
+同时，当前版本会在每个 case 分析结束后清理对应的 Joern 项目缓存，避免 `workspace/hybrid-vuln-audit-*` 持续累积。
+
+## 7. 输出结果
+
+主流程输出：
+
+- `results/analysis_results.json`
+- `results/analysis_results.csv`
+- `results/summary.md`
+
+Good Path 结果输出：
+
+- `results/good_sample_results.json`
+
+## 8. 当前验证情况
+
+已验证：
+
+- `python -m unittest discover -s tests -v`
+- `python main.py`
+- `python main.py --good-paths-only`
+
+测试覆盖内容包括：
+
+- 主基准实例枚举
+- 漏洞样例定位
+- 构造/析构流检测
+- `20` 条 Good Path 不误报

@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import json
+import socket
+import time
 from urllib import error, request
 
 from .config import AppConfig
@@ -10,49 +12,28 @@ from .tokenizer import estimate_text_tokens
 
 
 class DeepSeekReviewer:
-    def __init__(self, config: AppConfig, *, force_offline: bool = False) -> None:
+    def __init__(self, config: AppConfig) -> None:
         self._config = config
-        self._force_offline = force_offline
 
     def review(self, context: CaseContext, evidence: StaticEvidence) -> LLMReview:
         system_prompt, user_prompt = build_messages(context, evidence)
         prompt_tokens = estimate_text_tokens(system_prompt) + estimate_text_tokens(user_prompt)
 
-        if self._force_offline or not self._config.deepseek_enabled:
-            return self._offline_review(context, evidence, prompt_tokens)
+        if not self._config.deepseek_enabled:
+            raise RuntimeError(
+                "DeepSeek API key is not configured. Edit config/runtime_config.local.json or set DEEPSEEK_API_KEY."
+            )
 
-        try:
-            return self._online_review(evidence, system_prompt, user_prompt, prompt_tokens)
-        except (error.URLError, error.HTTPError, TimeoutError, ValueError, json.JSONDecodeError) as exc:
-            fallback = self._offline_review(context, evidence, prompt_tokens)
-            fallback.reason = f"{fallback.reason} Online review failed: {exc!s}"
-            return fallback
-
-    def _offline_review(self, context: CaseContext, evidence: StaticEvidence, prompt_tokens: int) -> LLMReview:
-        if context.cwe == "CWE78":
-            reason = "Static evidence shows untrusted command input reaches EXECL in the bad path."
-        else:
-            reason = "Static evidence shows a hard-coded password reaches LogonUserA in the bad path."
-
-        response_object = {
-            "verdict": evidence.is_vulnerable,
-            "confidence": evidence.confidence,
-            "primary_line": evidence.primary_location.line if evidence.primary_location else None,
-            "source_line": evidence.source_location.line if evidence.source_location else None,
-            "sink_line": evidence.sink_location.line if evidence.sink_location else None,
-            "reason": reason,
-        }
-        completion_tokens = estimate_text_tokens(json.dumps(response_object, ensure_ascii=True))
-        return LLMReview(
-            verdict=evidence.is_vulnerable,
-            confidence=evidence.confidence,
-            reason=reason,
-            prompt_tokens=prompt_tokens,
-            completion_tokens=completion_tokens,
-            total_tokens=prompt_tokens + completion_tokens,
-            model=self._config.deepseek_model,
-            mode="offline-estimate",
-        )
+        last_error = None
+        for attempt in range(3):
+            try:
+                return self._online_review(evidence, system_prompt, user_prompt, prompt_tokens)
+            except (error.URLError, error.HTTPError, socket.timeout, TimeoutError, ValueError, json.JSONDecodeError) as exc:
+                last_error = exc
+                if attempt == 2:
+                    break
+                time.sleep(2 * (attempt + 1))
+        raise RuntimeError("DeepSeek online review failed: {0}".format(last_error))
 
     def _online_review(
         self,

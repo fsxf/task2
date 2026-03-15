@@ -12,6 +12,7 @@ if str(SRC) not in sys.path:
 
 from hybrid_vuln_audit.benchmark import enumerate_target_cases
 from hybrid_vuln_audit.config import AppConfig
+from hybrid_vuln_audit.good_paths import build_good_path_contexts
 from hybrid_vuln_audit.static_analysis import JulietStaticAnalyzer
 
 
@@ -45,8 +46,20 @@ class PipelineTests(unittest.TestCase):
         target = next(case for case in cases if case.case_id.endswith("char_connect_socket_execl_83"))
         evidence = JulietStaticAnalyzer(self.config).analyze(target, self.dataset_root)
         self.assertTrue(evidence.is_vulnerable)
-        self.assertEqual(evidence.source_location.line, 9)
+        self.assertEqual(evidence.source_location.line, 90)
         self.assertEqual(evidence.sink_location.line, 127)
+
+    def test_enumeration_builds_20_good_path_contexts(self) -> None:
+        self.assertEqual(len(build_good_path_contexts(self.dataset_root)), 20)
+
+    def test_all_good_paths_are_not_flagged(self) -> None:
+        analyzer = JulietStaticAnalyzer(self.config)
+        for context in build_good_path_contexts(self.dataset_root):
+            with self.subTest(case_id=context.case_id):
+                evidence = analyzer.analyze(context, self.dataset_root)
+                self.assertFalse(evidence.is_vulnerable)
+                self.assertIsNone(evidence.source_location)
+                self.assertIsNotNone(evidence.sink_location)
 
 
 if __name__ == "__main__":

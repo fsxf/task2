@@ -1,0 +1,7 @@
+config/runtime_config.local.json
+workspace/
+joern_workspace/
+.joern_case_tmp/
+joern_case_tmp/
+__pycache__/
+*.pyc
