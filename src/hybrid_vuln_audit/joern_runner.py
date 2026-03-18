@@ -1,14 +1,15 @@
 from __future__ import annotations
 
+import base64
 from collections import deque
 from dataclasses import dataclass
 import os
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import tempfile
 from typing import List, Optional
-from uuid import uuid4
 
 from .config import AppConfig
 from .models import CaseContext, CodeLocation, StaticEvidence
@@ -33,7 +34,20 @@ class _JoernCallEdge:
     code: str
 
 
+@dataclass
+class _JoernMethodDef:
+    path: str
+    start_line: int
+    end_line: int
+    full_name: str
+    code: str
+
+
 class JoernStaticAnalyzer:
+    _CODE_EXTENSIONS = {".c", ".cc", ".cpp", ".cxx"}
+    _SYSTEM_INCLUDE_LINE_PATTERN = re.compile(r"^\s*#\s*include\s*<.*?>\s*$")
+    _MARKER_PATTERN = re.compile(r"^\s*#\s+\d+\s+.*$", re.MULTILINE)
+
     def __init__(self, config: AppConfig) -> None:
         self._config = config
         self._cli_path = self._resolve_cli_path(config.joern_cli_path)
@@ -51,56 +65,54 @@ class JoernStaticAnalyzer:
         case_temp_root.mkdir(parents=True, exist_ok=True)
         project_name = self._build_project_name(context)
 
-        if self._config.joern_keep_projects:
-            temp_path = self._prepare_kept_case_directory(case_temp_root, project_name, context)
-            try:
-                findings = self._analyze_with_joern(temp_path, context, dataset_root, project_name)
-            except RuntimeError as exc:
-                if not self._should_retry_with_fresh_project(exc):
-                    raise
-                project_name = "{0}-{1}".format(project_name, uuid4().hex[:8])
-                temp_path = self._prepare_kept_case_directory(case_temp_root, project_name, context)
-                findings = self._analyze_with_joern(temp_path, context, dataset_root, project_name)
-        else:
-            with tempfile.TemporaryDirectory(dir=str(case_temp_root)) as temp_dir:
-                temp_path = Path(temp_dir)
-                for file_path in self._select_case_files(context):
-                    shutil.copy2(str(file_path), str(temp_path / file_path.name))
-                findings = self._analyze_with_joern(temp_path, context, dataset_root, project_name)
+        temp_path, preprocess_notes, line_maps = self._prepare_kept_case_directory(case_temp_root, project_name, context)
+        findings = self._analyze_with_joern(temp_path, context, dataset_root, project_name, line_maps)
 
         source_finding = self._pick_best_finding(findings, "SOURCE", context.analysis_scope)
         sink_finding = self._pick_best_finding(findings, "SINK", context.analysis_scope)
         source_location = self._to_location(source_finding)
         sink_location = self._to_location(sink_finding)
         primary_location = sink_location if context.cwe == "CWE78" else source_location
+
+        call_edges = self._extract_call_edges(findings)
+        method_defs = self._extract_method_defs(findings, temp_path)
+        chain_methods = self._derive_chain_methods(call_edges, source_finding, sink_finding)
+
+        sanitizer = _JulietFunctionSanitizer()
+        sanitizer.learn(chain_methods, method_defs)
+        self._sanitize_locations(sanitizer, source_location, sink_location, primary_location)
+
+        flow_evidence = self._build_flow_evidence(call_edges, source_finding, sink_finding, context, sanitizer)
+        function_evidence = self._build_function_evidence(chain_methods, method_defs, sanitizer)
         verdict = source_location is not None and sink_location is not None
-        flow_evidence = self._build_flow_evidence(findings, source_finding, sink_finding, context)
+
         notes = [
             "static backend: joern",
-            "joern script: {0}".format(self._config.joern_script_path.name),
-            "joern import scope: full case file group",
-            "flow chain: {0}".format(" -> ".join(context.flow_chain)),
+            f"joern script: {self._config.joern_script_path.name}",
+            "joern import scope: preprocessed full case file group",
+            "joern evidence: call-chain + full function bodies",
+            f"joern project: {project_name}",
+            f"joern workspace root: {self._config.joern_workspace_root}",
+            f"joern case input root: {self._config.joern_case_temp_root}",
         ]
-        if flow_evidence:
-            notes.append("joern flow evidence items: {0}".format(len(flow_evidence)))
-        if self._config.joern_keep_projects:
-            notes.extend(
-                [
-                    "joern project: {0}".format(project_name),
-                    "joern workspace root: {0}".format(self._config.joern_workspace_root),
-                    "joern case input root: {0}".format(self._config.joern_case_temp_root),
-                ]
-            )
+        notes.extend(preprocess_notes)
+        if function_evidence:
+            notes.append(f"call-chain functions exported: {len(function_evidence)}")
+
+        source_snippet = sanitizer.sanitize_code(source_finding.code) if source_finding else ""
+        sink_snippet = sanitizer.sanitize_code(sink_finding.code) if sink_finding else ""
+
         return StaticEvidence(
             is_vulnerable=verdict,
             confidence=0.99 if verdict else 0.70,
             primary_location=primary_location,
             source_location=source_location,
             sink_location=sink_location,
-            source_snippet=self._render_window(self._resolve_group_file(context, source_location.path), source_location.line) if source_location else "",
-            sink_snippet=self._render_window(self._resolve_group_file(context, sink_location.path), sink_location.line) if sink_location else "",
+            source_snippet=source_snippet,
+            sink_snippet=sink_snippet,
             notes=notes,
             flow_evidence=flow_evidence,
+            function_evidence=function_evidence,
         )
 
     def _analyze_with_joern(
@@ -109,6 +121,7 @@ class JoernStaticAnalyzer:
         context: CaseContext,
         dataset_root: Path,
         project_name: str,
+        line_maps: dict[str, dict[int, int]],
     ) -> List[_JoernFinding]:
         findings_path = temp_path / "findings.tsv"
         self._run_joern(
@@ -119,24 +132,17 @@ class JoernStaticAnalyzer:
             analysis_scope=context.analysis_scope,
             project_name=project_name,
         )
-        try:
-            findings = self._parse_findings(findings_path, context, dataset_root)
-            if not findings:
-                return []
-            return findings
-        finally:
-            if not self._config.joern_keep_projects:
-                self._cleanup_project_workspace(project_name)
+        return self._parse_findings(findings_path, context, dataset_root, line_maps)
 
     def _select_case_files(self, context: CaseContext) -> List[Path]:
-        # Import the full Juliet case group so Joern sees the complete case-level structure.
-        unique = []
+        unique: List[Path] = []
         seen = set()
         for item in context.group_files:
             key = str(item.resolve())
-            if key not in seen:
-                seen.add(key)
-                unique.append(item)
+            if key in seen:
+                continue
+            seen.add(key)
+            unique.append(item)
         return unique
 
     def _run_joern(
@@ -161,6 +167,7 @@ class JoernStaticAnalyzer:
             env = dict(os.environ)
             env["JAVA_HOME"] = str(self._config.java_home)
             env["PATH"] = "{0};{1}".format(str((self._config.java_home / "bin").resolve()), env.get("PATH", ""))
+
         joern_runtime_root = self._config.joern_workspace_root.resolve()
         joern_runtime_root.mkdir(parents=True, exist_ok=True)
         completed = subprocess.run(
@@ -175,20 +182,124 @@ class JoernStaticAnalyzer:
             raise RuntimeError("Joern execution failed: {0}".format(completed.stderr.strip() or completed.stdout.strip()))
 
     def _build_project_name(self, context: CaseContext) -> str:
-        if self._config.joern_keep_projects:
-            case_name = self._sanitize_name(context.case_id)
-            scope_name = self._sanitize_name(context.analysis_scope)
-            return "hybrid-vuln-audit-{0}-{1}".format(case_name, scope_name)
-        return "hybrid-vuln-audit-{0}".format(uuid4().hex)
+        # Keep one stable CPG project per Juliet case id.
+        return self._sanitize_name(context.case_id)
 
-    def _prepare_kept_case_directory(self, case_temp_root: Path, project_name: str, context: CaseContext) -> Path:
+    def _prepare_kept_case_directory(
+        self,
+        case_temp_root: Path,
+        project_name: str,
+        context: CaseContext,
+    ) -> tuple[Path, list[str], dict[str, dict[int, int]]]:
         case_dir = case_temp_root / project_name
         if case_dir.exists():
             shutil.rmtree(str(case_dir), ignore_errors=True)
         case_dir.mkdir(parents=True, exist_ok=True)
-        for file_path in self._select_case_files(context):
-            shutil.copy2(str(file_path), str(case_dir / file_path.name))
-        return case_dir
+
+        selected_files = self._select_case_files(context)
+        include_dirs = sorted({str(item.parent.resolve()) for item in selected_files})
+        notes: list[str] = []
+        line_maps: dict[str, dict[int, int]] = {}
+
+        for file_path in selected_files:
+            target = case_dir / file_path.name
+            if file_path.suffix.lower() in self._CODE_EXTENSIONS:
+                ok, detail, line_map = self._preprocess_code_file(file_path, target, include_dirs)
+                notes.append(detail)
+                if line_map:
+                    line_maps[file_path.name] = line_map
+                if not ok:
+                    shutil.copy2(str(file_path), str(target))
+            else:
+                shutil.copy2(str(file_path), str(target))
+
+        return case_dir, notes, line_maps
+
+    def _preprocess_code_file(
+        self,
+        source: Path,
+        target: Path,
+        include_dirs: list[str],
+    ) -> tuple[bool, str, dict[int, int]]:
+        compiler = "g++" if source.suffix.lower() in {".cpp", ".cxx", ".cc"} else "gcc"
+        raw = source.read_text(encoding="utf-8", errors="ignore")
+        raw_lines = raw.splitlines()
+        filtered_lines: list[str] = []
+        temp_to_original_line: dict[int, int] = {}
+        for original_index, line in enumerate(raw_lines, start=1):
+            if self._SYSTEM_INCLUDE_LINE_PATTERN.match(line):
+                continue
+            filtered_lines.append(line)
+            temp_to_original_line[len(filtered_lines)] = original_index
+
+        with tempfile.NamedTemporaryFile("w", suffix=source.suffix, delete=False, encoding="utf-8") as temp_file:
+            temp_file.write("\n".join(filtered_lines))
+            temp_input = Path(temp_file.name)
+
+        cmd = [compiler, "-E", str(temp_input)]
+        for include_dir in include_dirs:
+            cmd.extend(["-I", include_dir])
+
+        try:
+            completed = subprocess.run(
+                cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                universal_newlines=True,
+                timeout=90,
+            )
+        except FileNotFoundError:
+            self._safe_unlink(temp_input)
+            return False, f"preprocess fallback: {source.name} ({compiler} not found)", {}
+        except subprocess.TimeoutExpired:
+            self._safe_unlink(temp_input)
+            return False, f"preprocess fallback: {source.name} ({compiler} timeout)", {}
+
+        self._safe_unlink(temp_input)
+
+        if completed.returncode != 0:
+            return False, f"preprocess fallback: {source.name} ({compiler} failed)", {}
+
+        aliases = {source.name, temp_input.name}
+        preprocessed, line_map = self._strip_markers_and_build_line_map(completed.stdout, aliases, temp_to_original_line)
+        target.write_text(preprocessed, encoding="utf-8")
+        return True, f"preprocess ok: {source.name} ({compiler} -E)", line_map
+
+    @staticmethod
+    def _safe_unlink(path: Path) -> None:
+        try:
+            if path.exists():
+                path.unlink()
+        except OSError:
+            pass
+
+    @staticmethod
+    def _strip_markers_and_build_line_map(
+        preprocessed: str,
+        source_aliases: set[str],
+        temp_to_original_line: dict[int, int],
+    ) -> tuple[str, dict[int, int]]:
+        marker_pattern = re.compile(r'^\s*#\s+(\d+)\s+"([^"]+)"(?:\s+.*)?$')
+        emitted_lines: list[str] = []
+        line_map: dict[int, int] = {}
+        current_file_name = ""
+        current_source_line = -1
+
+        for raw_line in preprocessed.splitlines():
+            marker_match = marker_pattern.match(raw_line)
+            if marker_match:
+                current_source_line = int(marker_match.group(1))
+                current_file_name = Path(marker_match.group(2)).name
+                continue
+
+            emitted_lines.append(raw_line)
+            emitted_index = len(emitted_lines)
+            if current_source_line > 0 and current_file_name in source_aliases:
+                line_map[emitted_index] = temp_to_original_line.get(current_source_line, current_source_line)
+            if current_source_line > 0:
+                current_source_line += 1
+
+        return "\n".join(emitted_lines), line_map
 
     @staticmethod
     def _build_java_command(java_executable: str, joern_home: Path) -> List[str]:
@@ -243,7 +354,13 @@ class JoernStaticAnalyzer:
                 return Path(resolved).resolve()
         return None
 
-    def _parse_findings(self, findings_path: Path, context: CaseContext, dataset_root: Path) -> List[_JoernFinding]:
+    def _parse_findings(
+        self,
+        findings_path: Path,
+        context: CaseContext,
+        dataset_root: Path,
+        line_maps: dict[str, dict[int, int]],
+    ) -> List[_JoernFinding]:
         if not findings_path.exists():
             return []
         rows: List[_JoernFinding] = []
@@ -253,15 +370,18 @@ class JoernStaticAnalyzer:
                 continue
             kind, relative_path, line, call_name, method_name, code = parts
             mapped_path = self._map_temp_path_to_dataset(relative_path, context, dataset_root)
-            if mapped_path is None and kind == "DATAFLOW":
-                mapped_path = context.root_file.relative_to(dataset_root).as_posix()
             if mapped_path is None:
                 continue
+            resolved_line = int(line)
+            if kind != "METHOD":
+                per_file_map = line_maps.get(Path(relative_path).name)
+                if per_file_map:
+                    resolved_line = per_file_map.get(resolved_line, resolved_line)
             rows.append(
                 _JoernFinding(
                     kind=kind,
                     path=mapped_path,
-                    line=int(line),
+                    line=resolved_line,
                     call_name=call_name,
                     method_name=method_name,
                     code=code,
@@ -290,81 +410,6 @@ class JoernStaticAnalyzer:
         return CodeLocation(path=finding.path, line=finding.line, code=finding.code)
 
     @staticmethod
-    def _render_window(file_path: Path, line_no: int) -> str:
-        lines = file_path.read_text(encoding="utf-8", errors="ignore").splitlines()
-        start = max(1, line_no - 3)
-        end = min(len(lines), line_no + 3)
-        return "\n".join("{0:>4}: {1}".format(index, lines[index - 1]) for index in range(start, end + 1))
-
-    def _build_flow_evidence(
-        self,
-        findings: List[_JoernFinding],
-        source_finding: Optional[_JoernFinding],
-        sink_finding: Optional[_JoernFinding],
-        context: CaseContext,
-    ) -> List[str]:
-        evidence: List[str] = []
-        if source_finding is not None:
-            evidence.append("joern source method: {0}".format(self._friendly_method_name(source_finding.method_name)))
-        if sink_finding is not None:
-            evidence.append("joern sink method: {0}".format(self._friendly_method_name(sink_finding.method_name)))
-
-        dataflow_evidence = self._extract_dataflow_evidence(findings)
-        if dataflow_evidence:
-            evidence.extend(dataflow_evidence)
-        else:
-            evidence.append("joern dataflow path: unavailable for this case")
-
-        if source_finding is None or sink_finding is None:
-            return evidence
-
-        if source_finding.method_name == sink_finding.method_name:
-            evidence.append(
-                "joern same-method evidence: source and sink both appear in {0}".format(
-                    self._friendly_method_name(source_finding.method_name)
-                )
-            )
-            return evidence
-
-        call_edges = self._extract_call_edges(findings)
-        if not call_edges:
-            evidence.append("joern call path: no internal call edges recovered for this case")
-            return evidence
-
-        directed_path = self._find_method_path(call_edges, source_finding.method_name, sink_finding.method_name, directed=True)
-        if directed_path:
-            evidence.extend(self._render_path_evidence("joern call path", directed_path))
-            return evidence
-
-        reverse_path = self._find_method_path(call_edges, sink_finding.method_name, source_finding.method_name, directed=True)
-        if reverse_path:
-            evidence.extend(self._render_path_evidence("joern reverse call path", reverse_path))
-            return evidence
-
-        structural_path = self._find_method_path(call_edges, source_finding.method_name, sink_finding.method_name, directed=False)
-        if structural_path:
-            evidence.extend(self._render_path_evidence("joern structural path", structural_path))
-            return evidence
-
-        evidence.append("joern call path: no path recovered from internal call edges")
-        evidence.append("benchmark flow chain: {0}".format(" -> ".join(context.flow_chain)))
-        return evidence
-
-    @staticmethod
-    def _extract_dataflow_evidence(findings: List[_JoernFinding]) -> List[str]:
-        rendered: List[str] = []
-        seen = set()
-        for finding in findings:
-            if finding.kind != "DATAFLOW":
-                continue
-            text = "joern dataflow path ({0}): {1}".format(finding.call_name, finding.code)
-            if text in seen:
-                continue
-            seen.add(text)
-            rendered.append(text)
-        return rendered
-
-    @staticmethod
     def _extract_call_edges(findings: List[_JoernFinding]) -> List[_JoernCallEdge]:
         edges: List[_JoernCallEdge] = []
         seen = set()
@@ -385,6 +430,148 @@ class JoernStaticAnalyzer:
                 )
             )
         return edges
+
+    @staticmethod
+    def _extract_method_defs(findings: List[_JoernFinding], case_input_dir: Path) -> dict[str, _JoernMethodDef]:
+        method_defs: dict[str, _JoernMethodDef] = {}
+        for finding in findings:
+            if finding.kind != "METHOD":
+                continue
+            try:
+                decoded = base64.b64decode(finding.code.encode("utf-8")).decode("utf-8", errors="ignore")
+            except Exception:
+                decoded = ""
+            try:
+                end_line = int(finding.call_name)
+            except ValueError:
+                end_line = finding.line
+            full_code = JoernStaticAnalyzer._extract_method_body_from_preprocessed(
+                case_input_dir=case_input_dir,
+                dataset_relative_path=finding.path,
+                start_line=finding.line,
+                end_line=end_line,
+                fallback_code=decoded,
+            )
+            method_defs[finding.method_name] = _JoernMethodDef(
+                path=finding.path,
+                start_line=finding.line,
+                end_line=end_line,
+                full_name=finding.method_name,
+                code=full_code,
+            )
+        return method_defs
+
+    def _derive_chain_methods(
+        self,
+        call_edges: List[_JoernCallEdge],
+        source_finding: Optional[_JoernFinding],
+        sink_finding: Optional[_JoernFinding],
+    ) -> list[str]:
+        if source_finding is None or sink_finding is None:
+            return []
+
+        source_method = source_finding.method_name
+        sink_method = sink_finding.method_name
+        if source_method == sink_method:
+            return [source_method]
+
+        directed_path = self._find_method_path(call_edges, source_method, sink_method, directed=True)
+        if directed_path:
+            return self._path_to_methods(directed_path)
+
+        reverse_path = self._find_method_path(call_edges, sink_method, source_method, directed=True)
+        if reverse_path:
+            methods = self._path_to_methods(reverse_path)
+            methods.reverse()
+            return methods
+
+        structural_path = self._find_method_path(call_edges, source_method, sink_method, directed=False)
+        if structural_path:
+            return self._path_to_methods(structural_path)
+
+        if source_method != sink_method:
+            return [source_method, sink_method]
+        return [source_method]
+
+    @staticmethod
+    def _path_to_methods(path: List[tuple[_JoernCallEdge, bool]]) -> list[str]:
+        if not path:
+            return []
+        methods = [path[0][0].caller if path[0][1] else path[0][0].callee]
+        for edge, is_forward in path:
+            methods.append(edge.callee if is_forward else edge.caller)
+        return methods
+
+    def _build_flow_evidence(
+        self,
+        call_edges: List[_JoernCallEdge],
+        source_finding: Optional[_JoernFinding],
+        sink_finding: Optional[_JoernFinding],
+        context: CaseContext,
+        sanitizer: "_JulietFunctionSanitizer",
+    ) -> List[str]:
+        evidence: List[str] = []
+        if source_finding is not None:
+            evidence.append("joern source method: {0}".format(sanitizer.sanitize_method_name(source_finding.method_name)))
+        if sink_finding is not None:
+            evidence.append("joern sink method: {0}".format(sanitizer.sanitize_method_name(sink_finding.method_name)))
+
+        if source_finding is None or sink_finding is None:
+            return evidence
+
+        if source_finding.method_name == sink_finding.method_name:
+            evidence.append(
+                "joern same-method evidence: source and sink both appear in {0}".format(
+                    sanitizer.sanitize_method_name(source_finding.method_name)
+                )
+            )
+            return evidence
+
+        directed_path = self._find_method_path(call_edges, source_finding.method_name, sink_finding.method_name, directed=True)
+        if directed_path:
+            evidence.extend(self._render_path_evidence("joern call path", directed_path, sanitizer))
+            return evidence
+
+        reverse_path = self._find_method_path(call_edges, sink_finding.method_name, source_finding.method_name, directed=True)
+        if reverse_path:
+            evidence.extend(self._render_path_evidence("joern reverse call path", reverse_path, sanitizer))
+            return evidence
+
+        structural_path = self._find_method_path(call_edges, source_finding.method_name, sink_finding.method_name, directed=False)
+        if structural_path:
+            evidence.extend(self._render_path_evidence("joern structural path", structural_path, sanitizer))
+            return evidence
+
+        evidence.append("joern call path: no path recovered from internal call edges")
+        evidence.append("benchmark flow chain: {0}".format(" -> ".join(context.flow_chain)))
+        return evidence
+
+    def _build_function_evidence(
+        self,
+        chain_methods: list[str],
+        method_defs: dict[str, _JoernMethodDef],
+        sanitizer: "_JulietFunctionSanitizer",
+    ) -> list[str]:
+        blocks: list[str] = []
+        for index, method_name in enumerate(chain_methods, start=1):
+            method_def = method_defs.get(method_name)
+            if method_def is None:
+                blocks.append(
+                    "Function {0}: {1}\n<missing method body in Joern export>".format(
+                        index,
+                        sanitizer.sanitize_method_name(method_name),
+                    )
+                )
+                continue
+            code = sanitizer.sanitize_code(method_def.code)
+            blocks.append(
+                "Function {0}: {1}\n{2}".format(
+                    index,
+                    sanitizer.sanitize_method_name(method_name),
+                    code.strip() or "<empty>",
+                )
+            )
+        return blocks
 
     @staticmethod
     def _find_method_path(
@@ -418,7 +605,12 @@ class JoernStaticAnalyzer:
 
         return []
 
-    def _render_path_evidence(self, label: str, path: List[tuple[_JoernCallEdge, bool]]) -> List[str]:
+    def _render_path_evidence(
+        self,
+        label: str,
+        path: List[tuple[_JoernCallEdge, bool]],
+        sanitizer: "_JulietFunctionSanitizer",
+    ) -> List[str]:
         if not path:
             return []
 
@@ -429,7 +621,7 @@ class JoernStaticAnalyzer:
         evidence = [
             "{0}: {1}".format(
                 label,
-                " -> ".join(self._friendly_method_name(method_name) for method_name in methods),
+                " -> ".join(sanitizer.sanitize_method_name(method_name) for method_name in methods),
             )
         ]
         for edge, is_forward in path:
@@ -438,45 +630,108 @@ class JoernStaticAnalyzer:
                 "joern call edge: {0}:{1} {2} {3} {4} | {5}".format(
                     edge.path,
                     edge.line,
-                    self._friendly_method_name(edge.caller),
+                    sanitizer.sanitize_method_name(edge.caller),
                     arrow,
-                    self._friendly_method_name(edge.callee),
-                    edge.code,
+                    sanitizer.sanitize_method_name(edge.callee),
+                    sanitizer.sanitize_code(edge.code),
                 )
             )
         return evidence
-
-    def _cleanup_project_workspace(self, project_name: str) -> None:
-        workspace_dir = self._config.joern_workspace_root.resolve() / "workspace"
-        project_dir = workspace_dir / project_name
-        if project_dir.exists():
-            shutil.rmtree(str(project_dir), ignore_errors=True)
-        if workspace_dir.exists():
-            try:
-                next(workspace_dir.iterdir())
-            except StopIteration:
-                workspace_dir.rmdir()
 
     @staticmethod
     def _sanitize_name(value: str) -> str:
         return "".join(ch if ch.isalnum() or ch in {"-", "_"} else "-" for ch in value)
 
     @staticmethod
-    def _resolve_group_file(context: CaseContext, relative_path: str) -> Path:
-        report_name = Path(relative_path).name
-        for candidate in context.group_files:
-            if candidate.name == report_name:
-                return candidate
-        raise FileNotFoundError("Unable to resolve Joern finding path: {0}".format(relative_path))
+    def _sanitize_locations(
+        sanitizer: "_JulietFunctionSanitizer",
+        source_location: Optional[CodeLocation],
+        sink_location: Optional[CodeLocation],
+        primary_location: Optional[CodeLocation],
+    ) -> None:
+        for location in (source_location, sink_location, primary_location):
+            if location is None:
+                continue
+            location.code = sanitizer.sanitize_code(location.code)
 
     @staticmethod
-    def _friendly_method_name(method_name: str) -> str:
-        normalized = method_name.strip()
-        if not normalized:
-            return "<unknown>"
-        return normalized.split(":", 1)[0]
+    def _extract_method_body_from_preprocessed(
+        case_input_dir: Path,
+        dataset_relative_path: str,
+        start_line: int,
+        end_line: int,
+        fallback_code: str,
+    ) -> str:
+        candidate = case_input_dir / Path(dataset_relative_path).name
+        if not candidate.exists():
+            return fallback_code
+        lines = candidate.read_text(encoding="utf-8", errors="ignore").splitlines()
+        if not lines or start_line <= 0:
+            return fallback_code
+
+        start = max(1, start_line)
+        if end_line <= 0 or end_line < start:
+            end = JoernStaticAnalyzer._estimate_method_end(lines, start)
+        else:
+            end = end_line
+        end = min(len(lines), max(start, end))
+        body = "\n".join(lines[start - 1 : end]).strip()
+        return body or fallback_code
 
     @staticmethod
-    def _should_retry_with_fresh_project(exc: RuntimeError) -> bool:
-        message = str(exc).lower()
-        return "already exists" in message or "filesystemexception" in message or "进程无法访问" in message
+    def _estimate_method_end(lines: list[str], start_line: int) -> int:
+        brace_depth = 0
+        seen_open = False
+        for index in range(start_line - 1, len(lines)):
+            line = lines[index]
+            brace_depth += line.count("{")
+            if line.count("{") > 0:
+                seen_open = True
+            brace_depth -= line.count("}")
+            if seen_open and brace_depth <= 0:
+                return index + 1
+        return len(lines)
+
+
+class _JulietFunctionSanitizer:
+    _BLOCK_COMMENT_PATTERN = re.compile(r"/\*.*?\*/", re.DOTALL)
+    _LINE_COMMENT_PATTERN = re.compile(r"//.*?$", re.MULTILINE)
+    _IDENTIFIER_PATTERN = re.compile(r"\b[A-Za-z_][A-Za-z0-9_]*\b")
+    _JULIET_IDENTIFIER_PATTERN = re.compile(r"\bCWE\d+[A-Za-z0-9_]*\b")
+
+    def __init__(self) -> None:
+        self._symbol_map: dict[str, str] = {}
+        self._counter = 0
+
+    def learn(self, chain_methods: list[str], method_defs: dict[str, _JoernMethodDef]) -> None:
+        for method_name in chain_methods:
+            for token in self._JULIET_IDENTIFIER_PATTERN.findall(method_name):
+                self._register(token)
+            method_def = method_defs.get(method_name)
+            if method_def is None:
+                continue
+            for token in self._JULIET_IDENTIFIER_PATTERN.findall(method_def.code):
+                self._register(token)
+
+    def sanitize_method_name(self, method_name: str) -> str:
+        return self._IDENTIFIER_PATTERN.sub(self._replace_identifier, method_name)
+
+    def sanitize_code(self, code: str) -> str:
+        if not code:
+            return ""
+        code = self._BLOCK_COMMENT_PATTERN.sub("", code)
+        code = self._LINE_COMMENT_PATTERN.sub("", code)
+        code = self._IDENTIFIER_PATTERN.sub(self._replace_identifier, code)
+        lines = [line.rstrip() for line in code.splitlines()]
+        lines = [line for line in lines if line.strip()]
+        return "\n".join(lines).strip()
+
+    def _replace_identifier(self, match: re.Match[str]) -> str:
+        token = match.group(0)
+        return self._symbol_map.get(token, token)
+
+    def _register(self, token: str) -> None:
+        if token in self._symbol_map:
+            return
+        self._counter += 1
+        self._symbol_map[token] = f"func_{self._counter}"

@@ -1,3 +1,0 @@
-SOURCE	CWE78_OS_Command_Injection__char_connect_socket_execl_61b.c	103	recv	CWE78_OS_Command_Injection__char_connect_socket_execl_61b_badSource	recv(connectSocket, (char *)(data + dataLen), sizeof(char) * (100 - dataLen - 1), 0)
-SINK	CWE78_OS_Command_Injection__char_connect_socket_execl_61a.c	76	execl	CWE78_OS_Command_Injection__char_connect_socket_execl_61_bad	execl("/bin/sh", "/bin/sh", "-c", data, NULL)
-CALL_EDGE	CWE78_OS_Command_Injection__char_connect_socket_execl_61a.c	73	CWE78_OS_Command_Injection__char_connect_socket_execl_61_bad	CWE78_OS_Command_Injection__char_connect_socket_execl_61b_badSource	CWE78_OS_Command_Injection__char_connect_socket_execl_61b_badSource(data)

@@ -1,3 +1,0 @@
-SINK	CWE259_Hard_Coded_Password__w32_char_61a.c	78	LogonUserA	goodG2B	LogonUserA(                     username,                     domain,                     password,                     LOGON32_LOGON_NETWORK,                     LOGON32_PROVIDER_DEFAULT,                     &pHandle)
-CALL_EDGE	CWE259_Hard_Coded_Password__w32_char_61a.c	72	goodG2B	CWE259_Hard_Coded_Password__w32_char_61b_goodG2BSource	CWE259_Hard_Coded_Password__w32_char_61b_goodG2BSource(password)
-CALL_EDGE	CWE259_Hard_Coded_Password__w32_char_61a.c	98	CWE259_Hard_Coded_Password__w32_char_61_good	goodG2B	goodG2B()

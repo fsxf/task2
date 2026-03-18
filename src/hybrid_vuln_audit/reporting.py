@@ -36,13 +36,10 @@ def _write_csv(results: list[AnalysisResult], target: Path) -> None:
         "source_line",
         "sink_path",
         "sink_line",
+        "reason",
         "prompt_tokens",
         "completion_tokens",
         "total_tokens",
-        "llm_mode",
-        "llm_model",
-        "reason",
-        "flow_evidence",
     ]
     with target.open("w", encoding="utf-8-sig", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=fieldnames)
@@ -63,13 +60,10 @@ def _write_csv(results: list[AnalysisResult], target: Path) -> None:
                     "source_line": result.source_location.line if result.source_location else "",
                     "sink_path": result.sink_location.path if result.sink_location else "",
                     "sink_line": result.sink_location.line if result.sink_location else "",
+                    "reason": result.reason,
                     "prompt_tokens": result.prompt_tokens,
                     "completion_tokens": result.completion_tokens,
                     "total_tokens": result.total_tokens,
-                    "llm_mode": result.llm_mode,
-                    "llm_model": result.llm_model,
-                    "reason": result.reason,
-                    "flow_evidence": " | ".join(result.flow_evidence),
                 }
             )
 

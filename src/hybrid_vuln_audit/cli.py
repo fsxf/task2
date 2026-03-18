@@ -6,9 +6,9 @@ from typing import Optional
 
 from .benchmark import enumerate_target_cases
 from .config import AppConfig
-from .good_paths import evaluate_good_paths, write_good_path_report
 from .llm import DeepSeekReviewer
 from .models import AnalysisResult
+from .prompting import build_messages
 from .reporting import write_reports
 from .static_analysis import JulietStaticAnalyzer
 
@@ -19,16 +19,6 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--results-dir", type=Path, default=Path("results"))
     parser.add_argument("--limit", type=int, default=0, help="Optional debug limit.")
     parser.add_argument("--show-config", action="store_true", help="Print the current DeepSeek and Joern configuration.")
-    parser.add_argument(
-        "--good-paths-only",
-        action="store_true",
-        help="Only export static-analysis results for the Good execution paths.",
-    )
-    parser.add_argument(
-        "--export-good-paths",
-        action="store_true",
-        help="Export results/good_sample_results.json after the main benchmark run.",
-    )
     return parser
 
 
@@ -55,20 +45,16 @@ def main(argv: Optional[list[str]] = None) -> int:
         cases = cases[: args.limit]
 
     analyzer = JulietStaticAnalyzer(config)
-    if args.good_paths_only:
-        good_path_results = evaluate_good_paths(analyzer, config.dataset_root)
-        target = config.results_dir / "good_sample_results.json"
-        write_good_path_report(good_path_results, target)
-        print("good_path_cases={0}".format(len(good_path_results)))
-        print("good_path_results={0}".format(target))
-        return 0
-
     reviewer = DeepSeekReviewer(config)
     results: list[AnalysisResult] = []
+    prompt_dir = config.results_dir / "llm_prompts"
+    prompt_dir.mkdir(parents=True, exist_ok=True)
 
     for context in cases:
         evidence = analyzer.analyze(context, config.dataset_root)
-        review = reviewer.review(context, evidence)
+        messages = build_messages(context, evidence)
+        _write_prompt_preview(prompt_dir / f"{context.case_id}.txt", messages)
+        review = reviewer.review(context, evidence, prebuilt_messages=messages)
         results.append(
             AnalysisResult(
                 case_id=context.case_id,
@@ -81,24 +67,14 @@ def main(argv: Optional[list[str]] = None) -> int:
                 primary_location=evidence.primary_location,
                 source_location=evidence.source_location,
                 sink_location=evidence.sink_location,
-                flow_chain=context.flow_chain,
                 prompt_tokens=review.prompt_tokens,
                 completion_tokens=review.completion_tokens,
                 total_tokens=review.total_tokens,
-                llm_mode=review.mode,
-                llm_model=review.model,
                 reason=review.reason,
-                static_confidence=evidence.confidence,
-                review_confidence=review.confidence,
-                notes=evidence.notes,
-                flow_evidence=evidence.flow_evidence,
             )
         )
 
     write_reports(results, config.results_dir)
-    if args.export_good_paths:
-        write_good_path_report(evaluate_good_paths(analyzer, config.dataset_root), config.results_dir / "good_sample_results.json")
-
     print(f"cases={len(results)}")
     print(f"results={config.results_dir}")
     print("mode=deepseek-r1")
@@ -111,3 +87,18 @@ def _mask_secret(value: Optional[str]) -> str:
     if len(value) <= 8:
         return "*" * len(value)
     return "{0}...{1}".format(value[:4], value[-4:])
+
+
+def _write_prompt_preview(target: Path, messages: tuple[str, str]) -> None:
+    system_prompt, user_prompt = messages
+    payload = "\n".join(
+        [
+            "[SYSTEM]",
+            system_prompt.strip(),
+            "",
+            "[USER]",
+            user_prompt.strip(),
+            "",
+        ]
+    )
+    target.write_text(payload, encoding="utf-8-sig")

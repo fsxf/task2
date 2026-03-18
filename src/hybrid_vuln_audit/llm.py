@@ -15,8 +15,16 @@ class DeepSeekReviewer:
     def __init__(self, config: AppConfig) -> None:
         self._config = config
 
-    def review(self, context: CaseContext, evidence: StaticEvidence) -> LLMReview:
-        system_prompt, user_prompt = build_messages(context, evidence)
+    def review(
+        self,
+        context: CaseContext,
+        evidence: StaticEvidence,
+        prebuilt_messages: tuple[str, str] | None = None,
+    ) -> LLMReview:
+        if prebuilt_messages is None:
+            system_prompt, user_prompt = build_messages(context, evidence)
+        else:
+            system_prompt, user_prompt = prebuilt_messages
         prompt_tokens = estimate_text_tokens(system_prompt) + estimate_text_tokens(user_prompt)
 
         if not self._config.deepseek_enabled:
@@ -72,7 +80,7 @@ class DeepSeekReviewer:
 
         return LLMReview(
             verdict=bool(parsed["verdict"]),
-            confidence=float(parsed.get("confidence", evidence.confidence)),
+            confidence=_parse_confidence(parsed.get("confidence"), evidence.confidence),
             reason=str(parsed.get("reason", "")).strip() or "DeepSeek-R1 reviewed the compressed evidence.",
             prompt_tokens=used_prompt_tokens,
             completion_tokens=completion_tokens,
@@ -88,3 +96,26 @@ def _extract_json_object(text: str) -> dict:
     if start == -1 or end == -1 or end <= start:
         raise ValueError("Model response does not contain a JSON object.")
     return json.loads(text[start : end + 1])
+
+
+def _parse_confidence(value, fallback: float) -> float:
+    if value is None:
+        return float(fallback)
+    if isinstance(value, (int, float)):
+        return float(value)
+    normalized = str(value).strip().lower()
+    if not normalized:
+        return float(fallback)
+    aliases = {
+        "very high": 0.95,
+        "high": 0.85,
+        "medium": 0.60,
+        "low": 0.35,
+        "very low": 0.15,
+    }
+    if normalized in aliases:
+        return aliases[normalized]
+    try:
+        return float(normalized)
+    except ValueError:
+        return float(fallback)

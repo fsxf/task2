@@ -1,5 +1,0 @@
-SINK	CWE259_Hard_Coded_Password__w32_char_53d.c	67	LogonUserA	CWE259_Hard_Coded_Password__w32_char_53d_goodG2BSink	LogonUserA(                     username,                     domain,                     password,                     LOGON32_LOGON_NETWORK,                     LOGON32_PROVIDER_DEFAULT,                     &pHandle)
-CALL_EDGE	CWE259_Hard_Coded_Password__w32_char_53a.c	70	goodG2B	CWE259_Hard_Coded_Password__w32_char_53b_goodG2BSink	CWE259_Hard_Coded_Password__w32_char_53b_goodG2BSink(password)
-CALL_EDGE	CWE259_Hard_Coded_Password__w32_char_53a.c	75	CWE259_Hard_Coded_Password__w32_char_53_good	goodG2B	goodG2B()
-CALL_EDGE	CWE259_Hard_Coded_Password__w32_char_53b.c	48	CWE259_Hard_Coded_Password__w32_char_53b_goodG2BSink	CWE259_Hard_Coded_Password__w32_char_53c_goodG2BSink	CWE259_Hard_Coded_Password__w32_char_53c_goodG2BSink(password)
-CALL_EDGE	CWE259_Hard_Coded_Password__w32_char_53c.c	48	CWE259_Hard_Coded_Password__w32_char_53c_goodG2BSink	CWE259_Hard_Coded_Password__w32_char_53d_goodG2BSink	CWE259_Hard_Coded_Password__w32_char_53d_goodG2BSink(password)

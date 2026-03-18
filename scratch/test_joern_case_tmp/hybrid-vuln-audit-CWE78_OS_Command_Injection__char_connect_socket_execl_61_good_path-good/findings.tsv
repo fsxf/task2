@@ -1,3 +1,0 @@
-SINK	CWE78_OS_Command_Injection__char_connect_socket_execl_61a.c	94	execl	goodG2B	execl("/bin/sh", "/bin/sh", "-c", data, NULL)
-CALL_EDGE	CWE78_OS_Command_Injection__char_connect_socket_execl_61a.c	91	goodG2B	CWE78_OS_Command_Injection__char_connect_socket_execl_61b_goodG2BSource	CWE78_OS_Command_Injection__char_connect_socket_execl_61b_goodG2BSource(data)
-CALL_EDGE	CWE78_OS_Command_Injection__char_connect_socket_execl_61a.c	99	CWE78_OS_Command_Injection__char_connect_socket_execl_61_good	goodG2B	goodG2B()

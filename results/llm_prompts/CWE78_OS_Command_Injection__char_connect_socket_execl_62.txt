@@ -1,0 +1,75 @@
+﻿[SYSTEM]
+You are a senior vulnerability auditor. Use only the supplied function bodies to decide whether there is a real vulnerability. Return a compact JSON object with keys: verdict, reason.
+
+[USER]
+Function bodies:
+Function 1: func_1.badSource:void(char*&)
+void badSource(char * &data)
+{
+    {
+        WSADATA wsaData;
+        int wsaDataInit = 0;
+        int recvResult;
+        struct sockaddr_in service;
+        char *replace;
+        SOCKET connectSocket = INVALID_SOCKET;
+        size_t dataLen = strlen(data);
+        do
+        {
+            if (WSAStartup(MAKEWORD(2,2), &wsaData) != NO_ERROR)
+            {
+                break;
+            }
+            wsaDataInit = 1;
+            connectSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+            if (connectSocket == INVALID_SOCKET)
+            {
+                break;
+            }
+            memset(&service, 0, sizeof(service));
+            service.sin_family = AF_INET;
+            service.sin_addr.s_addr = inet_addr("127.0.0.1");
+            service.sin_port = htons(27015);
+            if (connect(connectSocket, (struct sockaddr*)&service, sizeof(service)) == SOCKET_ERROR)
+            {
+                break;
+            }
+            recvResult = recv(connectSocket, (char *)(data + dataLen), sizeof(char) * (100 - dataLen - 1), 0);
+            if (recvResult == SOCKET_ERROR || recvResult == 0)
+            {
+                break;
+            }
+            data[dataLen + recvResult / sizeof(char)] = '\0';
+            replace = strchr(data, '\r');
+            if (replace)
+            {
+                *replace = '\0';
+            }
+            replace = strchr(data, '\n');
+            if (replace)
+            {
+                *replace = '\0';
+            }
+        }
+        while (0);
+        if (connectSocket != INVALID_SOCKET)
+        {
+            closesocket(connectSocket);
+        }
+        if (wsaDataInit)
+        {
+            WSACleanup();
+        }
+    }
+}
+Function 2: func_1.bad:void()
+void bad()
+{
+    char * data;
+    char dataBuffer[100] = "dir ";
+    data = dataBuffer;
+    badSource(data);
+    _execl("%WINDIR%\\system32\\cmd.exe", "%WINDIR%\\system32\\cmd.exe", "/c", data,
+                                                                         __null
+                                                                             );
+}

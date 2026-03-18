@@ -1,5 +1,0 @@
-SOURCE	CWE78_OS_Command_Injection__char_connect_socket_execl_52a.c	109	recv	CWE78_OS_Command_Injection__char_connect_socket_execl_52_bad	recv(connectSocket, (char *)(data + dataLen), sizeof(char) * (100 - dataLen - 1), 0)
-SINK	CWE78_OS_Command_Injection__char_connect_socket_execl_52c.c	71	execl	CWE78_OS_Command_Injection__char_connect_socket_execl_52c_badSink	execl("/bin/sh", "/bin/sh", "-c", data, NULL)
-CALL_EDGE	CWE78_OS_Command_Injection__char_connect_socket_execl_52a.c	140	CWE78_OS_Command_Injection__char_connect_socket_execl_52_bad	CWE78_OS_Command_Injection__char_connect_socket_execl_52b_badSink	CWE78_OS_Command_Injection__char_connect_socket_execl_52b_badSink(data)
-CALL_EDGE	CWE78_OS_Command_Injection__char_connect_socket_execl_52b.c	72	CWE78_OS_Command_Injection__char_connect_socket_execl_52b_badSink	CWE78_OS_Command_Injection__char_connect_socket_execl_52c_badSink	CWE78_OS_Command_Injection__char_connect_socket_execl_52c_badSink(data)
-DATAFLOW	.	0	cwe78-badsink-arg-to-param	cwe78-badsink-arg-to-param	IDENTIFIER | line 140 | data -> METHOD_PARAMETER_IN | line 70 | char * data -> IDENTIFIER | line 72 | data -> METHOD_PARAMETER_IN | line 67 | char * data

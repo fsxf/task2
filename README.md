@@ -1,112 +1,88 @@
-# 混合式漏洞审计工程
+﻿# 娣峰悎寮忔紡娲炲璁″伐绋?
+杩欎釜椤圭洰瀹炵幇浜嗕竴涓潰鍚戠簿绠€ `Juliet` 瀛愰泦鐨勪袱闃舵娴佺▼锛?
+1. 鍏堢敤 `Joern` 鍋氶潤鎬佸垎鏋愶紝瀹氫綅鍙兘鐨勬紡娲炶瘉鎹€?2. 鍐嶆妸鍘嬬缉鍚庣殑闈欐€佽瘉鎹氦缁?`DeepSeek-R1` 鍋氳涔夊鏍革紝鍒ゆ柇鏄惁鐪熺殑鏄紡娲炪€?
+褰撳墠淇濈暀鐨勬暟鎹妯℃槸锛?
+- `20` 涓换鍔¤姹傜殑 `Bad` 鍩哄噯瀹炰緥
+- `20` 鏉″搴旂殑 `Good Path` 瀹夊叏璺緞妫€鏌?
+## 褰撳墠闈欐€佸垎鏋愬仛浜嗕粈涔?
+杩欑増闈欐€佸垎鏋愪笉鍐嶅彧鏄€滄壘鍒颁竴涓?source 鍜屼竴涓?sink鈥濄€?
+`Joern` 鐜板湪浼氬姣忎釜 `Juliet case` 鐨勫畬鏁存枃浠剁粍寤轰竴涓嫭绔?`CPG`锛岀劧鍚庡鍑猴細
 
-这个项目实现了一个面向精简 `Juliet` 子集的两阶段流程：
+- `source` 浣嶇疆
+- `sink` 浣嶇疆
+- `source` 鎵€鍦ㄦ柟娉?- `sink` 鎵€鍦ㄦ柟娉?- 鏀寔鍙樹綋涓婄殑鐪熷疄鏁版嵁娴佽矾寰?- `Joern` 鍦ㄨ case 鍐呮仮澶嶅嚭鐨勫唴閮ㄨ皟鐢ㄩ摼
+- 姣忎竴璺宠皟鐢ㄨ竟瀵瑰簲鐨勬枃浠躲€佽鍙峰拰璋冪敤浠ｇ爜
 
-1. 先用 `Joern` 做静态分析，定位可能的漏洞证据。
-2. 再把压缩后的静态证据交给 `DeepSeek-R1` 做语义复核，判断是否真的是漏洞。
+杩欎簺璇佹嵁浼氳繘鍏ワ細
 
-当前保留的数据规模是：
+- `results/analysis_results.json` 鐨?`flow_evidence`
+- `results/analysis_results.csv` 鐨?`flow_evidence`
+- 鍙戦€佺粰澶фā鍨嬬殑鎻愮ず璇?
+涔熷氨鏄锛屽ぇ妯″瀷鎷垮埌鐨勪笉鏄袱涓绔嬪懡涓偣锛岃€屾槸锛?
+- source/sink 鐨勪唬鐮佺獥鍙?- 鍙橀噺绾ф暟鎹祦璺緞
+- case 绾ц皟鐢ㄩ摼
+- benchmark 棰勬湡娴侀摼
+- 闈欐€佸垎鏋愮殑鍛戒腑浣嶇疆
 
-- `20` 个任务要求的 `Bad` 基准实例
-- `20` 条对应的 `Good Path` 安全路径检查
+杩欐鏄湰椤圭洰鐨勮璁＄洰鏍囷細鍏堣闈欐€佸垎鏋愬伐鍏锋壘鍑衡€滃彲鑳界殑 bug鈥濆拰瀹冪殑浼犳挱璇佹嵁锛屽啀浜ょ粰澶фā鍨嬪垽鏂槸鍚︽槸璇姤銆?
+## 鍩哄噯鑼冨洿
 
-## 当前静态分析做了什么
-
-这版静态分析不再只是“找到一个 source 和一个 sink”。
-
-`Joern` 现在会对每个 `Juliet case` 的完整文件组建一个独立 `CPG`，然后导出：
-
-- `source` 位置
-- `sink` 位置
-- `source` 所在方法
-- `sink` 所在方法
-- 支持变体上的真实数据流路径
-- `Joern` 在该 case 内恢复出的内部调用链
-- 每一跳调用边对应的文件、行号和调用代码
-
-这些证据会进入：
-
-- `results/analysis_results.json` 的 `flow_evidence`
-- `results/analysis_results.csv` 的 `flow_evidence`
-- 发送给大模型的提示词
-
-也就是说，大模型拿到的不是两个孤立命中点，而是：
-
-- source/sink 的代码窗口
-- 变量级数据流路径
-- case 级调用链
-- benchmark 预期流链
-- 静态分析的命中位置
-
-这正是本项目的设计目标：先让静态分析工具找出“可能的 bug”和它的传播证据，再交给大模型判断是否是误报。
-
-## 基准范围
-
-保留的 `Bad` 基准包括两个 `CWE`：
-
+淇濈暀鐨?`Bad` 鍩哄噯鍖呮嫭涓や釜 `CWE`锛?
 - `CWE78_OS_Command_Injection`
   - `char_connect_socket_execl`
-  - 变体：`51/52/53/54/61/62/81/82/83/84`
+  - 鍙樹綋锛歚51/52/53/54/61/62/81/82/83/84`
 - `CWE259_Hard_Coded_Password`
   - `w32_char`
-  - 变体：`51/52/53/54/61/62/81/82/83/84`
+  - 鍙樹綋锛歚51/52/53/54/61/62/81/82/83/84`
 
-共 `20` 个 `Bad` case。
+鍏?`20` 涓?`Bad` case銆?
+姝ゅ锛岄」鐩繕浼氫负杩?`20` 涓?case 鏋勯€犲搴旂殑 `20` 鏉?`Good Path`銆?
+## Good Path 璇存槑
 
-此外，项目还会为这 `20` 个 case 构造对应的 `20` 条 `Good Path`。
+杩欓噷娴嬭瘯鐨勪笉鏄€淕ood 鏂囦欢鈥濓紝鑰屾槸鈥淕ood 璺緞鈥濄€?
+鍘熷洜鏄緢澶?`Juliet` 鍙樹綋骞朵笉鏄細
 
-## Good Path 说明
+- 涓€涓枃浠剁函 `good`
+- 鍙︿竴涓枃浠剁函 `bad`
 
-这里测试的不是“Good 文件”，而是“Good 路径”。
-
-原因是很多 `Juliet` 变体并不是：
-
-- 一个文件纯 `good`
-- 另一个文件纯 `bad`
-
-而是同一组文件里同时包含：
-
+鑰屾槸鍚屼竴缁勬枃浠堕噷鍚屾椂鍖呭惈锛?
 - `bad()` / `good()`
 - `badSource` / `goodG2BSource`
 - `badSink` / `goodG2BSink`
 
-所以项目通过 `analysis_scope` 区分当前检查的是：
+鎵€浠ラ」鐩€氳繃 `analysis_scope` 鍖哄垎褰撳墠妫€鏌ョ殑鏄細
 
 - `bad`
 - `good`
 
-当前测试已经覆盖全部 `20` 条 `Good Path`，用于验证安全路径不会被误报。
+褰撳墠娴嬭瘯宸茬粡瑕嗙洊鍏ㄩ儴 `20` 鏉?`Good Path`锛岀敤浜庨獙璇佸畨鍏ㄨ矾寰勪笉浼氳璇姤銆?
+## 澶栭儴渚濊禆
 
-## 外部依赖
-
-本项目默认把大体积工具安装在项目外部，不再把 `JDK` 和 `Joern` 放进仓库。
-
-需要准备：
+鏈」鐩粯璁ゆ妸澶т綋绉伐鍏峰畨瑁呭湪椤圭洰澶栭儴锛屼笉鍐嶆妸 `JDK` 鍜?`Joern` 鏀捐繘浠撳簱銆?
+闇€瑕佸噯澶囷細
 
 - `JDK 19`
 - `Joern`
 - `DeepSeek API Key`
 
-当前机器上的常用路径示例：
-
+褰撳墠鏈哄櫒涓婄殑甯哥敤璺緞绀轰緥锛?
 - `JAVA_HOME=D:\DevTools\java\jdk-19.0.2+7`
 - `JOERN_CLI_PATH=D:\DevTools\joern\joern-cli\joern.bat`
 
-## 推荐配置方式
+## 鎺ㄨ崘閰嶇疆鏂瑰紡
 
-推荐做法是：
+鎺ㄨ崘鍋氭硶鏄細
 
-- 敏感信息和本机路径走环境变量
-- 项目里只保留极简本地配置文件
+- 鏁忔劅淇℃伅鍜屾湰鏈鸿矾寰勮蛋鐜鍙橀噺
+- 椤圭洰閲屽彧淇濈暀鏋佺畝鏈湴閰嶇疆鏂囦欢
 
-环境变量优先级高于 `config/runtime_config.local.json`。
+鐜鍙橀噺浼樺厛绾ч珮浜?`config/runtime_config.local.json`銆?
+### 1. 閰嶇疆鐜鍙橀噺
 
-### 1. 配置环境变量
-
-在 PowerShell 中执行：
+鍦?PowerShell 涓墽琛岋細
 
 ```powershell
-setx DEEPSEEK_API_KEY "你的 DeepSeek API Key"
+setx DEEPSEEK_API_KEY "浣犵殑 DeepSeek API Key"
 setx DEEPSEEK_BASE_URL "https://api.deepseek.com/v1"
 setx DEEPSEEK_MODEL "deepseek-reasoner"
 setx DEEPSEEK_TIMEOUT_SECONDS "180"
@@ -116,31 +92,26 @@ setx JOERN_CLI_PATH "D:\DevTools\joern\joern-cli\joern.bat"
 setx JOERN_KEEP_PROJECTS "1"
 ```
 
-如果你想把 `Joern` 的运行目录放到项目外，也可以继续设置：
-
+濡傛灉浣犳兂鎶?`Joern` 鐨勮繍琛岀洰褰曟斁鍒伴」鐩锛屼篃鍙互缁х画璁剧疆锛?
 ```powershell
 setx JOERN_WORKSPACE_ROOT "D:\JoernRuntime"
 setx JOERN_CASE_TEMP_ROOT "D:\JoernTemp"
 ```
 
-设置完成后，关闭当前终端，再重新打开 PowerShell。
+璁剧疆瀹屾垚鍚庯紝鍏抽棴褰撳墠缁堢锛屽啀閲嶆柊鎵撳紑 PowerShell銆?
+### 2. 鏈湴閰嶇疆鏂囦欢
 
-### 2. 本地配置文件
-
-本地配置文件位于：
-
+鏈湴閰嶇疆鏂囦欢浣嶄簬锛?
 - `config/runtime_config.local.json`
 
-如果你主要使用环境变量，这个文件建议只保留非敏感默认值，例如：
-
+濡傛灉浣犱富瑕佷娇鐢ㄧ幆澧冨彉閲忥紝杩欎釜鏂囦欢寤鸿鍙繚鐣欓潪鏁忔劅榛樿鍊硷紝渚嬪锛?
 ```json
 {
   "joern_script_path": "joern_scripts/find_case_findings.sc"
 }
 ```
 
-也可以保留一部分非敏感默认项：
-
+涔熷彲浠ヤ繚鐣欎竴閮ㄥ垎闈炴晱鎰熼粯璁ら」锛?
 ```json
 {
   "deepseek_base_url": "https://api.deepseek.com/v1",
@@ -152,69 +123,45 @@ setx JOERN_CASE_TEMP_ROOT "D:\JoernTemp"
 }
 ```
 
-不建议把真实 API key 提交到仓库。
-
-## 检查当前配置
-
+涓嶅缓璁妸鐪熷疄 API key 鎻愪氦鍒颁粨搴撱€?
+## 妫€鏌ュ綋鍓嶉厤缃?
 ```powershell
 python main.py --show-config
 ```
 
-会打印：
+浼氭墦鍗帮細
 
 - `java_home`
 - `joern_cli_path`
 - `joern_workspace_root`
 - `joern_case_temp_root`
 - `joern_keep_projects`
-- `deepseek_api_key` 的掩码形式
+- `deepseek_api_key` 鐨勬帺鐮佸舰寮?
+## 杩愯鏂瑰紡
 
-## 运行方式
-
-### 主基准运行
-
+### 涓诲熀鍑嗚繍琛?
 ```powershell
 python main.py
 ```
 
-输出：
-
+杈撳嚭锛?
 - `results/analysis_results.json`
 - `results/analysis_results.csv`
 - `results/summary.md`
 
-### 运行主基准后顺带导出 Good Path 结果
 
-```powershell
-python main.py --export-good-paths
-```
+## Joern 瀵煎叆绮掑害
 
-额外输出：
-
-- `results/good_sample_results.json`
-
-### 只导出 Good Path 结果
-
-```powershell
-python main.py --good-paths-only
-```
-
-## Joern 导入粒度
-
-当前版本会把每个 `Juliet case` 的完整文件组一起导入 `Joern`，而不是只导入端点文件。
-
-例如：
-
+褰撳墠鐗堟湰浼氭妸姣忎釜 `Juliet case` 鐨勫畬鏁存枃浠剁粍涓€璧峰鍏?`Joern`锛岃€屼笉鏄彧瀵煎叆绔偣鏂囦欢銆?
+渚嬪锛?
 - `CWE78 ... 51`
-  - 导入 `51a.c + 51b.c`
+  - 瀵煎叆 `51a.c + 51b.c`
 - `CWE78 ... 54`
-  - 导入 `54a.c + 54b.c + 54c.c + 54d.c + 54e.c`
+  - 瀵煎叆 `54a.c + 54b.c + 54c.c + 54d.c + 54e.c`
 
-这样 `Joern` 看到的是完整 case 级结构，可以恢复跨文件调用链，也能在支持的变体上恢复真实数据流路径。
-
-## 结果里新增了什么
-
-`analysis_results.json` 和 `good_sample_results.json` 现在会包含 `flow_evidence` 字段，例如：
+杩欐牱 `Joern` 鐪嬪埌鐨勬槸瀹屾暣 case 绾х粨鏋勶紝鍙互鎭㈠璺ㄦ枃浠惰皟鐢ㄩ摼锛屼篃鑳藉湪鏀寔鐨勫彉浣撲笂鎭㈠鐪熷疄鏁版嵁娴佽矾寰勩€?
+## 缁撴灉閲屾柊澧炰簡浠€涔?
+`analysis_results.json` 现在会包含 `flow_evidence` 字段，例如：
 
 - `joern source method: ...`
 - `joern sink method: ...`
@@ -222,48 +169,36 @@ python main.py --good-paths-only
 - `joern call path: methodA -> methodB -> methodC`
 - `joern call edge: file:line caller -> callee | code`
 
-这些信息也会进入提示词，让大模型在复核时不只是看两段局部代码。
+杩欎簺淇℃伅涔熶細杩涘叆鎻愮ず璇嶏紝璁╁ぇ妯″瀷鍦ㄥ鏍告椂涓嶅彧鏄湅涓ゆ灞€閮ㄤ唬鐮併€?
+## 鍏充簬 `workspace`
 
-## 关于 `workspace`
-
-`workspace` 不是源码目录，而是 `Joern` 运行 `importCode` 时的工作区。
-
-如果开启：
+`workspace` 涓嶆槸婧愮爜鐩綍锛岃€屾槸 `Joern` 杩愯 `importCode` 鏃剁殑宸ヤ綔鍖恒€?
+濡傛灉寮€鍚細
 
 - `JOERN_KEEP_PROJECTS=1`
 
-那么每个 case 的项目会保留在：
+閭ｄ箞姣忎釜 case 鐨勯」鐩細淇濈暀鍦細
 
 - `joern_workspace_root/workspace/<project_name>`
 
-case 输入目录会保留在：
-
+case 杈撳叆鐩綍浼氫繚鐣欏湪锛?
 - `joern_case_temp_root/<project_name>`
 
-如果关闭这个开关，项目运行完会自动清理这些中间文件。
+濡傛灉鍏抽棴杩欎釜寮€鍏筹紝椤圭洰杩愯瀹屼細鑷姩娓呯悊杩欎簺涓棿鏂囦欢銆?
+鎵€浠ョ粨璁烘槸锛?
+- 鏃х殑椤圭洰鍐?`workspace/` 鍙互鍒?- 鏃х殑 `.joern_case_tmp/` 鍙互鍒?- 鏂扮増鏈粯璁ゆ妸杩愯涓棿鏂囦欢鏀惧埌绯荤粺涓存椂鐩綍鎴栦綘鏄惧紡鎸囧畾鐨勫閮ㄧ洰褰?
+## 濡備綍杩涘叆 Joern Shell
 
-所以结论是：
-
-- 旧的项目内 `workspace/` 可以删
-- 旧的 `.joern_case_tmp/` 可以删
-- 新版本默认把运行中间文件放到系统临时目录或你显式指定的外部目录
-
-## 如何进入 Joern Shell
-
-### 先说明一个常见错误
-
-如果你在 `cmd` 里执行：
+### 鍏堣鏄庝竴涓父瑙侀敊璇?
+濡傛灉浣犲湪 `cmd` 閲屾墽琛岋細
 
 - `Set-Location`
 - `& "xxx\joern.bat"`
 
-会报错，因为这两个都是 PowerShell 语法，不是 `cmd` 语法。
-
-另外，手工启动 `Joern` 时，`config/runtime_config.local.json` 不会自动帮你的 shell 设置 `JAVA_HOME`。  
-它只在你运行 `python main.py` 时被 Python 读取。
-
-所以你手工启动 `Joern shell` 时，必须在当前终端里先让 `java.exe` 和 `javac.exe` 可见。
-
+浼氭姤閿欙紝鍥犱负杩欎袱涓兘鏄?PowerShell 璇硶锛屼笉鏄?`cmd` 璇硶銆?
+鍙﹀锛屾墜宸ュ惎鍔?`Joern` 鏃讹紝`config/runtime_config.local.json` 涓嶄細鑷姩甯綘鐨?shell 璁剧疆 `JAVA_HOME`銆? 
+瀹冨彧鍦ㄤ綘杩愯 `python main.py` 鏃惰 Python 璇诲彇銆?
+鎵€浠ヤ綘鎵嬪伐鍚姩 `Joern shell` 鏃讹紝蹇呴』鍦ㄥ綋鍓嶇粓绔噷鍏堣 `java.exe` 鍜?`javac.exe` 鍙銆?
 ### PowerShell
 
 ```powershell
@@ -273,8 +208,7 @@ Set-Location "$env:LOCALAPPDATA\Temp\hybrid_vuln_audit\joern_runtime"
 & "D:\DevTools\joern\joern-cli\joern.bat"
 ```
 
-如果你已经把 `JOERN_WORKSPACE_ROOT` 配到了别处，就把 `Set-Location` 改成那个目录。
-
+濡傛灉浣犲凡缁忔妸 `JOERN_WORKSPACE_ROOT` 閰嶅埌浜嗗埆澶勶紝灏辨妸 `Set-Location` 鏀规垚閭ｄ釜鐩綍銆?
 ### CMD
 
 ```cmd
@@ -284,22 +218,19 @@ cd /d C:\Users\lenovo\AppData\Local\Temp\hybrid_vuln_audit\joern_runtime
 "D:\DevTools\joern\joern-cli\joern.bat"
 ```
 
-### 进入后查看项目
-
+### 杩涘叆鍚庢煡鐪嬮」鐩?
 ```scala
 workspace
 project
 ```
 
-切到某个保留项目：
-
+鍒囧埌鏌愪釜淇濈暀椤圭洰锛?
 ```scala
 workspace.setActiveProject("hybrid-vuln-audit-CWE78_OS_Command_Injection__char_connect_socket_execl_54-bad")
 project
 ```
 
-常用查询示例：
-
+甯哥敤鏌ヨ绀轰緥锛?
 ```scala
 cpg.call.name("recv").location.l
 cpg.call.name("(EXECL|execl|_execl)").location.l
@@ -307,26 +238,21 @@ cpg.call.name("LogonUserA").location.l
 cpg.call.code.l
 ```
 
-## 当前实现的边界
+## 褰撳墠瀹炵幇鐨勮竟鐣?
+杩欑増 `Joern` 闈欐€侀樁娈靛凡缁忓仛鍒帮細
 
-这版 `Joern` 静态阶段已经做到：
+- case 绾у畬鏁存枃浠剁粍瀵煎叆
+- source/sink 瀹氫綅
+- 鏀寔鍙樹綋涓婄殑鐪熷疄鏁版嵁娴佽矾寰勬仮澶?- 鍐呴儴璋冪敤閾炬仮澶?- 璋冪敤杈硅瘉鎹鍑?
+浣嗛渶瑕佸瀹炶鏄庯細
 
-- case 级完整文件组导入
-- source/sink 定位
-- 支持变体上的真实数据流路径恢复
-- 内部调用链恢复
-- 调用边证据导出
+- `CWE259` 鐨勬櫘閫氬弬鏁颁紶閫掑彉浣撳凡缁忚兘瀵煎嚭鐪熷疄鍙橀噺绾ф暟鎹祦璺緞
+- `CWE78` 鐨?`51/52/53/54` 閾惧紡璋冪敤鍙樹綋宸茬粡鑳藉鍑鸿法鍑芥暟 `badSink` 鍙傛暟浼犳挱璺緞
+- 鏌愪簺 `CWE78` 鍜屾瀯閫?鏋愭瀯绫诲彉浣撲粛浼氬彈鍒?`recv` 鍐欑紦鍐插尯璇箟銆佹垚鍛樺瓧娈典紶鎾拰 `COMMAND_ARG3` 瀹忓睍寮€闄愬埗
+- 杩欑被鏍蜂緥鐨勭粨鏋滈噷浼氭槑纭爣璁?`joern dataflow path: unavailable for this case`
 
-但需要如实说明：
-
-- `CWE259` 的普通参数传递变体已经能导出真实变量级数据流路径
-- `CWE78` 的 `51/52/53/54` 链式调用变体已经能导出跨函数 `badSink` 参数传播路径
-- 某些 `CWE78` 和构造/析构类变体仍会受到 `recv` 写缓冲区语义、成员字段传播和 `COMMAND_ARG3` 宏展开限制
-- 这类样例的结果里会明确标记 `joern dataflow path: unavailable for this case`
-
-对这组 `Juliet` 任务来说，这已经足够支撑“先静态分析，再让大模型判断”的流程，而且比只看 `source/sink` 更合理。
-
-## 目录结构
+瀵硅繖缁?`Juliet` 浠诲姟鏉ヨ锛岃繖宸茬粡瓒冲鏀拺鈥滃厛闈欐€佸垎鏋愶紝鍐嶈澶фā鍨嬪垽鏂€濈殑娴佺▼锛岃€屼笖姣斿彧鐪?`source/sink` 鏇村悎鐞嗐€?
+## 鐩綍缁撴瀯
 
 ```text
 .
@@ -343,7 +269,6 @@ cpg.call.code.l
 |   |-- benchmark.py
 |   |-- cli.py
 |   |-- config.py
-|   |-- good_paths.py
 |   |-- joern_runner.py
 |   |-- llm.py
 |   |-- models.py
@@ -356,26 +281,20 @@ cpg.call.code.l
 `-- main.py
 ```
 
-## 测试
+## 娴嬭瘯
 
 ```powershell
 python -m unittest discover -s tests -v
 ```
 
-当前测试覆盖：
+褰撳墠娴嬭瘯瑕嗙洊锛?
+- `20` 涓富鍩哄噯瀹炰緥鐨勬灇涓?- `Joern` 鍏ㄦ枃浠剁粍瀵煎叆
+- `CWE78` / `CWE259` 鍛戒腑瀹氫綅
+- 閾惧紡浼犳挱鍙樹綋鐨勮皟鐢ㄩ摼璇佹嵁
+- 鏀寔鍙樹綋涓婄殑鏁版嵁娴佽瘉鎹?- 鏋勯€?鏋愭瀯娴?- `20` 鏉?`Good Path` 涓嶈鎶?
+## 鎻愪氦寤鸿
 
-- `20` 个主基准实例的枚举
-- `Joern` 全文件组导入
-- `CWE78` / `CWE259` 命中定位
-- 链式传播变体的调用链证据
-- 支持变体上的数据流证据
-- 构造/析构流
-- `20` 条 `Good Path` 不误报
-
-## 提交建议
-
-建议提交：
-
+寤鸿鎻愪氦锛?
 - `benchmark_subset/`
 - `src/`
 - `tests/`
@@ -385,10 +304,10 @@ python -m unittest discover -s tests -v
 - `README.md`
 - `main.py`
 
-不建议提交：
+涓嶅缓璁彁浜わ細
 
 - `config/runtime_config.local.json`
 - `workspace/`
 - `.joern_case_tmp/`
-- 外部安装的 `JDK`
-- 外部安装的 `Joern`
+- 澶栭儴瀹夎鐨?`JDK`
+- 澶栭儴瀹夎鐨?`Joern`

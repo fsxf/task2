@@ -74,7 +74,7 @@ class AppConfig:
                     file_config,
                     "joern_keep_projects",
                     "JOERN_KEEP_PROJECTS",
-                    "0",
+                    "1",
                 )
             ),
         )
