@@ -1,0 +1,3 @@
+SINK	CWE259_Hard_Coded_Password__w32_char_62a.cpp	79	LogonUserA	CWE259_Hard_Coded_Password__w32_char_62.goodG2B:void()	LogonUserA(                     username,                     domain,                     password,                     LOGON32_LOGON_NETWORK,                     LOGON32_PROVIDER_DEFAULT,                     &pHandle)
+CALL_EDGE	CWE259_Hard_Coded_Password__w32_char_62a.cpp	73	CWE259_Hard_Coded_Password__w32_char_62.goodG2B:void()	CWE259_Hard_Coded_Password__w32_char_62.goodG2BSource:void(char*&)	goodG2BSource(password)
+CALL_EDGE	CWE259_Hard_Coded_Password__w32_char_62a.cpp	99	CWE259_Hard_Coded_Password__w32_char_62.good:void()	CWE259_Hard_Coded_Password__w32_char_62.goodG2B:void()	goodG2B()

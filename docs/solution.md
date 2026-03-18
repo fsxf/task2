@@ -1,50 +1,106 @@
 # 方案说明
 
-## 1. 任务目标
+## 1. 目标
 
-本工程实现了一个面向精简 Juliet 基准集的漏洞检测系统，要求：
+本工程实现了一个针对精简 `Juliet` 子集的混合式漏洞审计流程：
 
-- 使用 Python 统一组织工程
-- 引入静态分析工具
-- 接入大模型进行复核
-- 给出可运行代码、测试和实验结果
+1. 先使用静态分析工具发现可能的漏洞。
+2. 再将静态分析证据交给大模型判断该告警是否可信。
 
-当前工程聚焦两个 CWE：
+本次任务覆盖两个 `CWE`：
 
 - `CWE78_OS_Command_Injection`
 - `CWE259_Hard_Coded_Password`
 
-每个 CWE 保留 `10` 个目标变体，总计 `20` 个主基准实例。
+共 `20` 个 `Bad` 基准实例，并额外补充了 `20` 条 `Good Path` 安全路径验证。
 
 ## 2. 总体方案
 
-系统采用两阶段流程。
+整个系统采用“两阶段”设计。
 
-### 第一阶段：静态分析初筛
+### 阶段一：Joern 静态分析
 
-- 根据 Juliet 文件命名规则枚举目标实例
-- 结合变体编号解析 source / sink 所在文件
-- 优先调用 `Joern` 从 CPG 中抽取 source/sink 证据
-- 如果 `Joern` 不可用，再回退到规则匹配后端
+静态分析阶段负责给出高置信候选漏洞证据，而不是直接替代最终判断。
 
-### 第二阶段：DeepSeek-R1 复核
+这版实现里，`Joern` 对每个 `Juliet case` 的完整文件组构建一个独立 `CPG`，然后导出：
 
-- 将静态分析结果压缩成最小证据包
-- 只提供 source/sink、局部代码窗口和 flow chain
-- 调用 `DeepSeek-R1` 输出最终判断和解释
+- `source` 命中位置
+- `sink` 命中位置
+- `source` 所在方法
+- `sink` 所在方法
+- 支持变体上的真实数据流路径
+- case 内部调用链
+- 每一跳调用边的文件、行号和调用代码
 
-该方案兼顾了两点：
+因此，静态分析输出的不再只是两个孤立点，而是：
 
-- 静态分析负责确定候选证据
-- 大模型负责利用上下文做语义复核
+- 变量级数据流路径
+- 方法级调用传播骨架
 
-## 3. 静态分析实现
+两层证据的组合。
 
-### 3.1 Joern 后端
+### 阶段二：DeepSeek-R1 复核
 
-本工程当前默认使用 `Joern`。
+大模型阶段读取压缩后的静态证据，包括：
 
-查询规则如下：
+- `source/sink` 位置
+- 局部代码窗口
+- `Joern` 恢复的调用链证据
+- `Joern` 给出的数据流路径
+- benchmark 预期 `flow chain`
+
+然后输出：
+
+- 是否为漏洞
+- 置信度
+- 关键位置
+- 简要原因
+
+这种分工比较适合本任务：
+
+- 静态分析工具擅长结构化定位和路径恢复
+- 大模型擅长结合上下文做语义判断
+
+## 3. 为什么要这样升级
+
+早期版本只用静态分析找 `source` 和 `sink`，这会有两个问题：
+
+1. `Joern` 看到的证据太碎，大模型只能对两个点做弱判断。
+2. 对 `52/53/54` 这类跨多个文件传递的变体来说，只看端点不够解释传播过程。
+
+升级后的实现改成：
+
+- 每个 case 导入完整文件组
+- `Joern` 提取内部调用边
+- `Joern` 在支持的变体上计算真实数据流路径
+- Python 侧重建 case 级方法路径
+- 将这些路径作为 `flow_evidence` 传给大模型
+
+例如 `CWE78 ... 54`，结果中现在可以看到：
+
+- 方法级调用链：`54_bad -> 54b_badSink -> 54c_badSink -> 54d_badSink -> 54e_badSink`
+- 变量级传播链：`data` 从每一层 `badSink(data)` 实参继续传到下一层形参
+
+这样大模型复核时看到的是更接近真实漏洞传播过程的证据，而不是只看一条 `recv(...)` 和一条 `EXECL(...)`。
+
+## 4. 具体实现
+
+### 4.1 基准枚举
+
+`benchmark.py` 根据 `Juliet` 命名规则枚举任务要求的 `20` 个 `Bad` case，并解析：
+
+- case id
+- variant
+- source file
+- sink file
+- group files
+- benchmark 预期 flow chain
+
+### 4.2 Joern 查询
+
+`joern_scripts/find_case_findings.sc` 负责在 case 级 `CPG` 中抽取结构化结果。
+
+当前规则为：
 
 - `CWE78`
   - source: `recv`
@@ -53,102 +109,117 @@
   - source: `strcpy(..., PASSWORD)`
   - sink: `LogonUserA`
 
-查询脚本位于：
+除此之外，脚本还会输出：
 
-- `joern_scripts/find_case_findings.sc`
+- 内部调用边 `CALL_EDGE`
+- 数据流路径 `DATAFLOW`
 
-### 3.2 变体解析
+Python 端的 `joern_runner.py` 再根据这些边和数据流结果重建最终 `flow_evidence`。
 
-变体到数据流的映射为：
+当前数据流覆盖范围是：
 
-- `51`: `a -> b`
-- `52`: `a -> b -> c`
-- `53`: `a -> b -> c -> d`
-- `54`: `a -> b -> c -> d -> e`
-- `61`: `b -> a`
-- `62`: `b -> a`
-- `81`: `a -> virtual dispatch`
-- `82`: `a -> virtual dispatch`
-- `83`: `constructor -> destructor`
-- `84`: `constructor -> destructor`
+- `CWE259`
+  - 普通参数传递变体可恢复 `password` 到 `LogonUserA` 的真实变量级路径
+- `CWE78`
+  - `51/52/53/54` 变体可恢复 `badSink` 调用参数在跨函数链中的真实传播路径
+  - 其他变体若受 `recv` 语义、字段传播或宏展开限制，会明确标记数据流不可用
 
-## 4. Good Path 设计
+### 4.3 Good Path
 
-工程除了主基准结果，还额外支持 Good Path 验证。
+项目没有把 `Good` 检查简化成“查带不带 `good` 文件名”。
 
-这里强调是 Good Path，而不是 Good 文件。
+原因是很多 `Juliet` 变体同一组文件里同时包含：
 
-原因是 Juliet 中很多变体存在以下情况：
+- `bad()`
+- `good()`
+- `badSource`
+- `goodG2BSource`
+- `badSink`
+- `goodG2BSink`
 
-- 同一个文件组里既有 `bad()` 又有 `good()`
-- 同一个文件里既有 `badSource` 又有 `goodG2BSource`
-- 同一个文件里既有 `badSink` 又有 `goodG2BSink`
+所以本项目按“作用域”做 Good 检查：
 
-因此，判断一个样例是否安全，不能只靠文件名，而要结合“当前分析的是 good 作用域还是 bad 作用域”。
+- `analysis_scope=bad`
+- `analysis_scope=good`
 
-本工程通过 `analysis_scope` 区分：
+并验证全部 `20` 条 `Good Path` 不被误报。
 
-- `bad`：主基准漏洞路径
-- `good`：安全路径验证
+## 5. Joern 工作目录与 CPG 保留
 
-Joern 查询和规则回退都会按该作用域过滤。
+如果开启：
 
-## 5. 配置方式
+- `JOERN_KEEP_PROJECTS=1`
 
-推荐采用以下方式：
+那么每个 case 的 `CPG` 会保留在：
 
-- 工具安装在项目外
-- API key 和工具路径使用环境变量
-- 项目内只保留极简本地配置文件
+- `joern_workspace_root/workspace/<project_name>`
 
-环境变量优先级高于本地配置文件。
+对应的 case 输入目录保留在：
 
-关键变量包括：
+- `joern_case_temp_root/<project_name>`
 
-- `DEEPSEEK_API_KEY`
-- `DEEPSEEK_BASE_URL`
-- `DEEPSEEK_MODEL`
-- `DEEPSEEK_TIMEOUT_SECONDS`
-- `STATIC_ANALYSIS_BACKEND`
-- `JAVA_HOME`
-- `JOERN_CLI_PATH`
-- `JOERN_WORKSPACE_ROOT`
-- `JOERN_CASE_TEMP_ROOT`
+这样可以在后续手工进入 `Joern shell` 查询保留下来的项目。
 
-## 6. 关于 `workspace`
+## 6. 手工进入 Joern Shell
 
-`workspace` 是 Joern 的运行工作区，不是工程源码目录。
+需要注意两件事：
 
-旧版本会把它直接生成在项目根目录。当前版本已经支持：
+1. `config/runtime_config.local.json` 不会自动影响你手工打开的 shell。
+2. `cmd` 和 PowerShell 语法不能混用。
 
-- 把 Joern 工作区放到系统临时目录
-- 或通过配置显式放到项目外部目录
+### PowerShell
 
-同时，当前版本会在每个 case 分析结束后清理对应的 Joern 项目缓存，避免 `workspace/hybrid-vuln-audit-*` 持续累积。
+```powershell
+$env:JAVA_HOME = "D:\DevTools\java\jdk-19.0.2+7"
+$env:Path = "$env:JAVA_HOME\bin;$env:Path"
+Set-Location "$env:LOCALAPPDATA\Temp\hybrid_vuln_audit\joern_runtime"
+& "D:\DevTools\joern\joern-cli\joern.bat"
+```
 
-## 7. 输出结果
+### CMD
 
-主流程输出：
+```cmd
+set JAVA_HOME=D:\DevTools\java\jdk-19.0.2+7
+set PATH=%JAVA_HOME%\bin;%PATH%
+cd /d C:\Users\lenovo\AppData\Local\Temp\hybrid_vuln_audit\joern_runtime
+"D:\DevTools\joern\joern-cli\joern.bat"
+```
 
-- `results/analysis_results.json`
-- `results/analysis_results.csv`
-- `results/summary.md`
+进入后可以先执行：
 
-Good Path 结果输出：
+```scala
+workspace
+project
+```
 
-- `results/good_sample_results.json`
+## 7. 方案边界
+
+这版实现已经满足本任务“先静态分析，再交给大模型判断”的目标，而且比只看 `source/sink` 更合理。
+
+但需要如实说明：
+
+- `CWE259` 的普通参数传递变体已经能导出真实数据流路径
+- `CWE78` 的 `51/52/53/54` 链式调用变体已经能导出真实跨函数参数传播路径
+- 受 `recv` 写缓冲区语义、成员字段传播和 `COMMAND_ARG3` 宏展开限制的样例，目前还不能保证每个 case 都有完整 source-to-sink 数据流
+- 这些 case 会明确标记 `joern dataflow path: unavailable for this case`
+
+因此，当前方案是：
+
+- `Joern` 负责找候选漏洞、恢复调用链，并在支持的变体上给出真实数据流路径
+- 大模型负责结合局部代码和这些静态证据做最终语义复核
 
 ## 8. 当前验证情况
 
 已验证：
 
 - `python -m unittest discover -s tests -v`
-- `python main.py`
-- `python main.py --good-paths-only`
 
-测试覆盖内容包括：
+当前测试覆盖：
 
-- 主基准实例枚举
-- 漏洞样例定位
-- 构造/析构流检测
-- `20` 条 Good Path 不误报
+- `20` 个基准实例枚举
+- `Joern` 完整文件组导入
+- `CWE78` / `CWE259` 命中定位
+- 链式变体调用链证据
+- 支持变体上的数据流证据
+- 构造/析构流
+- `20` 条 `Good Path` 不误报

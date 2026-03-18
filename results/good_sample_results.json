@@ -25,7 +25,16 @@
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE259_Hard_Coded_Password__w32_char_51a.c -> CWE259_Hard_Coded_Password__w32_char_51b.c"
+      "joern import scope: full case file group",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_51a.c -> CWE259_Hard_Coded_Password__w32_char_51b.c",
+      "joern flow evidence items: 2",
+      "joern project: hybrid-vuln-audit-CWE259_Hard_Coded_Password__w32_char_51_good_path-good",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern sink method: CWE259_Hard_Coded_Password__w32_char_51b_goodG2BSink",
+      "joern dataflow path: unavailable for this case"
     ]
   },
   {
@@ -54,7 +63,16 @@
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE259_Hard_Coded_Password__w32_char_52a.c -> CWE259_Hard_Coded_Password__w32_char_52c.c"
+      "joern import scope: full case file group",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_52a.c -> CWE259_Hard_Coded_Password__w32_char_52c.c",
+      "joern flow evidence items: 2",
+      "joern project: hybrid-vuln-audit-CWE259_Hard_Coded_Password__w32_char_52_good_path-good",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern sink method: CWE259_Hard_Coded_Password__w32_char_52c_goodG2BSink",
+      "joern dataflow path: unavailable for this case"
     ]
   },
   {
@@ -83,7 +101,16 @@
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE259_Hard_Coded_Password__w32_char_53a.c -> CWE259_Hard_Coded_Password__w32_char_53d.c"
+      "joern import scope: full case file group",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_53a.c -> CWE259_Hard_Coded_Password__w32_char_53d.c",
+      "joern flow evidence items: 2",
+      "joern project: hybrid-vuln-audit-CWE259_Hard_Coded_Password__w32_char_53_good_path-good",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern sink method: CWE259_Hard_Coded_Password__w32_char_53d_goodG2BSink",
+      "joern dataflow path: unavailable for this case"
     ]
   },
   {
@@ -112,7 +139,16 @@
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE259_Hard_Coded_Password__w32_char_54a.c -> CWE259_Hard_Coded_Password__w32_char_54e.c"
+      "joern import scope: full case file group",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_54a.c -> CWE259_Hard_Coded_Password__w32_char_54e.c",
+      "joern flow evidence items: 2",
+      "joern project: hybrid-vuln-audit-CWE259_Hard_Coded_Password__w32_char_54_good_path-good",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern sink method: CWE259_Hard_Coded_Password__w32_char_54e_goodG2BSink",
+      "joern dataflow path: unavailable for this case"
     ]
   },
   {
@@ -141,7 +177,16 @@
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE259_Hard_Coded_Password__w32_char_61b.c -> CWE259_Hard_Coded_Password__w32_char_61a.c"
+      "joern import scope: full case file group",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_61b.c -> CWE259_Hard_Coded_Password__w32_char_61a.c",
+      "joern flow evidence items: 2",
+      "joern project: hybrid-vuln-audit-CWE259_Hard_Coded_Password__w32_char_61_good_path-good",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern sink method: goodG2B",
+      "joern dataflow path: unavailable for this case"
     ]
   },
   {
@@ -170,7 +215,16 @@
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE259_Hard_Coded_Password__w32_char_62b.cpp -> CWE259_Hard_Coded_Password__w32_char_62a.cpp"
+      "joern import scope: full case file group",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_62b.cpp -> CWE259_Hard_Coded_Password__w32_char_62a.cpp",
+      "joern flow evidence items: 2",
+      "joern project: hybrid-vuln-audit-CWE259_Hard_Coded_Password__w32_char_62_good_path-good",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern sink method: CWE259_Hard_Coded_Password__w32_char_62.goodG2B",
+      "joern dataflow path: unavailable for this case"
     ]
   },
   {
@@ -199,7 +253,16 @@
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE259_Hard_Coded_Password__w32_char_81a.cpp -> CWE259_Hard_Coded_Password__w32_char_81_goodG2B.cpp"
+      "joern import scope: full case file group",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_81a.cpp -> CWE259_Hard_Coded_Password__w32_char_81_goodG2B.cpp",
+      "joern flow evidence items: 2",
+      "joern project: hybrid-vuln-audit-CWE259_Hard_Coded_Password__w32_char_81_good_path-good",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern sink method: CWE259_Hard_Coded_Password__w32_char_81.CWE259_Hard_Coded_Password__w32_char_81_goodG2B.action",
+      "joern dataflow path: unavailable for this case"
     ]
   },
   {
@@ -228,7 +291,16 @@
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE259_Hard_Coded_Password__w32_char_82a.cpp -> CWE259_Hard_Coded_Password__w32_char_82_goodG2B.cpp"
+      "joern import scope: full case file group",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_82a.cpp -> CWE259_Hard_Coded_Password__w32_char_82_goodG2B.cpp",
+      "joern flow evidence items: 2",
+      "joern project: hybrid-vuln-audit-CWE259_Hard_Coded_Password__w32_char_82_good_path-good",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern sink method: CWE259_Hard_Coded_Password__w32_char_82.CWE259_Hard_Coded_Password__w32_char_82_goodG2B.action",
+      "joern dataflow path: unavailable for this case"
     ]
   },
   {
@@ -258,7 +330,16 @@
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE259_Hard_Coded_Password__w32_char_83a.cpp -> CWE259_Hard_Coded_Password__w32_char_83_goodG2B.cpp::constructor -> CWE259_Hard_Coded_Password__w32_char_83_goodG2B.cpp::destructor"
+      "joern import scope: full case file group",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_83a.cpp -> CWE259_Hard_Coded_Password__w32_char_83_goodG2B.cpp::constructor -> CWE259_Hard_Coded_Password__w32_char_83_goodG2B.cpp::destructor",
+      "joern flow evidence items: 2",
+      "joern project: hybrid-vuln-audit-CWE259_Hard_Coded_Password__w32_char_83_good_path-good",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern sink method: CWE259_Hard_Coded_Password__w32_char_83.CWE259_Hard_Coded_Password__w32_char_83_goodG2B.~CWE259_Hard_Coded_Password__w32_char_83_goodG2B",
+      "joern dataflow path: unavailable for this case"
     ]
   },
   {
@@ -288,7 +369,16 @@
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE259_Hard_Coded_Password__w32_char_84a.cpp -> CWE259_Hard_Coded_Password__w32_char_84_goodG2B.cpp::constructor -> CWE259_Hard_Coded_Password__w32_char_84_goodG2B.cpp::destructor"
+      "joern import scope: full case file group",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_84a.cpp -> CWE259_Hard_Coded_Password__w32_char_84_goodG2B.cpp::constructor -> CWE259_Hard_Coded_Password__w32_char_84_goodG2B.cpp::destructor",
+      "joern flow evidence items: 2",
+      "joern project: hybrid-vuln-audit-CWE259_Hard_Coded_Password__w32_char_84_good_path-good",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern sink method: CWE259_Hard_Coded_Password__w32_char_84.CWE259_Hard_Coded_Password__w32_char_84_goodG2B.~CWE259_Hard_Coded_Password__w32_char_84_goodG2B",
+      "joern dataflow path: unavailable for this case"
     ]
   },
   {
@@ -321,7 +411,16 @@
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_51a.c -> CWE78_OS_Command_Injection__char_connect_socket_execl_51b.c"
+      "joern import scope: full case file group",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_51a.c -> CWE78_OS_Command_Injection__char_connect_socket_execl_51b.c",
+      "joern flow evidence items: 2",
+      "joern project: hybrid-vuln-audit-CWE78_OS_Command_Injection__char_connect_socket_execl_51_good_path-good",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern sink method: CWE78_OS_Command_Injection__char_connect_socket_execl_51b_goodG2BSink",
+      "joern dataflow path: unavailable for this case"
     ]
   },
   {
@@ -354,7 +453,16 @@
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_52a.c -> CWE78_OS_Command_Injection__char_connect_socket_execl_52c.c"
+      "joern import scope: full case file group",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_52a.c -> CWE78_OS_Command_Injection__char_connect_socket_execl_52c.c",
+      "joern flow evidence items: 2",
+      "joern project: hybrid-vuln-audit-CWE78_OS_Command_Injection__char_connect_socket_execl_52_good_path-good",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern sink method: CWE78_OS_Command_Injection__char_connect_socket_execl_52c_goodG2BSink",
+      "joern dataflow path: unavailable for this case"
     ]
   },
   {
@@ -387,7 +495,16 @@
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_53a.c -> CWE78_OS_Command_Injection__char_connect_socket_execl_53d.c"
+      "joern import scope: full case file group",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_53a.c -> CWE78_OS_Command_Injection__char_connect_socket_execl_53d.c",
+      "joern flow evidence items: 2",
+      "joern project: hybrid-vuln-audit-CWE78_OS_Command_Injection__char_connect_socket_execl_53_good_path-good",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern sink method: CWE78_OS_Command_Injection__char_connect_socket_execl_53d_goodG2BSink",
+      "joern dataflow path: unavailable for this case"
     ]
   },
   {
@@ -420,7 +537,16 @@
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_54a.c -> CWE78_OS_Command_Injection__char_connect_socket_execl_54e.c"
+      "joern import scope: full case file group",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_54a.c -> CWE78_OS_Command_Injection__char_connect_socket_execl_54e.c",
+      "joern flow evidence items: 2",
+      "joern project: hybrid-vuln-audit-CWE78_OS_Command_Injection__char_connect_socket_execl_54_good_path-good",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern sink method: CWE78_OS_Command_Injection__char_connect_socket_execl_54e_goodG2BSink",
+      "joern dataflow path: unavailable for this case"
     ]
   },
   {
@@ -453,7 +579,16 @@
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_61b.c -> CWE78_OS_Command_Injection__char_connect_socket_execl_61a.c"
+      "joern import scope: full case file group",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_61b.c -> CWE78_OS_Command_Injection__char_connect_socket_execl_61a.c",
+      "joern flow evidence items: 2",
+      "joern project: hybrid-vuln-audit-CWE78_OS_Command_Injection__char_connect_socket_execl_61_good_path-good",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern sink method: goodG2B",
+      "joern dataflow path: unavailable for this case"
     ]
   },
   {
@@ -486,7 +621,16 @@
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_62b.cpp -> CWE78_OS_Command_Injection__char_connect_socket_execl_62a.cpp"
+      "joern import scope: full case file group",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_62b.cpp -> CWE78_OS_Command_Injection__char_connect_socket_execl_62a.cpp",
+      "joern flow evidence items: 2",
+      "joern project: hybrid-vuln-audit-CWE78_OS_Command_Injection__char_connect_socket_execl_62_good_path-good",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern sink method: CWE78_OS_Command_Injection__char_connect_socket_execl_62.goodG2B",
+      "joern dataflow path: unavailable for this case"
     ]
   },
   {
@@ -519,7 +663,16 @@
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_81a.cpp -> CWE78_OS_Command_Injection__char_connect_socket_execl_81_goodG2B.cpp"
+      "joern import scope: full case file group",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_81a.cpp -> CWE78_OS_Command_Injection__char_connect_socket_execl_81_goodG2B.cpp",
+      "joern flow evidence items: 2",
+      "joern project: hybrid-vuln-audit-CWE78_OS_Command_Injection__char_connect_socket_execl_81_good_path-good",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern sink method: CWE78_OS_Command_Injection__char_connect_socket_execl_81.CWE78_OS_Command_Injection__char_connect_socket_execl_81_goodG2B.action",
+      "joern dataflow path: unavailable for this case"
     ]
   },
   {
@@ -552,7 +705,16 @@
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_82a.cpp -> CWE78_OS_Command_Injection__char_connect_socket_execl_82_goodG2B.cpp"
+      "joern import scope: full case file group",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_82a.cpp -> CWE78_OS_Command_Injection__char_connect_socket_execl_82_goodG2B.cpp",
+      "joern flow evidence items: 2",
+      "joern project: hybrid-vuln-audit-CWE78_OS_Command_Injection__char_connect_socket_execl_82_good_path-good",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern sink method: CWE78_OS_Command_Injection__char_connect_socket_execl_82.CWE78_OS_Command_Injection__char_connect_socket_execl_82_goodG2B.action",
+      "joern dataflow path: unavailable for this case"
     ]
   },
   {
@@ -586,7 +748,16 @@
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_83a.cpp -> CWE78_OS_Command_Injection__char_connect_socket_execl_83_goodG2B.cpp::constructor -> CWE78_OS_Command_Injection__char_connect_socket_execl_83_goodG2B.cpp::destructor"
+      "joern import scope: full case file group",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_83a.cpp -> CWE78_OS_Command_Injection__char_connect_socket_execl_83_goodG2B.cpp::constructor -> CWE78_OS_Command_Injection__char_connect_socket_execl_83_goodG2B.cpp::destructor",
+      "joern flow evidence items: 2",
+      "joern project: hybrid-vuln-audit-CWE78_OS_Command_Injection__char_connect_socket_execl_83_good_path-good",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern sink method: CWE78_OS_Command_Injection__char_connect_socket_execl_83.CWE78_OS_Command_Injection__char_connect_socket_execl_83_goodG2B.~CWE78_OS_Command_Injection__char_connect_socket_execl_83_goodG2B",
+      "joern dataflow path: unavailable for this case"
     ]
   },
   {
@@ -620,7 +791,16 @@
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_84a.cpp -> CWE78_OS_Command_Injection__char_connect_socket_execl_84_goodG2B.cpp::constructor -> CWE78_OS_Command_Injection__char_connect_socket_execl_84_goodG2B.cpp::destructor"
+      "joern import scope: full case file group",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_84a.cpp -> CWE78_OS_Command_Injection__char_connect_socket_execl_84_goodG2B.cpp::constructor -> CWE78_OS_Command_Injection__char_connect_socket_execl_84_goodG2B.cpp::destructor",
+      "joern flow evidence items: 2",
+      "joern project: hybrid-vuln-audit-CWE78_OS_Command_Injection__char_connect_socket_execl_84_good_path-good",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern sink method: CWE78_OS_Command_Injection__char_connect_socket_execl_84.CWE78_OS_Command_Injection__char_connect_socket_execl_84_goodG2B.~CWE78_OS_Command_Injection__char_connect_socket_execl_84_goodG2B",
+      "joern dataflow path: unavailable for this case"
     ]
   }
 ]

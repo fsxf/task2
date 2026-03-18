@@ -26,18 +26,30 @@
       "CWE259_Hard_Coded_Password__w32_char_51a.c",
       "CWE259_Hard_Coded_Password__w32_char_51b.c"
     ],
-    "prompt_tokens": 507,
-    "completion_tokens": 1057,
-    "total_tokens": 1564,
+    "prompt_tokens": 881,
+    "completion_tokens": 1300,
+    "total_tokens": 2181,
     "llm_mode": "deepseek-r1",
     "llm_model": "deepseek-reasoner",
-    "reason": "Hardcoded password in strcpy flows directly to LogonUserA authentication call, violating CWE-259.",
+    "reason": "Hardcoded password 'PASSWORD' is copied via strcpy in source file and passed to LogonUserA in sink file, confirming CWE-259 vulnerability on the BAD path.",
     "static_confidence": 0.99,
     "review_confidence": 0.99,
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE259_Hard_Coded_Password__w32_char_51a.c -> CWE259_Hard_Coded_Password__w32_char_51b.c"
+      "joern import scope: full case file group",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_51a.c -> CWE259_Hard_Coded_Password__w32_char_51b.c",
+      "joern flow evidence items: 5",
+      "joern project: hybrid-vuln-audit-CWE259_Hard_Coded_Password__w32_char_51-bad",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern source method: CWE259_Hard_Coded_Password__w32_char_51_bad",
+      "joern sink method: CWE259_Hard_Coded_Password__w32_char_51b_badSink",
+      "joern dataflow path (cwe259-password-to-logonuser): IDENTIFIER | line 37 | password -> IDENTIFIER | line 38 | password -> METHOD_PARAMETER_IN | line 30 | char * password -> IDENTIFIER | line 40 | password",
+      "joern call path: CWE259_Hard_Coded_Password__w32_char_51_bad -> CWE259_Hard_Coded_Password__w32_char_51b_badSink",
+      "joern call edge: CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_51a.c:38 CWE259_Hard_Coded_Password__w32_char_51_bad -> CWE259_Hard_Coded_Password__w32_char_51b_badSink | CWE259_Hard_Coded_Password__w32_char_51b_badSink(password)"
     ]
   },
   {
@@ -67,18 +79,31 @@
       "CWE259_Hard_Coded_Password__w32_char_52a.c",
       "CWE259_Hard_Coded_Password__w32_char_52c.c"
     ],
-    "prompt_tokens": 507,
-    "completion_tokens": 1166,
-    "total_tokens": 1673,
+    "prompt_tokens": 1025,
+    "completion_tokens": 1044,
+    "total_tokens": 2069,
     "llm_mode": "deepseek-r1",
     "llm_model": "deepseek-reasoner",
-    "reason": "Hard-coded password 'PASSWORD' is directly copied in source code and subsequently used in the LogonUserA function for authentication, creating a security vulnerability as hard-coded credentials are easily discoverable and exploitable.",
+    "reason": "Hard-coded password (PASSWORD) is copied via strcpy at source, flows through multiple functions, and is used in LogonUserA authentication call at sink.",
     "static_confidence": 0.99,
     "review_confidence": 0.99,
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE259_Hard_Coded_Password__w32_char_52a.c -> CWE259_Hard_Coded_Password__w32_char_52c.c"
+      "joern import scope: full case file group",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_52a.c -> CWE259_Hard_Coded_Password__w32_char_52c.c",
+      "joern flow evidence items: 6",
+      "joern project: hybrid-vuln-audit-CWE259_Hard_Coded_Password__w32_char_52-bad",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern source method: CWE259_Hard_Coded_Password__w32_char_52_bad",
+      "joern sink method: CWE259_Hard_Coded_Password__w32_char_52c_badSink",
+      "joern dataflow path (cwe259-password-to-logonuser): IDENTIFIER | line 37 | password -> IDENTIFIER | line 38 | password -> METHOD_PARAMETER_IN | line 33 | char * password -> IDENTIFIER | line 35 | password -> METHOD_PARAMETER_IN | line 30 | char * password -> IDENTIFIER | line 40 | password",
+      "joern call path: CWE259_Hard_Coded_Password__w32_char_52_bad -> CWE259_Hard_Coded_Password__w32_char_52b_badSink -> CWE259_Hard_Coded_Password__w32_char_52c_badSink",
+      "joern call edge: CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_52a.c:38 CWE259_Hard_Coded_Password__w32_char_52_bad -> CWE259_Hard_Coded_Password__w32_char_52b_badSink | CWE259_Hard_Coded_Password__w32_char_52b_badSink(password)",
+      "joern call edge: CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_52b.c:35 CWE259_Hard_Coded_Password__w32_char_52b_badSink -> CWE259_Hard_Coded_Password__w32_char_52c_badSink | CWE259_Hard_Coded_Password__w32_char_52c_badSink(password)"
     ]
   },
   {
@@ -108,18 +133,32 @@
       "CWE259_Hard_Coded_Password__w32_char_53a.c",
       "CWE259_Hard_Coded_Password__w32_char_53d.c"
     ],
-    "prompt_tokens": 507,
-    "completion_tokens": 1097,
-    "total_tokens": 1604,
+    "prompt_tokens": 1169,
+    "completion_tokens": 2602,
+    "total_tokens": 3771,
     "llm_mode": "deepseek-r1",
     "llm_model": "deepseek-reasoner",
-    "reason": "Hard-coded password from source file flows through call chain to authentication sink LogonUserA in sink file",
+    "reason": "Hard-coded password 'PASSWORD' is copied at line 37 in source file (CWE259_Hard_Coded_Password__w32_char_53a.c) and flows through multiple functions to be used as a parameter in LogonUserA at line 40 in sink file (CWE259_Hard_Coded_Password__w32_char_53d.c), confirming a clear CWE259 vulnerability with sensitive authentication sink.",
     "static_confidence": 0.99,
     "review_confidence": 0.99,
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE259_Hard_Coded_Password__w32_char_53a.c -> CWE259_Hard_Coded_Password__w32_char_53d.c"
+      "joern import scope: full case file group",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_53a.c -> CWE259_Hard_Coded_Password__w32_char_53d.c",
+      "joern flow evidence items: 7",
+      "joern project: hybrid-vuln-audit-CWE259_Hard_Coded_Password__w32_char_53-bad",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern source method: CWE259_Hard_Coded_Password__w32_char_53_bad",
+      "joern sink method: CWE259_Hard_Coded_Password__w32_char_53d_badSink",
+      "joern dataflow path (cwe259-password-to-logonuser): IDENTIFIER | line 37 | password -> IDENTIFIER | line 38 | password -> METHOD_PARAMETER_IN | line 33 | char * password -> IDENTIFIER | line 35 | password -> METHOD_PARAMETER_IN | line 33 | char * password -> IDENTIFIER | line 35 | password -> METHOD_PARAMETER_IN | line 30 | char * password -> IDENTIFIER | line 40 | password",
+      "joern call path: CWE259_Hard_Coded_Password__w32_char_53_bad -> CWE259_Hard_Coded_Password__w32_char_53b_badSink -> CWE259_Hard_Coded_Password__w32_char_53c_badSink -> CWE259_Hard_Coded_Password__w32_char_53d_badSink",
+      "joern call edge: CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_53a.c:38 CWE259_Hard_Coded_Password__w32_char_53_bad -> CWE259_Hard_Coded_Password__w32_char_53b_badSink | CWE259_Hard_Coded_Password__w32_char_53b_badSink(password)",
+      "joern call edge: CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_53b.c:35 CWE259_Hard_Coded_Password__w32_char_53b_badSink -> CWE259_Hard_Coded_Password__w32_char_53c_badSink | CWE259_Hard_Coded_Password__w32_char_53c_badSink(password)",
+      "joern call edge: CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_53c.c:35 CWE259_Hard_Coded_Password__w32_char_53c_badSink -> CWE259_Hard_Coded_Password__w32_char_53d_badSink | CWE259_Hard_Coded_Password__w32_char_53d_badSink(password)"
     ]
   },
   {
@@ -149,18 +188,33 @@
       "CWE259_Hard_Coded_Password__w32_char_54a.c",
       "CWE259_Hard_Coded_Password__w32_char_54e.c"
     ],
-    "prompt_tokens": 507,
-    "completion_tokens": 1357,
-    "total_tokens": 1864,
+    "prompt_tokens": 1313,
+    "completion_tokens": 933,
+    "total_tokens": 2246,
     "llm_mode": "deepseek-r1",
     "llm_model": "deepseek-reasoner",
-    "reason": "Hard-coded password copied at source and used in LogonUserA, a sensitive authentication function, indicating CWE-259 vulnerability.",
+    "reason": "Hard-coded password is directly copied via strcpy and flows through multiple functions to the sensitive LogonUserA API, posing a clear security risk for unauthorized access.",
     "static_confidence": 0.99,
-    "review_confidence": 0.99,
+    "review_confidence": 0.95,
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE259_Hard_Coded_Password__w32_char_54a.c -> CWE259_Hard_Coded_Password__w32_char_54e.c"
+      "joern import scope: full case file group",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_54a.c -> CWE259_Hard_Coded_Password__w32_char_54e.c",
+      "joern flow evidence items: 8",
+      "joern project: hybrid-vuln-audit-CWE259_Hard_Coded_Password__w32_char_54-bad",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern source method: CWE259_Hard_Coded_Password__w32_char_54_bad",
+      "joern sink method: CWE259_Hard_Coded_Password__w32_char_54e_badSink",
+      "joern dataflow path (cwe259-password-to-logonuser): IDENTIFIER | line 37 | password -> IDENTIFIER | line 38 | password -> METHOD_PARAMETER_IN | line 33 | char * password -> IDENTIFIER | line 35 | password -> METHOD_PARAMETER_IN | line 33 | char * password -> IDENTIFIER | line 35 | password -> METHOD_PARAMETER_IN | line 33 | char * password -> IDENTIFIER | line 35 | password -> METHOD_PARAMETER_IN | line 30 | char * password -> IDENTIFIER | line 40 | password",
+      "joern call path: CWE259_Hard_Coded_Password__w32_char_54_bad -> CWE259_Hard_Coded_Password__w32_char_54b_badSink -> CWE259_Hard_Coded_Password__w32_char_54c_badSink -> CWE259_Hard_Coded_Password__w32_char_54d_badSink -> CWE259_Hard_Coded_Password__w32_char_54e_badSink",
+      "joern call edge: CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_54a.c:38 CWE259_Hard_Coded_Password__w32_char_54_bad -> CWE259_Hard_Coded_Password__w32_char_54b_badSink | CWE259_Hard_Coded_Password__w32_char_54b_badSink(password)",
+      "joern call edge: CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_54b.c:35 CWE259_Hard_Coded_Password__w32_char_54b_badSink -> CWE259_Hard_Coded_Password__w32_char_54c_badSink | CWE259_Hard_Coded_Password__w32_char_54c_badSink(password)",
+      "joern call edge: CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_54c.c:35 CWE259_Hard_Coded_Password__w32_char_54c_badSink -> CWE259_Hard_Coded_Password__w32_char_54d_badSink | CWE259_Hard_Coded_Password__w32_char_54d_badSink(password)",
+      "joern call edge: CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_54d.c:35 CWE259_Hard_Coded_Password__w32_char_54d_badSink -> CWE259_Hard_Coded_Password__w32_char_54e_badSink | CWE259_Hard_Coded_Password__w32_char_54e_badSink(password)"
     ]
   },
   {
@@ -190,18 +244,30 @@
       "CWE259_Hard_Coded_Password__w32_char_61b.c",
       "CWE259_Hard_Coded_Password__w32_char_61a.c"
     ],
-    "prompt_tokens": 499,
-    "completion_tokens": 1210,
-    "total_tokens": 1709,
+    "prompt_tokens": 916,
+    "completion_tokens": 1611,
+    "total_tokens": 2527,
     "llm_mode": "deepseek-r1",
     "llm_model": "deepseek-reasoner",
-    "reason": "Hard-coded password is directly copied and used in LogonUserA, exposing sensitive credentials.",
+    "reason": "Hard-coded password 'PASSWORD' is copied at line 31 and flows directly to the LogonUserA authentication call at line 42, indicating a clear CWE-259 vulnerability with no mitigation in the path.",
     "static_confidence": 0.99,
     "review_confidence": 0.99,
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE259_Hard_Coded_Password__w32_char_61b.c -> CWE259_Hard_Coded_Password__w32_char_61a.c"
+      "joern import scope: full case file group",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_61b.c -> CWE259_Hard_Coded_Password__w32_char_61a.c",
+      "joern flow evidence items: 5",
+      "joern project: hybrid-vuln-audit-CWE259_Hard_Coded_Password__w32_char_61-bad",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern source method: CWE259_Hard_Coded_Password__w32_char_61b_badSource",
+      "joern sink method: CWE259_Hard_Coded_Password__w32_char_61_bad",
+      "joern dataflow path (cwe259-password-to-logonuser): IDENTIFIER | line 31 | password -> IDENTIFIER | line 32 | password -> RETURN | line 32 | return password; -> METHOD_RETURN | line 28 | RET -> CALL | line 36 | CWE259_Hard_Coded_Password__w32_char_61b_badSource(password) -> IDENTIFIER | line 36 | password -> IDENTIFIER | line 45 | password",
+      "joern reverse call path: CWE259_Hard_Coded_Password__w32_char_61_bad -> CWE259_Hard_Coded_Password__w32_char_61b_badSource",
+      "joern call edge: CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_61a.c:36 CWE259_Hard_Coded_Password__w32_char_61_bad -> CWE259_Hard_Coded_Password__w32_char_61b_badSource | CWE259_Hard_Coded_Password__w32_char_61b_badSource(password)"
     ]
   },
   {
@@ -231,18 +297,30 @@
       "CWE259_Hard_Coded_Password__w32_char_62b.cpp",
       "CWE259_Hard_Coded_Password__w32_char_62a.cpp"
     ],
-    "prompt_tokens": 485,
-    "completion_tokens": 1495,
-    "total_tokens": 1980,
+    "prompt_tokens": 837,
+    "completion_tokens": 1141,
+    "total_tokens": 1978,
     "llm_mode": "deepseek-r1",
     "llm_model": "deepseek-reasoner",
-    "reason": "Hardcoded password is copied at source and used in sensitive LogonUserA function, confirming CWE259 vulnerability.",
+    "reason": "Hard-coded password (PASSWORD) is copied via strcpy in badSource, then passed to LogonUserA in bad, creating a clear CWE259 vulnerability.",
     "static_confidence": 0.99,
-    "review_confidence": 0.95,
+    "review_confidence": 0.99,
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE259_Hard_Coded_Password__w32_char_62b.cpp -> CWE259_Hard_Coded_Password__w32_char_62a.cpp"
+      "joern import scope: full case file group",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_62b.cpp -> CWE259_Hard_Coded_Password__w32_char_62a.cpp",
+      "joern flow evidence items: 5",
+      "joern project: hybrid-vuln-audit-CWE259_Hard_Coded_Password__w32_char_62-bad",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern source method: CWE259_Hard_Coded_Password__w32_char_62.badSource",
+      "joern sink method: CWE259_Hard_Coded_Password__w32_char_62.bad",
+      "joern dataflow path (cwe259-password-to-logonuser): IDENTIFIER | line 31 | password -> METHOD_PARAMETER_OUT | line 28 | char * &password -> IDENTIFIER | line 37 | password -> IDENTIFIER | line 46 | password",
+      "joern reverse call path: CWE259_Hard_Coded_Password__w32_char_62.bad -> CWE259_Hard_Coded_Password__w32_char_62.badSource",
+      "joern call edge: CWE259_Hard_Coded_Password/CWE259_Hard_Coded_Password__w32_char_62a.cpp:37 CWE259_Hard_Coded_Password__w32_char_62.bad -> CWE259_Hard_Coded_Password__w32_char_62.badSource | badSource(password)"
     ]
   },
   {
@@ -272,18 +350,30 @@
       "CWE259_Hard_Coded_Password__w32_char_81a.cpp",
       "CWE259_Hard_Coded_Password__w32_char_81_bad.cpp"
     ],
-    "prompt_tokens": 532,
-    "completion_tokens": 1374,
-    "total_tokens": 1906,
+    "prompt_tokens": 782,
+    "completion_tokens": 1507,
+    "total_tokens": 2289,
     "llm_mode": "deepseek-r1",
     "llm_model": "deepseek-reasoner",
-    "reason": "Hard-coded password copied via strcpy at source and used in LogonUserA authentication at sink, confirming CWE259 vulnerability on the BAD path.",
+    "reason": "Hard-coded password 'PASSWORD' is copied at source line 33 in a.cpp and used in LogonUserA at sink line 34 in _bad.cpp, leading to authentication vulnerability (CWE-259).",
     "static_confidence": 0.99,
-    "review_confidence": 0.95,
+    "review_confidence": 0.9,
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE259_Hard_Coded_Password__w32_char_81a.cpp -> CWE259_Hard_Coded_Password__w32_char_81_bad.cpp"
+      "joern import scope: full case file group",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_81a.cpp -> CWE259_Hard_Coded_Password__w32_char_81_bad.cpp",
+      "joern flow evidence items: 5",
+      "joern project: hybrid-vuln-audit-CWE259_Hard_Coded_Password__w32_char_81-bad",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern source method: CWE259_Hard_Coded_Password__w32_char_81.bad",
+      "joern sink method: CWE259_Hard_Coded_Password__w32_char_81.CWE259_Hard_Coded_Password__w32_char_81_bad.action",
+      "joern dataflow path: unavailable for this case",
+      "joern call path: no path recovered from internal call edges",
+      "benchmark flow chain: CWE259_Hard_Coded_Password__w32_char_81a.cpp -> CWE259_Hard_Coded_Password__w32_char_81_bad.cpp"
     ]
   },
   {
@@ -313,18 +403,30 @@
       "CWE259_Hard_Coded_Password__w32_char_82a.cpp",
       "CWE259_Hard_Coded_Password__w32_char_82_bad.cpp"
     ],
-    "prompt_tokens": 537,
-    "completion_tokens": 2057,
-    "total_tokens": 2594,
+    "prompt_tokens": 787,
+    "completion_tokens": 1512,
+    "total_tokens": 2299,
     "llm_mode": "deepseek-r1",
     "llm_model": "deepseek-reasoner",
-    "reason": "Hard-coded password is used in authentication via LogonUserA, indicating a clear CWE259 vulnerability with sensitive data flow from source to sink.",
+    "reason": "Hard-coded password is copied at source using strcpy and directly passed to LogonUserA at sink for authentication, confirming the vulnerability flow.",
     "static_confidence": 0.99,
     "review_confidence": 0.99,
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE259_Hard_Coded_Password__w32_char_82a.cpp -> CWE259_Hard_Coded_Password__w32_char_82_bad.cpp"
+      "joern import scope: full case file group",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_82a.cpp -> CWE259_Hard_Coded_Password__w32_char_82_bad.cpp",
+      "joern flow evidence items: 5",
+      "joern project: hybrid-vuln-audit-CWE259_Hard_Coded_Password__w32_char_82-bad",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern source method: CWE259_Hard_Coded_Password__w32_char_82.bad",
+      "joern sink method: CWE259_Hard_Coded_Password__w32_char_82.CWE259_Hard_Coded_Password__w32_char_82_bad.action",
+      "joern dataflow path: unavailable for this case",
+      "joern call path: no path recovered from internal call edges",
+      "benchmark flow chain: CWE259_Hard_Coded_Password__w32_char_82a.cpp -> CWE259_Hard_Coded_Password__w32_char_82_bad.cpp"
     ]
   },
   {
@@ -355,18 +457,30 @@
       "CWE259_Hard_Coded_Password__w32_char_83_bad.cpp::constructor",
       "CWE259_Hard_Coded_Password__w32_char_83_bad.cpp::destructor"
     ],
-    "prompt_tokens": 567,
-    "completion_tokens": 1207,
-    "total_tokens": 1774,
+    "prompt_tokens": 892,
+    "completion_tokens": 1041,
+    "total_tokens": 1933,
     "llm_mode": "deepseek-r1",
     "llm_model": "deepseek-reasoner",
-    "reason": "Hardcoded password 'PASSWORD' is copied to variable and used in LogonUserA for authentication, exposing credentials and violating CWE259.",
+    "reason": "Hard-coded password is copied via strcpy in the constructor and used in LogonUserA in the destructor, indicating a clear CWE-259 vulnerability with a direct flow from source to sink.",
     "static_confidence": 0.99,
     "review_confidence": 0.99,
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE259_Hard_Coded_Password__w32_char_83a.cpp -> CWE259_Hard_Coded_Password__w32_char_83_bad.cpp::constructor -> CWE259_Hard_Coded_Password__w32_char_83_bad.cpp::destructor"
+      "joern import scope: full case file group",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_83a.cpp -> CWE259_Hard_Coded_Password__w32_char_83_bad.cpp::constructor -> CWE259_Hard_Coded_Password__w32_char_83_bad.cpp::destructor",
+      "joern flow evidence items: 5",
+      "joern project: hybrid-vuln-audit-CWE259_Hard_Coded_Password__w32_char_83-bad",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern source method: CWE259_Hard_Coded_Password__w32_char_83.CWE259_Hard_Coded_Password__w32_char_83_bad.CWE259_Hard_Coded_Password__w32_char_83_bad",
+      "joern sink method: CWE259_Hard_Coded_Password__w32_char_83.CWE259_Hard_Coded_Password__w32_char_83_bad.~CWE259_Hard_Coded_Password__w32_char_83_bad",
+      "joern dataflow path: unavailable for this case",
+      "joern call path: no path recovered from internal call edges",
+      "benchmark flow chain: CWE259_Hard_Coded_Password__w32_char_83a.cpp -> CWE259_Hard_Coded_Password__w32_char_83_bad.cpp::constructor -> CWE259_Hard_Coded_Password__w32_char_83_bad.cpp::destructor"
     ]
   },
   {
@@ -397,18 +511,30 @@
       "CWE259_Hard_Coded_Password__w32_char_84_bad.cpp::constructor",
       "CWE259_Hard_Coded_Password__w32_char_84_bad.cpp::destructor"
     ],
-    "prompt_tokens": 567,
-    "completion_tokens": 987,
-    "total_tokens": 1554,
+    "prompt_tokens": 892,
+    "completion_tokens": 966,
+    "total_tokens": 1858,
     "llm_mode": "deepseek-r1",
     "llm_model": "deepseek-reasoner",
-    "reason": "Hard-coded password is set via strcpy at line 32 and used in the sensitive LogonUserA function at line 42, indicating a clear CWE259 vulnerability.",
+    "reason": "The constructor hard-codes a password via strcpy, which is later used in LogonUserA in the destructor, creating a direct hard-coded credential vulnerability (CWE-259).",
     "static_confidence": 0.99,
-    "review_confidence": 0.95,
+    "review_confidence": 0.99,
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE259_Hard_Coded_Password__w32_char_84a.cpp -> CWE259_Hard_Coded_Password__w32_char_84_bad.cpp::constructor -> CWE259_Hard_Coded_Password__w32_char_84_bad.cpp::destructor"
+      "joern import scope: full case file group",
+      "flow chain: CWE259_Hard_Coded_Password__w32_char_84a.cpp -> CWE259_Hard_Coded_Password__w32_char_84_bad.cpp::constructor -> CWE259_Hard_Coded_Password__w32_char_84_bad.cpp::destructor",
+      "joern flow evidence items: 5",
+      "joern project: hybrid-vuln-audit-CWE259_Hard_Coded_Password__w32_char_84-bad",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern source method: CWE259_Hard_Coded_Password__w32_char_84.CWE259_Hard_Coded_Password__w32_char_84_bad.CWE259_Hard_Coded_Password__w32_char_84_bad",
+      "joern sink method: CWE259_Hard_Coded_Password__w32_char_84.CWE259_Hard_Coded_Password__w32_char_84_bad.~CWE259_Hard_Coded_Password__w32_char_84_bad",
+      "joern dataflow path: unavailable for this case",
+      "joern call path: no path recovered from internal call edges",
+      "benchmark flow chain: CWE259_Hard_Coded_Password__w32_char_84a.cpp -> CWE259_Hard_Coded_Password__w32_char_84_bad.cpp::constructor -> CWE259_Hard_Coded_Password__w32_char_84_bad.cpp::destructor"
     ]
   },
   {
@@ -438,18 +564,30 @@
       "CWE78_OS_Command_Injection__char_connect_socket_execl_51a.c",
       "CWE78_OS_Command_Injection__char_connect_socket_execl_51b.c"
     ],
-    "prompt_tokens": 629,
-    "completion_tokens": 1116,
-    "total_tokens": 1745,
+    "prompt_tokens": 1030,
+    "completion_tokens": 938,
+    "total_tokens": 1968,
     "llm_mode": "deepseek-r1",
     "llm_model": "deepseek-reasoner",
-    "reason": "Data from recv (source line 109) is passed directly to execl (sink line 71) via 'data' variable without validation, enabling OS command injection.",
+    "reason": "Data from recv() flows into execl() via '/bin/sh -c' without validation, enabling command injection.",
     "static_confidence": 0.99,
     "review_confidence": 0.99,
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_51a.c -> CWE78_OS_Command_Injection__char_connect_socket_execl_51b.c"
+      "joern import scope: full case file group",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_51a.c -> CWE78_OS_Command_Injection__char_connect_socket_execl_51b.c",
+      "joern flow evidence items: 5",
+      "joern project: hybrid-vuln-audit-CWE78_OS_Command_Injection__char_connect_socket_execl_51-bad",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern source method: CWE78_OS_Command_Injection__char_connect_socket_execl_51_bad",
+      "joern sink method: CWE78_OS_Command_Injection__char_connect_socket_execl_51b_badSink",
+      "joern dataflow path (cwe78-badsink-arg-to-param): IDENTIFIER | line 140 | data -> METHOD_PARAMETER_IN | line 67 | char * data",
+      "joern call path: CWE78_OS_Command_Injection__char_connect_socket_execl_51_bad -> CWE78_OS_Command_Injection__char_connect_socket_execl_51b_badSink",
+      "joern call edge: CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_51a.c:140 CWE78_OS_Command_Injection__char_connect_socket_execl_51_bad -> CWE78_OS_Command_Injection__char_connect_socket_execl_51b_badSink | CWE78_OS_Command_Injection__char_connect_socket_execl_51b_badSink(data)"
     ]
   },
   {
@@ -479,18 +617,31 @@
       "CWE78_OS_Command_Injection__char_connect_socket_execl_52a.c",
       "CWE78_OS_Command_Injection__char_connect_socket_execl_52c.c"
     ],
-    "prompt_tokens": 629,
-    "completion_tokens": 1440,
-    "total_tokens": 2069,
+    "prompt_tokens": 1201,
+    "completion_tokens": 1445,
+    "total_tokens": 2646,
     "llm_mode": "deepseek-r1",
     "llm_model": "deepseek-reasoner",
-    "reason": "User-controlled input from recv is passed directly to execl with shell execution via -c flag without validation, leading to OS command injection.",
+    "reason": "Untrusted data from recv is passed unsanitized to execl, enabling command injection via shell execution.",
     "static_confidence": 0.99,
     "review_confidence": 0.99,
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_52a.c -> CWE78_OS_Command_Injection__char_connect_socket_execl_52c.c"
+      "joern import scope: full case file group",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_52a.c -> CWE78_OS_Command_Injection__char_connect_socket_execl_52c.c",
+      "joern flow evidence items: 6",
+      "joern project: hybrid-vuln-audit-CWE78_OS_Command_Injection__char_connect_socket_execl_52-bad",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern source method: CWE78_OS_Command_Injection__char_connect_socket_execl_52_bad",
+      "joern sink method: CWE78_OS_Command_Injection__char_connect_socket_execl_52c_badSink",
+      "joern dataflow path (cwe78-badsink-arg-to-param): IDENTIFIER | line 140 | data -> METHOD_PARAMETER_IN | line 70 | char * data -> IDENTIFIER | line 72 | data -> METHOD_PARAMETER_IN | line 67 | char * data",
+      "joern call path: CWE78_OS_Command_Injection__char_connect_socket_execl_52_bad -> CWE78_OS_Command_Injection__char_connect_socket_execl_52b_badSink -> CWE78_OS_Command_Injection__char_connect_socket_execl_52c_badSink",
+      "joern call edge: CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_52a.c:140 CWE78_OS_Command_Injection__char_connect_socket_execl_52_bad -> CWE78_OS_Command_Injection__char_connect_socket_execl_52b_badSink | CWE78_OS_Command_Injection__char_connect_socket_execl_52b_badSink(data)",
+      "joern call edge: CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_52b.c:72 CWE78_OS_Command_Injection__char_connect_socket_execl_52b_badSink -> CWE78_OS_Command_Injection__char_connect_socket_execl_52c_badSink | CWE78_OS_Command_Injection__char_connect_socket_execl_52c_badSink(data)"
     ]
   },
   {
@@ -520,18 +671,32 @@
       "CWE78_OS_Command_Injection__char_connect_socket_execl_53a.c",
       "CWE78_OS_Command_Injection__char_connect_socket_execl_53d.c"
     ],
-    "prompt_tokens": 629,
-    "completion_tokens": 1072,
-    "total_tokens": 1701,
+    "prompt_tokens": 1372,
+    "completion_tokens": 1078,
+    "total_tokens": 2450,
     "llm_mode": "deepseek-r1",
     "llm_model": "deepseek-reasoner",
-    "reason": "Untrusted input from socket recv is directly used in execl without validation, enabling command injection via the data parameter.",
+    "reason": "Untrusted input from network socket via recv() flows directly into execl() without validation, enabling OS command injection.",
     "static_confidence": 0.99,
     "review_confidence": 0.99,
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_53a.c -> CWE78_OS_Command_Injection__char_connect_socket_execl_53d.c"
+      "joern import scope: full case file group",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_53a.c -> CWE78_OS_Command_Injection__char_connect_socket_execl_53d.c",
+      "joern flow evidence items: 7",
+      "joern project: hybrid-vuln-audit-CWE78_OS_Command_Injection__char_connect_socket_execl_53-bad",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern source method: CWE78_OS_Command_Injection__char_connect_socket_execl_53_bad",
+      "joern sink method: CWE78_OS_Command_Injection__char_connect_socket_execl_53d_badSink",
+      "joern dataflow path (cwe78-badsink-arg-to-param): IDENTIFIER | line 140 | data -> METHOD_PARAMETER_IN | line 70 | char * data -> IDENTIFIER | line 72 | data -> METHOD_PARAMETER_IN | line 70 | char * data -> IDENTIFIER | line 72 | data -> METHOD_PARAMETER_IN | line 67 | char * data",
+      "joern call path: CWE78_OS_Command_Injection__char_connect_socket_execl_53_bad -> CWE78_OS_Command_Injection__char_connect_socket_execl_53b_badSink -> CWE78_OS_Command_Injection__char_connect_socket_execl_53c_badSink -> CWE78_OS_Command_Injection__char_connect_socket_execl_53d_badSink",
+      "joern call edge: CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_53a.c:140 CWE78_OS_Command_Injection__char_connect_socket_execl_53_bad -> CWE78_OS_Command_Injection__char_connect_socket_execl_53b_badSink | CWE78_OS_Command_Injection__char_connect_socket_execl_53b_badSink(data)",
+      "joern call edge: CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_53b.c:72 CWE78_OS_Command_Injection__char_connect_socket_execl_53b_badSink -> CWE78_OS_Command_Injection__char_connect_socket_execl_53c_badSink | CWE78_OS_Command_Injection__char_connect_socket_execl_53c_badSink(data)",
+      "joern call edge: CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_53c.c:72 CWE78_OS_Command_Injection__char_connect_socket_execl_53c_badSink -> CWE78_OS_Command_Injection__char_connect_socket_execl_53d_badSink | CWE78_OS_Command_Injection__char_connect_socket_execl_53d_badSink(data)"
     ]
   },
   {
@@ -561,18 +726,33 @@
       "CWE78_OS_Command_Injection__char_connect_socket_execl_54a.c",
       "CWE78_OS_Command_Injection__char_connect_socket_execl_54e.c"
     ],
-    "prompt_tokens": 629,
-    "completion_tokens": 1332,
-    "total_tokens": 1961,
+    "prompt_tokens": 1543,
+    "completion_tokens": 1268,
+    "total_tokens": 2811,
     "llm_mode": "deepseek-r1",
     "llm_model": "deepseek-reasoner",
-    "reason": "Untrusted data from socket recv flows directly into execl without validation, creating a command injection vulnerability.",
+    "reason": "User-controlled data from recv at source (line 109 in 54a.c) flows unsanitized through multiple functions to execl at sink (line 71 in 54e.c), where it is executed as a shell command via -c, enabling OS command injection.",
     "static_confidence": 0.99,
     "review_confidence": 0.99,
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_54a.c -> CWE78_OS_Command_Injection__char_connect_socket_execl_54e.c"
+      "joern import scope: full case file group",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_54a.c -> CWE78_OS_Command_Injection__char_connect_socket_execl_54e.c",
+      "joern flow evidence items: 8",
+      "joern project: hybrid-vuln-audit-CWE78_OS_Command_Injection__char_connect_socket_execl_54-bad",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern source method: CWE78_OS_Command_Injection__char_connect_socket_execl_54_bad",
+      "joern sink method: CWE78_OS_Command_Injection__char_connect_socket_execl_54e_badSink",
+      "joern dataflow path (cwe78-badsink-arg-to-param): IDENTIFIER | line 140 | data -> METHOD_PARAMETER_IN | line 70 | char * data -> IDENTIFIER | line 72 | data -> METHOD_PARAMETER_IN | line 70 | char * data -> IDENTIFIER | line 72 | data -> METHOD_PARAMETER_IN | line 70 | char * data -> IDENTIFIER | line 72 | data -> METHOD_PARAMETER_IN | line 67 | char * data",
+      "joern call path: CWE78_OS_Command_Injection__char_connect_socket_execl_54_bad -> CWE78_OS_Command_Injection__char_connect_socket_execl_54b_badSink -> CWE78_OS_Command_Injection__char_connect_socket_execl_54c_badSink -> CWE78_OS_Command_Injection__char_connect_socket_execl_54d_badSink -> CWE78_OS_Command_Injection__char_connect_socket_execl_54e_badSink",
+      "joern call edge: CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_54a.c:140 CWE78_OS_Command_Injection__char_connect_socket_execl_54_bad -> CWE78_OS_Command_Injection__char_connect_socket_execl_54b_badSink | CWE78_OS_Command_Injection__char_connect_socket_execl_54b_badSink(data)",
+      "joern call edge: CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_54b.c:72 CWE78_OS_Command_Injection__char_connect_socket_execl_54b_badSink -> CWE78_OS_Command_Injection__char_connect_socket_execl_54c_badSink | CWE78_OS_Command_Injection__char_connect_socket_execl_54c_badSink(data)",
+      "joern call edge: CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_54c.c:72 CWE78_OS_Command_Injection__char_connect_socket_execl_54c_badSink -> CWE78_OS_Command_Injection__char_connect_socket_execl_54d_badSink | CWE78_OS_Command_Injection__char_connect_socket_execl_54d_badSink(data)",
+      "joern call edge: CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_54d.c:72 CWE78_OS_Command_Injection__char_connect_socket_execl_54d_badSink -> CWE78_OS_Command_Injection__char_connect_socket_execl_54e_badSink | CWE78_OS_Command_Injection__char_connect_socket_execl_54e_badSink(data)"
     ]
   },
   {
@@ -602,18 +782,30 @@
       "CWE78_OS_Command_Injection__char_connect_socket_execl_61b.c",
       "CWE78_OS_Command_Injection__char_connect_socket_execl_61a.c"
     ],
-    "prompt_tokens": 657,
-    "completion_tokens": 1402,
-    "total_tokens": 2059,
+    "prompt_tokens": 1023,
+    "completion_tokens": 1170,
+    "total_tokens": 2193,
     "llm_mode": "deepseek-r1",
     "llm_model": "deepseek-reasoner",
-    "reason": "User-controlled data from socket recv() is directly passed to execl() without validation, enabling OS command injection.",
+    "reason": "Tainted data from recv() is directly used in execl() without validation, allowing arbitrary command execution via command injection.",
     "static_confidence": 0.99,
     "review_confidence": 0.99,
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_61b.c -> CWE78_OS_Command_Injection__char_connect_socket_execl_61a.c"
+      "joern import scope: full case file group",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_61b.c -> CWE78_OS_Command_Injection__char_connect_socket_execl_61a.c",
+      "joern flow evidence items: 5",
+      "joern project: hybrid-vuln-audit-CWE78_OS_Command_Injection__char_connect_socket_execl_61-bad",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern source method: CWE78_OS_Command_Injection__char_connect_socket_execl_61b_badSource",
+      "joern sink method: CWE78_OS_Command_Injection__char_connect_socket_execl_61_bad",
+      "joern dataflow path: unavailable for this case",
+      "joern reverse call path: CWE78_OS_Command_Injection__char_connect_socket_execl_61_bad -> CWE78_OS_Command_Injection__char_connect_socket_execl_61b_badSource",
+      "joern call edge: CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_61a.c:73 CWE78_OS_Command_Injection__char_connect_socket_execl_61_bad -> CWE78_OS_Command_Injection__char_connect_socket_execl_61b_badSource | CWE78_OS_Command_Injection__char_connect_socket_execl_61b_badSource(data)"
     ]
   },
   {
@@ -643,18 +835,30 @@
       "CWE78_OS_Command_Injection__char_connect_socket_execl_62b.cpp",
       "CWE78_OS_Command_Injection__char_connect_socket_execl_62a.cpp"
     ],
-    "prompt_tokens": 633,
-    "completion_tokens": 872,
-    "total_tokens": 1505,
+    "prompt_tokens": 974,
+    "completion_tokens": 1100,
+    "total_tokens": 2074,
     "llm_mode": "deepseek-r1",
     "llm_model": "deepseek-reasoner",
-    "reason": "Unsanitized network data flows directly into execl() via the 'data' parameter, enabling command injection through shell metacharacters.",
+    "reason": "User input from socket recv flows directly into execl without validation, allowing command injection via the data parameter in the EXECL call.",
     "static_confidence": 0.99,
     "review_confidence": 0.99,
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_62b.cpp -> CWE78_OS_Command_Injection__char_connect_socket_execl_62a.cpp"
+      "joern import scope: full case file group",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_62b.cpp -> CWE78_OS_Command_Injection__char_connect_socket_execl_62a.cpp",
+      "joern flow evidence items: 5",
+      "joern project: hybrid-vuln-audit-CWE78_OS_Command_Injection__char_connect_socket_execl_62-bad",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern source method: CWE78_OS_Command_Injection__char_connect_socket_execl_62.badSource",
+      "joern sink method: CWE78_OS_Command_Injection__char_connect_socket_execl_62.bad",
+      "joern dataflow path: unavailable for this case",
+      "joern reverse call path: CWE78_OS_Command_Injection__char_connect_socket_execl_62.bad -> CWE78_OS_Command_Injection__char_connect_socket_execl_62.badSource",
+      "joern call edge: CWE78_OS_Command_Injection/s01/CWE78_OS_Command_Injection__char_connect_socket_execl_62a.cpp:56 CWE78_OS_Command_Injection__char_connect_socket_execl_62.bad -> CWE78_OS_Command_Injection__char_connect_socket_execl_62.badSource | badSource(data)"
     ]
   },
   {
@@ -684,18 +888,30 @@
       "CWE78_OS_Command_Injection__char_connect_socket_execl_81a.cpp",
       "CWE78_OS_Command_Injection__char_connect_socket_execl_81_bad.cpp"
     ],
-    "prompt_tokens": 627,
-    "completion_tokens": 1245,
-    "total_tokens": 1872,
+    "prompt_tokens": 907,
+    "completion_tokens": 1149,
+    "total_tokens": 2056,
     "llm_mode": "deepseek-r1",
     "llm_model": "deepseek-reasoner",
-    "reason": "User-controlled input from socket recv is directly passed to execl without sanitization, enabling OS command injection.",
+    "reason": "Untrusted data from socket recv is directly passed to execl without sanitization, enabling command injection via shell execution.",
     "static_confidence": 0.99,
     "review_confidence": 0.99,
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_81a.cpp -> CWE78_OS_Command_Injection__char_connect_socket_execl_81_bad.cpp"
+      "joern import scope: full case file group",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_81a.cpp -> CWE78_OS_Command_Injection__char_connect_socket_execl_81_bad.cpp",
+      "joern flow evidence items: 5",
+      "joern project: hybrid-vuln-audit-CWE78_OS_Command_Injection__char_connect_socket_execl_81-bad",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern source method: CWE78_OS_Command_Injection__char_connect_socket_execl_81.bad",
+      "joern sink method: CWE78_OS_Command_Injection__char_connect_socket_execl_81.CWE78_OS_Command_Injection__char_connect_socket_execl_81_bad.action",
+      "joern dataflow path: unavailable for this case",
+      "joern call path: no path recovered from internal call edges",
+      "benchmark flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_81a.cpp -> CWE78_OS_Command_Injection__char_connect_socket_execl_81_bad.cpp"
     ]
   },
   {
@@ -725,18 +941,30 @@
       "CWE78_OS_Command_Injection__char_connect_socket_execl_82a.cpp",
       "CWE78_OS_Command_Injection__char_connect_socket_execl_82_bad.cpp"
     ],
-    "prompt_tokens": 627,
-    "completion_tokens": 1191,
-    "total_tokens": 1818,
+    "prompt_tokens": 907,
+    "completion_tokens": 1820,
+    "total_tokens": 2727,
     "llm_mode": "deepseek-r1",
     "llm_model": "deepseek-reasoner",
-    "reason": "Untrusted data received via socket (source) flows directly into execl as a shell command argument without sanitization (sink), enabling OS command injection.",
+    "reason": "Untrusted socket data flows directly into execl() command execution without validation, enabling OS command injection.",
     "static_confidence": 0.99,
     "review_confidence": 0.99,
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_82a.cpp -> CWE78_OS_Command_Injection__char_connect_socket_execl_82_bad.cpp"
+      "joern import scope: full case file group",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_82a.cpp -> CWE78_OS_Command_Injection__char_connect_socket_execl_82_bad.cpp",
+      "joern flow evidence items: 5",
+      "joern project: hybrid-vuln-audit-CWE78_OS_Command_Injection__char_connect_socket_execl_82-bad",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern source method: CWE78_OS_Command_Injection__char_connect_socket_execl_82.bad",
+      "joern sink method: CWE78_OS_Command_Injection__char_connect_socket_execl_82.CWE78_OS_Command_Injection__char_connect_socket_execl_82_bad.action",
+      "joern dataflow path: unavailable for this case",
+      "joern call path: no path recovered from internal call edges",
+      "benchmark flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_82a.cpp -> CWE78_OS_Command_Injection__char_connect_socket_execl_82_bad.cpp"
     ]
   },
   {
@@ -767,18 +995,30 @@
       "CWE78_OS_Command_Injection__char_connect_socket_execl_83_bad.cpp::constructor",
       "CWE78_OS_Command_Injection__char_connect_socket_execl_83_bad.cpp::destructor"
     ],
-    "prompt_tokens": 694,
-    "completion_tokens": 1122,
-    "total_tokens": 1816,
+    "prompt_tokens": 1069,
+    "completion_tokens": 1003,
+    "total_tokens": 2072,
     "llm_mode": "deepseek-r1",
     "llm_model": "deepseek-reasoner",
-    "reason": "Data received from network via recv is directly passed to execl without validation, enabling command injection.",
+    "reason": "User-controlled input from a socket (source) flows directly to execl command execution (sink) without validation or sanitization, enabling command injection.",
     "static_confidence": 0.99,
-    "review_confidence": 0.99,
+    "review_confidence": 0.95,
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_83a.cpp -> CWE78_OS_Command_Injection__char_connect_socket_execl_83_bad.cpp::constructor -> CWE78_OS_Command_Injection__char_connect_socket_execl_83_bad.cpp::destructor"
+      "joern import scope: full case file group",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_83a.cpp -> CWE78_OS_Command_Injection__char_connect_socket_execl_83_bad.cpp::constructor -> CWE78_OS_Command_Injection__char_connect_socket_execl_83_bad.cpp::destructor",
+      "joern flow evidence items: 5",
+      "joern project: hybrid-vuln-audit-CWE78_OS_Command_Injection__char_connect_socket_execl_83-bad",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern source method: CWE78_OS_Command_Injection__char_connect_socket_execl_83.CWE78_OS_Command_Injection__char_connect_socket_execl_83_bad.CWE78_OS_Command_Injection__char_connect_socket_execl_83_bad",
+      "joern sink method: CWE78_OS_Command_Injection__char_connect_socket_execl_83.CWE78_OS_Command_Injection__char_connect_socket_execl_83_bad.~CWE78_OS_Command_Injection__char_connect_socket_execl_83_bad",
+      "joern dataflow path: unavailable for this case",
+      "joern call path: no path recovered from internal call edges",
+      "benchmark flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_83a.cpp -> CWE78_OS_Command_Injection__char_connect_socket_execl_83_bad.cpp::constructor -> CWE78_OS_Command_Injection__char_connect_socket_execl_83_bad.cpp::destructor"
     ]
   },
   {
@@ -809,18 +1049,30 @@
       "CWE78_OS_Command_Injection__char_connect_socket_execl_84_bad.cpp::constructor",
       "CWE78_OS_Command_Injection__char_connect_socket_execl_84_bad.cpp::destructor"
     ],
-    "prompt_tokens": 694,
-    "completion_tokens": 980,
-    "total_tokens": 1674,
+    "prompt_tokens": 1069,
+    "completion_tokens": 535,
+    "total_tokens": 1604,
     "llm_mode": "deepseek-r1",
     "llm_model": "deepseek-reasoner",
-    "reason": "Untrusted network data from recv() flows into execl() without validation, enabling command injection.",
+    "reason": "Untrusted network input from recv() at line 90 flows unsanitized into execl() at line 127, enabling arbitrary command execution via shell metacharacters in the data buffer.",
     "static_confidence": 0.99,
     "review_confidence": 0.99,
     "notes": [
       "static backend: joern",
       "joern script: find_case_findings.sc",
-      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_84a.cpp -> CWE78_OS_Command_Injection__char_connect_socket_execl_84_bad.cpp::constructor -> CWE78_OS_Command_Injection__char_connect_socket_execl_84_bad.cpp::destructor"
+      "joern import scope: full case file group",
+      "flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_84a.cpp -> CWE78_OS_Command_Injection__char_connect_socket_execl_84_bad.cpp::constructor -> CWE78_OS_Command_Injection__char_connect_socket_execl_84_bad.cpp::destructor",
+      "joern flow evidence items: 5",
+      "joern project: hybrid-vuln-audit-CWE78_OS_Command_Injection__char_connect_socket_execl_84-bad",
+      "joern workspace root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_runtime",
+      "joern case input root: d:\\FDU_复试\\huang_cheng\\task2\\scratch\\test_joern_case_tmp"
+    ],
+    "flow_evidence": [
+      "joern source method: CWE78_OS_Command_Injection__char_connect_socket_execl_84.CWE78_OS_Command_Injection__char_connect_socket_execl_84_bad.CWE78_OS_Command_Injection__char_connect_socket_execl_84_bad",
+      "joern sink method: CWE78_OS_Command_Injection__char_connect_socket_execl_84.CWE78_OS_Command_Injection__char_connect_socket_execl_84_bad.~CWE78_OS_Command_Injection__char_connect_socket_execl_84_bad",
+      "joern dataflow path: unavailable for this case",
+      "joern call path: no path recovered from internal call edges",
+      "benchmark flow chain: CWE78_OS_Command_Injection__char_connect_socket_execl_84a.cpp -> CWE78_OS_Command_Injection__char_connect_socket_execl_84_bad.cpp::constructor -> CWE78_OS_Command_Injection__char_connect_socket_execl_84_bad.cpp::destructor"
     ]
   }
 ]

@@ -7,5 +7,6 @@
   "joern_cli_path": "AUTO_DETECT",
   "joern_script_path": "joern_scripts/find_case_findings.sc",
   "joern_workspace_root": "",
-  "joern_case_temp_root": ""
+  "joern_case_temp_root": "",
+  "joern_keep_projects": false
 }

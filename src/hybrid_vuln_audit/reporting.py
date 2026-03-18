@@ -42,6 +42,7 @@ def _write_csv(results: list[AnalysisResult], target: Path) -> None:
         "llm_mode",
         "llm_model",
         "reason",
+        "flow_evidence",
     ]
     with target.open("w", encoding="utf-8-sig", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=fieldnames)
@@ -68,6 +69,7 @@ def _write_csv(results: list[AnalysisResult], target: Path) -> None:
                     "llm_mode": result.llm_mode,
                     "llm_model": result.llm_model,
                     "reason": result.reason,
+                    "flow_evidence": " | ".join(result.flow_evidence),
                 }
             )
 

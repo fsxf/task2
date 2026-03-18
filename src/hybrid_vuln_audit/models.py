@@ -43,6 +43,7 @@ class StaticEvidence:
     source_snippet: str
     sink_snippet: str
     notes: list[str] = field(default_factory=list)
+    flow_evidence: list[str] = field(default_factory=list)
 
     def to_dict(self) -> dict:
         return {
@@ -54,6 +55,7 @@ class StaticEvidence:
             "source_snippet": self.source_snippet,
             "sink_snippet": self.sink_snippet,
             "notes": self.notes,
+            "flow_evidence": self.flow_evidence,
         }
 
 
@@ -94,6 +96,7 @@ class AnalysisResult:
     static_confidence: float
     review_confidence: float
     notes: list[str]
+    flow_evidence: list[str] = field(default_factory=list)
 
     def to_dict(self) -> dict:
         return {
@@ -117,4 +120,5 @@ class AnalysisResult:
             "static_confidence": self.static_confidence,
             "review_confidence": self.review_confidence,
             "notes": self.notes,
+            "flow_evidence": self.flow_evidence,
         }

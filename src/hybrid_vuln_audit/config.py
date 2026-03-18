@@ -23,6 +23,7 @@ class AppConfig:
     joern_script_path: Path
     joern_workspace_root: Path
     joern_case_temp_root: Path
+    joern_keep_projects: bool
     prompt_window_radius: int = 3
 
     @property
@@ -68,6 +69,14 @@ class AppConfig:
                     _default_temp_root("joern_case_tmp"),
                 ),
             ),
+            joern_keep_projects=_normalize_bool(
+                _get_config_value(
+                    file_config,
+                    "joern_keep_projects",
+                    "JOERN_KEEP_PROJECTS",
+                    "0",
+                )
+            ),
         )
 
 
@@ -109,3 +118,7 @@ def _normalize_optional_path(project_root: Path, value: str) -> Optional[Path]:
 
 def _default_temp_root(name: str) -> str:
     return str((Path(tempfile.gettempdir()) / "hybrid_vuln_audit" / name).resolve())
+
+
+def _normalize_bool(value: str) -> bool:
+    return value.strip().lower() in {"1", "true", "yes", "on"}

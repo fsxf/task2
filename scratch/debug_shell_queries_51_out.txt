@@ -1,0 +1,16 @@
+OVERLAYS	base,controlflow,typerel,callgraph,dataflowOss
+RECV_ARGS	1:connectSocket || 2:(char *)(data + dataLen) || 3:sizeof(char) * (100 - dataLen - 1) || 4:0
+BADSINK_ARGS	1:data
+BADSINK_PARAMS	1:char * data
+EXECL_ARGS	1:COMMAND_INT_PATH || 2:COMMAND_INT_PATH || 3:COMMAND_ARG1 || 4:COMMAND_ARG3 || 5:<unknown> NULL || 1:COMMAND_INT_PATH || 2:COMMAND_INT_PATH || 3:COMMAND_ARG1 || 4:COMMAND_ARG3 || 5:<unknown> NULL
+FLOW_BADSINK_ARG_TO_PARAM	
+┌─────────────────┬───────────────────────────────┬────┬───────────────────────────────┬───────────────────────────────┐
+│nodeType         │tracked                        │line│method                         │file                           │
+├─────────────────┼───────────────────────────────┼────┼───────────────────────────────┼───────────────────────────────┤
+│Identifier       │CWE78_OS_Command_Injection__char_connect_socket_execl_51b_badSink(data)│140 │CWE78_OS_Command_Injection__char_connect_socket_execl_51_bad│CWE78_OS_Command_Injection__char_connect_socket_execl_51a.c│
+│MethodParameterIn│CWE78_OS_Command_Injection__char_connect_socket_execl_51b_badSink(char│67  │CWE78_OS_Command_Injection__char_connect_socket_execl_51b_badSink│CWE78_OS_Command_Injection__char_connect_socket_execl_51b.c│
+│                 │* data)                        │    │                               │                               │
+└─────────────────┴───────────────────────────────┴────┴───────────────────────────────┴───────────────────────────────┘
+FLOW_RECV_TO_BADSINK_ARG	
+FLOW_PARAM_TO_EXECL_ARG4	
+FLOW_IDENT_TO_EXECL_ARG4	

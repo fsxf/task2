@@ -1,0 +1,3 @@
+SINK	CWE78_OS_Command_Injection__char_connect_socket_execl_62a.cpp	77	execl	CWE78_OS_Command_Injection__char_connect_socket_execl_62.goodG2B:void()	execl("/bin/sh", "/bin/sh", "-c", data, NULL)
+CALL_EDGE	CWE78_OS_Command_Injection__char_connect_socket_execl_62a.cpp	74	CWE78_OS_Command_Injection__char_connect_socket_execl_62.goodG2B:void()	CWE78_OS_Command_Injection__char_connect_socket_execl_62.goodG2BSource:void(char*&)	goodG2BSource(data)
+CALL_EDGE	CWE78_OS_Command_Injection__char_connect_socket_execl_62a.cpp	82	CWE78_OS_Command_Injection__char_connect_socket_execl_62.good:void()	CWE78_OS_Command_Injection__char_connect_socket_execl_62.goodG2B:void()	goodG2B()

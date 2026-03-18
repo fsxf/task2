@@ -65,6 +65,7 @@ def evaluate_good_paths(analyzer: JulietStaticAnalyzer, dataset_root: Path) -> l
                 "sink_location": evidence.sink_location.to_dict() if evidence.sink_location else None,
                 "static_confidence": evidence.confidence,
                 "notes": evidence.notes,
+                "flow_evidence": evidence.flow_evidence,
             }
         )
     return results

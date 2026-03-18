@@ -1,0 +1,3 @@
+SINK	CWE78_OS_Command_Injection__char_connect_socket_execl_51b.c	83	execl	CWE78_OS_Command_Injection__char_connect_socket_execl_51b_goodG2BSink	execl("/bin/sh", "/bin/sh", "-c", data, NULL)
+CALL_EDGE	CWE78_OS_Command_Injection__char_connect_socket_execl_51a.c	158	goodG2B	CWE78_OS_Command_Injection__char_connect_socket_execl_51b_goodG2BSink	CWE78_OS_Command_Injection__char_connect_socket_execl_51b_goodG2BSink(data)
+CALL_EDGE	CWE78_OS_Command_Injection__char_connect_socket_execl_51a.c	163	CWE78_OS_Command_Injection__char_connect_socket_execl_51_good	goodG2B	goodG2B()

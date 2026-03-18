@@ -44,6 +44,7 @@ def main(argv: Optional[list[str]] = None) -> int:
         print("joern_script_path={0}".format(config.joern_script_path))
         print("joern_workspace_root={0}".format(config.joern_workspace_root))
         print("joern_case_temp_root={0}".format(config.joern_case_temp_root))
+        print("joern_keep_projects={0}".format(config.joern_keep_projects))
         print("deepseek_base_url={0}".format(config.deepseek_base_url))
         print("deepseek_model={0}".format(config.deepseek_model))
         print("deepseek_api_key={0}".format(_mask_secret(config.deepseek_api_key)))
@@ -90,6 +91,7 @@ def main(argv: Optional[list[str]] = None) -> int:
                 static_confidence=evidence.confidence,
                 review_confidence=review.confidence,
                 notes=evidence.notes,
+                flow_evidence=evidence.flow_evidence,
             )
         )
 
