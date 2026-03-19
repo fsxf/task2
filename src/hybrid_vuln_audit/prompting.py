@@ -8,8 +8,8 @@ from .models import CaseContext, StaticEvidence
 def build_messages(context: CaseContext, evidence: StaticEvidence) -> Tuple[str, str]:
     system_prompt = (
         "You are a senior vulnerability auditor. "
-        "Use the supplied function bodies to decide whether there is a real vulnerability. "
-        "Only return a compact JSON object with keys: verdict, reason(a very brief explanation)."
+        "Use only the supplied function bodies to decide whether there is a real OS command injection (untrusted input to cmd) or hard-coded auth credential vulnerability. "
+        "Return ONLY one compact JSON object with keys: verdict(a JSON boolean: true or false), reason(very brief). "
     )
 
     user_prompt = f"""

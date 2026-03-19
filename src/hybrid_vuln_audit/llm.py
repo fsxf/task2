@@ -73,13 +73,14 @@ class DeepSeekReviewer:
 
         message = body["choices"][0]["message"]["content"]
         parsed = _extract_json_object(message)
+        verdict = _parse_verdict(parsed.get("verdict"))
         usage = body.get("usage", {})
         completion_tokens = int(usage.get("completion_tokens") or estimate_text_tokens(message))
         used_prompt_tokens = int(usage.get("prompt_tokens") or prompt_tokens)
         total_tokens = int(usage.get("total_tokens") or used_prompt_tokens + completion_tokens)
 
         return LLMReview(
-            verdict=bool(parsed["verdict"]),
+            verdict=verdict,
             confidence=_parse_confidence(parsed.get("confidence"), evidence.confidence),
             reason=str(parsed.get("reason", "")).strip() or "DeepSeek-R1 reviewed the compressed evidence.",
             prompt_tokens=used_prompt_tokens,
@@ -96,6 +97,16 @@ def _extract_json_object(text: str) -> dict:
     if start == -1 or end == -1 or end <= start:
         raise ValueError("Model response does not contain a JSON object.")
     return json.loads(text[start : end + 1])
+
+
+def _parse_verdict(value) -> bool:
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, str):
+        normalized = value.strip().lower()
+        if normalized in {"true", "false"}:
+            return normalized == "true"
+    raise ValueError("Model verdict must be a JSON boolean true/false.")
 
 
 def _parse_confidence(value, fallback: float) -> float:

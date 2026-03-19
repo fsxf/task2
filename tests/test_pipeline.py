@@ -13,6 +13,7 @@ if str(SRC) not in sys.path:
 from hybrid_vuln_audit.benchmark import enumerate_target_cases
 from hybrid_vuln_audit.config import AppConfig
 from hybrid_vuln_audit.joern_runner import JoernStaticAnalyzer, _JoernCallEdge, _JoernFinding
+from hybrid_vuln_audit.llm import _parse_verdict
 from hybrid_vuln_audit.models import CaseContext, CodeLocation, StaticEvidence
 from hybrid_vuln_audit.prompting import build_messages
 from hybrid_vuln_audit.static_analysis import JulietStaticAnalyzer
@@ -101,6 +102,14 @@ class PipelineTests(unittest.TestCase):
 
         expanded = analyzer._expand_chain_with_source_plus_one(["pkg.source", "pkg.sink"], edges, source)
         self.assertEqual(expanded, ["pkg.entry", "pkg.other", "pkg.source", "pkg.sink"])
+
+    def test_parse_verdict_requires_boolean_semantics(self) -> None:
+        self.assertTrue(_parse_verdict(True))
+        self.assertFalse(_parse_verdict(False))
+        self.assertTrue(_parse_verdict("true"))
+        self.assertFalse(_parse_verdict("false"))
+        with self.assertRaises(ValueError):
+            _parse_verdict("vulnerable")
 
     def test_prompt_contains_only_function_bodies(self) -> None:
         context = CaseContext(

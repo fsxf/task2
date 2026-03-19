@@ -22,10 +22,10 @@
       "line": 37,
       "code": "LogonUserA(                     username,                     domain,                     password,                     LOGON32_LOGON_NETWORK,                     LOGON32_PROVIDER_DEFAULT,                     &pHandle)"
     },
-    "prompt_tokens": 220,
-    "completion_tokens": 1270,
-    "total_tokens": 1490,
-    "reason": "Hard-coded password (ABCD1234!) exposed in binary."
+    "prompt_tokens": 243,
+    "completion_tokens": 945,
+    "total_tokens": 1188,
+    "reason": "Hard-coded password in func_1."
   },
   {
     "case_id": "CWE259_Hard_Coded_Password__w32_char_52",
@@ -50,10 +50,10 @@
       "line": 37,
       "code": "LogonUserA(                     username,                     domain,                     password,                     LOGON32_LOGON_NETWORK,                     LOGON32_PROVIDER_DEFAULT,                     &pHandle)"
     },
-    "prompt_tokens": 244,
-    "completion_tokens": 1258,
-    "total_tokens": 1502,
-    "reason": "Hard-coded credentials in binary"
+    "prompt_tokens": 268,
+    "completion_tokens": 866,
+    "total_tokens": 1134,
+    "reason": "Hard-coded password in func_1 used for authentication in func_3."
   },
   {
     "case_id": "CWE259_Hard_Coded_Password__w32_char_53",
@@ -78,10 +78,10 @@
       "line": 37,
       "code": "LogonUserA(                     username,                     domain,                     password,                     LOGON32_LOGON_NETWORK,                     LOGON32_PROVIDER_DEFAULT,                     &pHandle)"
     },
-    "prompt_tokens": 268,
-    "completion_tokens": 1910,
-    "total_tokens": 2178,
-    "reason": "Hardcoded credentials (password 'ABCD1234!') exposed in source code."
+    "prompt_tokens": 292,
+    "completion_tokens": 795,
+    "total_tokens": 1087,
+    "reason": "Hard-coded authentication credentials in source code."
   },
   {
     "case_id": "CWE259_Hard_Coded_Password__w32_char_54",
@@ -106,10 +106,10 @@
       "line": 37,
       "code": "LogonUserA(                     username,                     domain,                     password,                     LOGON32_LOGON_NETWORK,                     LOGON32_PROVIDER_DEFAULT,                     &pHandle)"
     },
-    "prompt_tokens": 292,
-    "completion_tokens": 935,
-    "total_tokens": 1227,
-    "reason": "Hard-coded password 'ABCD1234!' in func_1, exposing credentials in source code."
+    "prompt_tokens": 316,
+    "completion_tokens": 551,
+    "total_tokens": 867,
+    "reason": "Hard-coded password in func_1."
   },
   {
     "case_id": "CWE259_Hard_Coded_Password__w32_char_61",
@@ -134,10 +134,10 @@
       "line": 42,
       "code": "LogonUserA(                     username,                     domain,                     password,                     LOGON32_LOGON_NETWORK,                     LOGON32_PROVIDER_DEFAULT,                     &pHandle)"
     },
-    "prompt_tokens": 227,
-    "completion_tokens": 1184,
-    "total_tokens": 1411,
-    "reason": "strcpy source fixed, buffer large enough"
+    "prompt_tokens": 251,
+    "completion_tokens": 866,
+    "total_tokens": 1117,
+    "reason": "Hard-coded auth credentials"
   },
   {
     "case_id": "CWE259_Hard_Coded_Password__w32_char_62",
@@ -162,10 +162,10 @@
       "line": 43,
       "code": "LogonUserA(                     username,                     domain,                     password,                     LOGON32_LOGON_NETWORK,                     LOGON32_PROVIDER_DEFAULT,                     &pHandle)"
     },
-    "prompt_tokens": 229,
-    "completion_tokens": 1213,
-    "total_tokens": 1442,
-    "reason": "Fixed-length source string fits in buffer; no overflow."
+    "prompt_tokens": 253,
+    "completion_tokens": 468,
+    "total_tokens": 721,
+    "reason": "Hard-coded password in badSource"
   },
   {
     "case_id": "CWE259_Hard_Coded_Password__w32_char_81",
@@ -190,10 +190,10 @@
       "line": 34,
       "code": "LogonUserA(                     username,                     domain,                     password,                     LOGON32_LOGON_NETWORK,                     LOGON32_PROVIDER_DEFAULT,                     &pHandle)"
     },
-    "prompt_tokens": 250,
-    "completion_tokens": 1500,
-    "total_tokens": 1750,
-    "reason": "Hard-coded password in source code (CWE-798)."
+    "prompt_tokens": 274,
+    "completion_tokens": 1027,
+    "total_tokens": 1301,
+    "reason": "Hard-coded password in function bad."
   },
   {
     "case_id": "CWE259_Hard_Coded_Password__w32_char_82",
@@ -218,10 +218,10 @@
       "line": 34,
       "code": "LogonUserA(                     username,                     domain,                     password,                     LOGON32_LOGON_NETWORK,                     LOGON32_PROVIDER_DEFAULT,                     &pHandle)"
     },
-    "prompt_tokens": 252,
-    "completion_tokens": 1406,
-    "total_tokens": 1658,
-    "reason": "Hard-coded password in source code exposes credentials."
+    "prompt_tokens": 276,
+    "completion_tokens": 875,
+    "total_tokens": 1151,
+    "reason": "Hard-coded password 'ABCD1234!' in func_1.bad"
   },
   {
     "case_id": "CWE259_Hard_Coded_Password__w32_char_83",
@@ -246,10 +246,10 @@
       "line": 42,
       "code": "LogonUserA(                     username,                     domain,                     password,                     LOGON32_LOGON_NETWORK,                     LOGON32_PROVIDER_DEFAULT,                     &pHandle)"
     },
-    "prompt_tokens": 275,
-    "completion_tokens": 2188,
-    "total_tokens": 2463,
-    "reason": "Hardcoded credentials in authentication (CWE-798)."
+    "prompt_tokens": 299,
+    "completion_tokens": 935,
+    "total_tokens": 1234,
+    "reason": "Hard-coded password in constructor."
   },
   {
     "case_id": "CWE259_Hard_Coded_Password__w32_char_84",
@@ -274,10 +274,10 @@
       "line": 42,
       "code": "LogonUserA(                     username,                     domain,                     password,                     LOGON32_LOGON_NETWORK,                     LOGON32_PROVIDER_DEFAULT,                     &pHandle)"
     },
-    "prompt_tokens": 286,
-    "completion_tokens": 2388,
-    "total_tokens": 2674,
-    "reason": "Hardcoded password 'ABCD1234!' used in LogonUserA authentication, exposing static credentials."
+    "prompt_tokens": 310,
+    "completion_tokens": 802,
+    "total_tokens": 1112,
+    "reason": "Hard-coded credentials in code."
   },
   {
     "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_51",
@@ -302,10 +302,10 @@
       "line": 71,
       "code": "_execl(\"%WINDIR%\\\\system32\\\\cmd.exe\", \"%WINDIR%\\\\system32\\\\cmd.exe\", \"/c\", data,                                                                           ((void *)0)                                                                              )"
     },
-    "prompt_tokens": 563,
-    "completion_tokens": 1783,
-    "total_tokens": 2346,
-    "reason": "Command injection via unsanitized network input in _execl."
+    "prompt_tokens": 587,
+    "completion_tokens": 1067,
+    "total_tokens": 1654,
+    "reason": "OS command injection via untrusted socket input"
   },
   {
     "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_52",
@@ -330,10 +330,10 @@
       "line": 71,
       "code": "_execl(\"%WINDIR%\\\\system32\\\\cmd.exe\", \"%WINDIR%\\\\system32\\\\cmd.exe\", \"/c\", data,                                                                           ((void *)0)                                                                              )"
     },
-    "prompt_tokens": 587,
-    "completion_tokens": 2178,
-    "total_tokens": 2765,
-    "reason": "Command injection via unsanitized socket input in _execl."
+    "prompt_tokens": 611,
+    "completion_tokens": 778,
+    "total_tokens": 1389,
+    "reason": "Untrusted socket input executed without sanitization."
   },
   {
     "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_53",
@@ -358,10 +358,10 @@
       "line": 71,
       "code": "_execl(\"%WINDIR%\\\\system32\\\\cmd.exe\", \"%WINDIR%\\\\system32\\\\cmd.exe\", \"/c\", data,                                                                           ((void *)0)                                                                              )"
     },
-    "prompt_tokens": 611,
-    "completion_tokens": 1601,
-    "total_tokens": 2212,
-    "reason": "Command injection via unsanitized network input passed to cmd.exe."
+    "prompt_tokens": 635,
+    "completion_tokens": 688,
+    "total_tokens": 1323,
+    "reason": "Untrusted socket input passed directly to cmd.exe."
   },
   {
     "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_54",
@@ -386,10 +386,10 @@
       "line": 71,
       "code": "_execl(\"%WINDIR%\\\\system32\\\\cmd.exe\", \"%WINDIR%\\\\system32\\\\cmd.exe\", \"/c\", data,                                                                           ((void *)0)                                                                              )"
     },
-    "prompt_tokens": 635,
-    "completion_tokens": 1902,
-    "total_tokens": 2537,
-    "reason": "Unsanitized network input in execl leads to command injection."
+    "prompt_tokens": 659,
+    "completion_tokens": 739,
+    "total_tokens": 1398,
+    "reason": "Unsanitized network input in cmd execution."
   },
   {
     "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_61",
@@ -414,10 +414,10 @@
       "line": 76,
       "code": "_execl(\"%WINDIR%\\\\system32\\\\cmd.exe\", \"%WINDIR%\\\\system32\\\\cmd.exe\", \"/c\", data,                                                                           ((void *)0)                                                                              )"
     },
-    "prompt_tokens": 570,
-    "completion_tokens": 2190,
-    "total_tokens": 2760,
-    "reason": "Command injection via untrusted socket input."
+    "prompt_tokens": 594,
+    "completion_tokens": 1246,
+    "total_tokens": 1840,
+    "reason": "untrusted network input in func_2 appended to cmd.exe command without sanitization"
   },
   {
     "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_62",
@@ -442,10 +442,10 @@
       "line": 59,
       "code": "_execl(\"%WINDIR%\\\\system32\\\\cmd.exe\", \"%WINDIR%\\\\system32\\\\cmd.exe\", \"/c\", data,                                                                           __null                                                                              )"
     },
-    "prompt_tokens": 570,
-    "completion_tokens": 1676,
-    "total_tokens": 2246,
-    "reason": "Command injection via unsanitized network input passed to _execl."
+    "prompt_tokens": 594,
+    "completion_tokens": 1171,
+    "total_tokens": 1765,
+    "reason": "Untrusted network input passed to cmd.exe without sanitization, allowing command injection."
   },
   {
     "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_81",
@@ -470,10 +470,10 @@
       "line": 35,
       "code": "_execl(\"%WINDIR%\\\\system32\\\\cmd.exe\", \"%WINDIR%\\\\system32\\\\cmd.exe\", \"/c\", data,                                                                           __null                                                                              )"
     },
-    "prompt_tokens": 591,
-    "completion_tokens": 3274,
-    "total_tokens": 3865,
-    "reason": "Command injection via unsanitized socket input in exec call."
+    "prompt_tokens": 615,
+    "completion_tokens": 691,
+    "total_tokens": 1306,
+    "reason": "Unsanitized socket input passed to cmd.exe"
   },
   {
     "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_82",
@@ -498,10 +498,10 @@
       "line": 35,
       "code": "_execl(\"%WINDIR%\\\\system32\\\\cmd.exe\", \"%WINDIR%\\\\system32\\\\cmd.exe\", \"/c\", data,                                                                           __null                                                                              )"
     },
-    "prompt_tokens": 593,
-    "completion_tokens": 2166,
-    "total_tokens": 2759,
-    "reason": "Untrusted network input is passed directly to command execution without sanitization, enabling command injection via separators like '&' or '|'."
+    "prompt_tokens": 617,
+    "completion_tokens": 1133,
+    "total_tokens": 1750,
+    "reason": "OS command injection via untrusted socket input in cmd execution."
   },
   {
     "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_83",
@@ -526,10 +526,10 @@
       "line": 127,
       "code": "_execl(\"%WINDIR%\\\\system32\\\\cmd.exe\", \"%WINDIR%\\\\system32\\\\cmd.exe\", \"/c\", data,                                                                           __null                                                                              )"
     },
-    "prompt_tokens": 616,
-    "completion_tokens": 1952,
-    "total_tokens": 2568,
-    "reason": "Command injection via unsanitized network input used in system call."
+    "prompt_tokens": 640,
+    "completion_tokens": 872,
+    "total_tokens": 1512,
+    "reason": "Socket input used unsafely in _execl"
   },
   {
     "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_84",
@@ -554,9 +554,9 @@
       "line": 127,
       "code": "_execl(\"%WINDIR%\\\\system32\\\\cmd.exe\", \"%WINDIR%\\\\system32\\\\cmd.exe\", \"/c\", data,                                                                           __null                                                                              )"
     },
-    "prompt_tokens": 627,
-    "completion_tokens": 2607,
-    "total_tokens": 3234,
-    "reason": "Command injection via unvalidated socket data in _execl"
+    "prompt_tokens": 651,
+    "completion_tokens": 1078,
+    "total_tokens": 1729,
+    "reason": "OS command injection via untrusted socket data"
   }
 ]
