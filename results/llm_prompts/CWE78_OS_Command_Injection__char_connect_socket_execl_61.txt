@@ -1,10 +1,21 @@
 ﻿[SYSTEM]
-You are a senior vulnerability auditor. Use only the supplied function bodies to decide whether there is a real vulnerability. Return a compact JSON object with keys: verdict, reason.
+You are a senior vulnerability auditor. Use the supplied function bodies to decide whether there is a real vulnerability. Only return a compact JSON object with keys: verdict, reason(a very brief explanation).
 
 [USER]
 Function bodies:
 Function 1: func_1
-char * func_1(char * data)
+void func_1()
+{
+    char * data;
+    char dataBuffer[100] = "dir ";
+    data = dataBuffer;
+    data = func_2(data);
+    _execl("%WINDIR%\\system32\\cmd.exe", "%WINDIR%\\system32\\cmd.exe", "/c", data,
+                                                                         ((void *)0)
+                                                                             );
+}
+Function 2: func_2
+char * func_2(char * data)
 {
     {
         WSADATA wsaData;
@@ -62,15 +73,4 @@ char * func_1(char * data)
         }
     }
     return data;
-}
-Function 2: func_2
-void func_2()
-{
-    char * data;
-    char dataBuffer[100] = "dir ";
-    data = dataBuffer;
-    data = func_1(data);
-    _execl("%WINDIR%\\system32\\cmd.exe", "%WINDIR%\\system32\\cmd.exe", "/c", data,
-                                                                         ((void *)0)
-                                                                             );
 }

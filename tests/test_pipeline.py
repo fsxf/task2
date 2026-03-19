@@ -12,7 +12,7 @@ if str(SRC) not in sys.path:
 
 from hybrid_vuln_audit.benchmark import enumerate_target_cases
 from hybrid_vuln_audit.config import AppConfig
-from hybrid_vuln_audit.joern_runner import JoernStaticAnalyzer
+from hybrid_vuln_audit.joern_runner import JoernStaticAnalyzer, _JoernCallEdge, _JoernFinding
 from hybrid_vuln_audit.models import CaseContext, CodeLocation, StaticEvidence
 from hybrid_vuln_audit.prompting import build_messages
 from hybrid_vuln_audit.static_analysis import JulietStaticAnalyzer
@@ -81,6 +81,26 @@ class PipelineTests(unittest.TestCase):
         target = next(case for case in cases if case.case_id.endswith("char_connect_socket_execl_54"))
         project_name = JoernStaticAnalyzer(self.config)._build_project_name(target)
         self.assertEqual(project_name, target.case_id)
+
+    def test_source_plus_one_adds_direct_caller_only(self) -> None:
+        analyzer = JoernStaticAnalyzer(self.config)
+        source = _JoernFinding(
+            kind="SOURCE",
+            path="CWE78/example.c",
+            line=10,
+            call_name="recv",
+            method_name="pkg.source",
+            code="recv(sock, buf, 100, 0)",
+        )
+        edges = [
+            _JoernCallEdge(path="a.c", line=1, caller="pkg.entry", callee="pkg.source", code="pkg.source(data)"),
+            _JoernCallEdge(path="a.c", line=2, caller="pkg.source", callee="pkg.sink", code="pkg.sink(data)"),
+            _JoernCallEdge(path="a.c", line=3, caller="pkg.other", callee="pkg.source", code="pkg.source(other)"),
+            _JoernCallEdge(path="a.c", line=4, caller="pkg.entry", callee="pkg.source", code="pkg.source(data)"),
+        ]
+
+        expanded = analyzer._expand_chain_with_source_plus_one(["pkg.source", "pkg.sink"], edges, source)
+        self.assertEqual(expanded, ["pkg.entry", "pkg.other", "pkg.source", "pkg.sink"])
 
     def test_prompt_contains_only_function_bodies(self) -> None:
         context = CaseContext(

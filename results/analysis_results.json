@@ -22,10 +22,10 @@
       "line": 37,
       "code": "LogonUserA(                     username,                     domain,                     password,                     LOGON32_LOGON_NETWORK,                     LOGON32_PROVIDER_DEFAULT,                     &pHandle)"
     },
-    "prompt_tokens": 225,
-    "completion_tokens": 3895,
-    "total_tokens": 4120,
-    "reason": "Hardcoded password 'ABCD1234!' is used for authentication, exposing it in the binary and potentially allowing unauthorized access if the credentials are discovered."
+    "prompt_tokens": 220,
+    "completion_tokens": 1270,
+    "total_tokens": 1490,
+    "reason": "Hard-coded password (ABCD1234!) exposed in binary."
   },
   {
     "case_id": "CWE259_Hard_Coded_Password__w32_char_52",
@@ -50,10 +50,10 @@
       "line": 37,
       "code": "LogonUserA(                     username,                     domain,                     password,                     LOGON32_LOGON_NETWORK,                     LOGON32_PROVIDER_DEFAULT,                     &pHandle)"
     },
-    "prompt_tokens": 249,
-    "completion_tokens": 3709,
-    "total_tokens": 3958,
-    "reason": "Use of hard-coded credentials: password 'ABCD1234!' is embedded in the source code, posing a security risk if the binary is accessed by attackers."
+    "prompt_tokens": 244,
+    "completion_tokens": 1258,
+    "total_tokens": 1502,
+    "reason": "Hard-coded credentials in binary"
   },
   {
     "case_id": "CWE259_Hard_Coded_Password__w32_char_53",
@@ -78,10 +78,10 @@
       "line": 37,
       "code": "LogonUserA(                     username,                     domain,                     password,                     LOGON32_LOGON_NETWORK,                     LOGON32_PROVIDER_DEFAULT,                     &pHandle)"
     },
-    "prompt_tokens": 273,
-    "completion_tokens": 2349,
-    "total_tokens": 2622,
-    "reason": "Hard-coded password 'ABCD1234!' is used in authentication via LogonUserA, posing a security risk as it can be easily extracted from the binary, leading to potential unauthorized access."
+    "prompt_tokens": 268,
+    "completion_tokens": 1910,
+    "total_tokens": 2178,
+    "reason": "Hardcoded credentials (password 'ABCD1234!') exposed in source code."
   },
   {
     "case_id": "CWE259_Hard_Coded_Password__w32_char_54",
@@ -106,10 +106,10 @@
       "line": 37,
       "code": "LogonUserA(                     username,                     domain,                     password,                     LOGON32_LOGON_NETWORK,                     LOGON32_PROVIDER_DEFAULT,                     &pHandle)"
     },
-    "prompt_tokens": 297,
-    "completion_tokens": 3279,
-    "total_tokens": 3576,
-    "reason": "Hard-coded password 'ABCD1234!' is used in LogonUserA authentication call, which is a security vulnerability (CWE-798) as it can lead to unauthorized access if exposed."
+    "prompt_tokens": 292,
+    "completion_tokens": 935,
+    "total_tokens": 1227,
+    "reason": "Hard-coded password 'ABCD1234!' in func_1, exposing credentials in source code."
   },
   {
     "case_id": "CWE259_Hard_Coded_Password__w32_char_61",
@@ -134,10 +134,10 @@
       "line": 42,
       "code": "LogonUserA(                     username,                     domain,                     password,                     LOGON32_LOGON_NETWORK,                     LOGON32_PROVIDER_DEFAULT,                     &pHandle)"
     },
-    "prompt_tokens": 232,
-    "completion_tokens": 5651,
-    "total_tokens": 5883,
-    "reason": "Hard-coded credentials: password is set to a constant string 'ABCD1234!' in func_1 and used in authentication function LogonUserA in func_2, which could allow attackers to gain unauthorized access."
+    "prompt_tokens": 227,
+    "completion_tokens": 1184,
+    "total_tokens": 1411,
+    "reason": "strcpy source fixed, buffer large enough"
   },
   {
     "case_id": "CWE259_Hard_Coded_Password__w32_char_62",
@@ -162,10 +162,10 @@
       "line": 43,
       "code": "LogonUserA(                     username,                     domain,                     password,                     LOGON32_LOGON_NETWORK,                     LOGON32_PROVIDER_DEFAULT,                     &pHandle)"
     },
-    "prompt_tokens": 234,
-    "completion_tokens": 2827,
-    "total_tokens": 3061,
-    "reason": "Use of hard-coded password 'ABCD1234!' in authentication logic (CWE-259)."
+    "prompt_tokens": 229,
+    "completion_tokens": 1213,
+    "total_tokens": 1442,
+    "reason": "Fixed-length source string fits in buffer; no overflow."
   },
   {
     "case_id": "CWE259_Hard_Coded_Password__w32_char_81",
@@ -190,10 +190,10 @@
       "line": 34,
       "code": "LogonUserA(                     username,                     domain,                     password,                     LOGON32_LOGON_NETWORK,                     LOGON32_PROVIDER_DEFAULT,                     &pHandle)"
     },
-    "prompt_tokens": 255,
-    "completion_tokens": 3116,
-    "total_tokens": 3371,
-    "reason": "Hardcoded password 'ABCD1234!' used for authentication via LogonUserA, exposing credentials in source code."
+    "prompt_tokens": 250,
+    "completion_tokens": 1500,
+    "total_tokens": 1750,
+    "reason": "Hard-coded password in source code (CWE-798)."
   },
   {
     "case_id": "CWE259_Hard_Coded_Password__w32_char_82",
@@ -218,10 +218,10 @@
       "line": 34,
       "code": "LogonUserA(                     username,                     domain,                     password,                     LOGON32_LOGON_NETWORK,                     LOGON32_PROVIDER_DEFAULT,                     &pHandle)"
     },
-    "prompt_tokens": 257,
-    "completion_tokens": 2718,
-    "total_tokens": 2975,
-    "reason": "Hard-coded password used in authentication."
+    "prompt_tokens": 252,
+    "completion_tokens": 1406,
+    "total_tokens": 1658,
+    "reason": "Hard-coded password in source code exposes credentials."
   },
   {
     "case_id": "CWE259_Hard_Coded_Password__w32_char_83",
@@ -246,10 +246,10 @@
       "line": 42,
       "code": "LogonUserA(                     username,                     domain,                     password,                     LOGON32_LOGON_NETWORK,                     LOGON32_PROVIDER_DEFAULT,                     &pHandle)"
     },
-    "prompt_tokens": 235,
-    "completion_tokens": 1304,
-    "total_tokens": 1539,
-    "reason": "strcpy copies a fixed string 'ABCD1234!' (9 characters + null terminator) into a user-supplied buffer without size validation, leading to potential buffer overflow if the buffer is smaller than 10 bytes."
+    "prompt_tokens": 275,
+    "completion_tokens": 2188,
+    "total_tokens": 2463,
+    "reason": "Hardcoded credentials in authentication (CWE-798)."
   },
   {
     "case_id": "CWE259_Hard_Coded_Password__w32_char_84",
@@ -274,10 +274,10 @@
       "line": 42,
       "code": "LogonUserA(                     username,                     domain,                     password,                     LOGON32_LOGON_NETWORK,                     LOGON32_PROVIDER_DEFAULT,                     &pHandle)"
     },
-    "prompt_tokens": 235,
-    "completion_tokens": 4151,
-    "total_tokens": 4386,
-    "reason": "The constructor uses strcpy to write a fixed string into a user-supplied buffer without bounds checking, potentially causing a buffer overflow. The same buffer is later used in the destructor for authentication, which could lead to out-of-bounds reads or memory corruption."
+    "prompt_tokens": 286,
+    "completion_tokens": 2388,
+    "total_tokens": 2674,
+    "reason": "Hardcoded password 'ABCD1234!' used in LogonUserA authentication, exposing static credentials."
   },
   {
     "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_51",
@@ -302,10 +302,10 @@
       "line": 71,
       "code": "_execl(\"%WINDIR%\\\\system32\\\\cmd.exe\", \"%WINDIR%\\\\system32\\\\cmd.exe\", \"/c\", data,                                                                           ((void *)0)                                                                              )"
     },
-    "prompt_tokens": 568,
-    "completion_tokens": 4618,
-    "total_tokens": 5186,
-    "reason": "Untrusted network input is passed directly to _execl without sanitization, allowing command injection via shell metacharacters."
+    "prompt_tokens": 563,
+    "completion_tokens": 1783,
+    "total_tokens": 2346,
+    "reason": "Command injection via unsanitized network input in _execl."
   },
   {
     "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_52",
@@ -330,10 +330,10 @@
       "line": 71,
       "code": "_execl(\"%WINDIR%\\\\system32\\\\cmd.exe\", \"%WINDIR%\\\\system32\\\\cmd.exe\", \"/c\", data,                                                                           ((void *)0)                                                                              )"
     },
-    "prompt_tokens": 592,
-    "completion_tokens": 3416,
-    "total_tokens": 4008,
-    "reason": "Network-controlled data from recv() is passed unsanitized to _execl(), enabling command injection via crafted input to execute arbitrary commands on the system."
+    "prompt_tokens": 587,
+    "completion_tokens": 2178,
+    "total_tokens": 2765,
+    "reason": "Command injection via unsanitized socket input in _execl."
   },
   {
     "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_53",
@@ -358,10 +358,10 @@
       "line": 71,
       "code": "_execl(\"%WINDIR%\\\\system32\\\\cmd.exe\", \"%WINDIR%\\\\system32\\\\cmd.exe\", \"/c\", data,                                                                           ((void *)0)                                                                              )"
     },
-    "prompt_tokens": 616,
-    "completion_tokens": 2887,
-    "total_tokens": 3503,
-    "reason": "Network input is received in func_1 and passed without proper sanitization to cmd.exe via _execl in func_4, allowing command injection through shell metacharacters (e.g., '&', '|')."
+    "prompt_tokens": 611,
+    "completion_tokens": 1601,
+    "total_tokens": 2212,
+    "reason": "Command injection via unsanitized network input passed to cmd.exe."
   },
   {
     "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_54",
@@ -386,10 +386,10 @@
       "line": 71,
       "code": "_execl(\"%WINDIR%\\\\system32\\\\cmd.exe\", \"%WINDIR%\\\\system32\\\\cmd.exe\", \"/c\", data,                                                                           ((void *)0)                                                                              )"
     },
-    "prompt_tokens": 640,
-    "completion_tokens": 2722,
-    "total_tokens": 3362,
-    "reason": "Untrusted network data is used directly in a system command without proper sanitization, allowing command injection via characters like '&' or '|'."
+    "prompt_tokens": 635,
+    "completion_tokens": 1902,
+    "total_tokens": 2537,
+    "reason": "Unsanitized network input in execl leads to command injection."
   },
   {
     "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_61",
@@ -414,10 +414,10 @@
       "line": 76,
       "code": "_execl(\"%WINDIR%\\\\system32\\\\cmd.exe\", \"%WINDIR%\\\\system32\\\\cmd.exe\", \"/c\", data,                                                                           ((void *)0)                                                                              )"
     },
-    "prompt_tokens": 575,
-    "completion_tokens": 3768,
-    "total_tokens": 4343,
-    "reason": "Command injection via uncontrolled socket data passed to _execl without validation. The recv() call in func_1 reads untrusted data from a network socket into the buffer that is then passed directly to cmd.exe via _execl in func_2, allowing arbitrary command execution."
+    "prompt_tokens": 570,
+    "completion_tokens": 2190,
+    "total_tokens": 2760,
+    "reason": "Command injection via untrusted socket input."
   },
   {
     "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_62",
@@ -442,10 +442,10 @@
       "line": 59,
       "code": "_execl(\"%WINDIR%\\\\system32\\\\cmd.exe\", \"%WINDIR%\\\\system32\\\\cmd.exe\", \"/c\", data,                                                                           __null                                                                              )"
     },
-    "prompt_tokens": 575,
-    "completion_tokens": 3258,
-    "total_tokens": 3833,
-    "reason": "The network-derived data from badSource (line 31) is used unsanitized in _execl (line 7), allowing command injection via network-controlled input appended after 'dir '."
+    "prompt_tokens": 570,
+    "completion_tokens": 1676,
+    "total_tokens": 2246,
+    "reason": "Command injection via unsanitized network input passed to _execl."
   },
   {
     "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_81",
@@ -470,10 +470,10 @@
       "line": 35,
       "code": "_execl(\"%WINDIR%\\\\system32\\\\cmd.exe\", \"%WINDIR%\\\\system32\\\\cmd.exe\", \"/c\", data,                                                                           __null                                                                              )"
     },
-    "prompt_tokens": 596,
-    "completion_tokens": 4283,
-    "total_tokens": 4879,
-    "reason": "The function receives untrusted network input into a buffer and passes it directly to _execl for command execution without validation, enabling command injection via shell metacharacters. The sink line constructs a command string with uncontrolled user input, allowing arbitrary command execution when the command runs with cmd.exe /c."
+    "prompt_tokens": 591,
+    "completion_tokens": 3274,
+    "total_tokens": 3865,
+    "reason": "Command injection via unsanitized socket input in exec call."
   },
   {
     "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_82",
@@ -498,10 +498,10 @@
       "line": 35,
       "code": "_execl(\"%WINDIR%\\\\system32\\\\cmd.exe\", \"%WINDIR%\\\\system32\\\\cmd.exe\", \"/c\", data,                                                                           __null                                                                              )"
     },
-    "prompt_tokens": 598,
-    "completion_tokens": 5591,
-    "total_tokens": 6189,
-    "reason": "Unsanitized network input (from recv) is directly passed to command execution via _execl, enabling command injection if input contains shell metacharacters like & or |."
+    "prompt_tokens": 593,
+    "completion_tokens": 2166,
+    "total_tokens": 2759,
+    "reason": "Untrusted network input is passed directly to command execution without sanitization, enabling command injection via separators like '&' or '|'."
   },
   {
     "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_83",
@@ -526,10 +526,10 @@
       "line": 127,
       "code": "_execl(\"%WINDIR%\\\\system32\\\\cmd.exe\", \"%WINDIR%\\\\system32\\\\cmd.exe\", \"/c\", data,                                                                           __null                                                                              )"
     },
-    "prompt_tokens": 574,
-    "completion_tokens": 4562,
-    "total_tokens": 5136,
-    "reason": "The destructor uses unsanitized external input (data) in a shell command via _execl, allowing command injection. The data buffer is partially controlled via recv() in the constructor, which reads network data without proper bounds checks."
+    "prompt_tokens": 616,
+    "completion_tokens": 1952,
+    "total_tokens": 2568,
+    "reason": "Command injection via unsanitized network input used in system call."
   },
   {
     "case_id": "CWE78_OS_Command_Injection__char_connect_socket_execl_84",
@@ -554,9 +554,9 @@
       "line": 127,
       "code": "_execl(\"%WINDIR%\\\\system32\\\\cmd.exe\", \"%WINDIR%\\\\system32\\\\cmd.exe\", \"/c\", data,                                                                           __null                                                                              )"
     },
-    "prompt_tokens": 574,
-    "completion_tokens": 3861,
-    "total_tokens": 4435,
-    "reason": "The recv call writes network data into the buffer starting at data+dataLen with size 100-dataLen-1. If dataLen >= 100, the size underflows to a large value, causing a buffer overflow. Even with smaller dataLen, if the buffer is not at least 100 bytes, recv writes out-of-bounds. This can lead to memory corruption and potential code execution."
+    "prompt_tokens": 627,
+    "completion_tokens": 2607,
+    "total_tokens": 3234,
+    "reason": "Command injection via unvalidated socket data in _execl"
   }
 ]

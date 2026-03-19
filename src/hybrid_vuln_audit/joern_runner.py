@@ -77,6 +77,7 @@ class JoernStaticAnalyzer:
         call_edges = self._extract_call_edges(findings)
         method_defs = self._extract_method_defs(findings, temp_path)
         chain_methods = self._derive_chain_methods(call_edges, source_finding, sink_finding)
+        chain_methods = self._expand_chain_with_source_plus_one(chain_methods, call_edges, source_finding)
 
         sanitizer = _JulietFunctionSanitizer()
         sanitizer.learn(chain_methods, method_defs)
@@ -492,6 +493,39 @@ class JoernStaticAnalyzer:
         if source_method != sink_method:
             return [source_method, sink_method]
         return [source_method]
+
+    @staticmethod
+    def _expand_chain_with_source_plus_one(
+        chain_methods: list[str],
+        call_edges: List[_JoernCallEdge],
+        source_finding: Optional[_JoernFinding],
+    ) -> list[str]:
+        if not chain_methods or source_finding is None:
+            return chain_methods
+
+        source_method = source_finding.method_name
+        direct_callers: list[str] = []
+        seen_callers: set[str] = set()
+        for edge in call_edges:
+            if edge.callee != source_method:
+                continue
+            caller = edge.caller
+            if not caller or caller == source_method or caller in seen_callers:
+                continue
+            seen_callers.add(caller)
+            direct_callers.append(caller)
+
+        if not direct_callers:
+            return chain_methods
+
+        merged: list[str] = []
+        seen: set[str] = set()
+        for method_name in direct_callers + chain_methods:
+            if not method_name or method_name in seen:
+                continue
+            seen.add(method_name)
+            merged.append(method_name)
+        return merged
 
     @staticmethod
     def _path_to_methods(path: List[tuple[_JoernCallEdge, bool]]) -> list[str]:
