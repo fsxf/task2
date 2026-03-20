@@ -1,8 +1,8 @@
 ## 环境依赖
 
 - Python 3.7+
-- Joern（外部安装）
-- JDK（外部安装）
+- Joern
+- JDK
 - DeepSeek API Key
 
 ## 配置
