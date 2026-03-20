@@ -65,7 +65,7 @@ class JoernStaticAnalyzer:
         case_temp_root.mkdir(parents=True, exist_ok=True)
         project_name = self._build_project_name(context)
 
-        temp_path, preprocess_notes, line_maps = self._prepare_kept_case_directory(case_temp_root, project_name, context)
+        temp_path, line_maps = self._prepare_kept_case_directory(case_temp_root, project_name, context)
         findings = self._analyze_with_joern(temp_path, context, dataset_root, project_name, line_maps)
 
         source_finding = self._pick_best_finding(findings, "SOURCE", context.analysis_scope)
@@ -83,36 +83,14 @@ class JoernStaticAnalyzer:
         sanitizer.learn(chain_methods, method_defs)
         self._sanitize_locations(sanitizer, source_location, sink_location, primary_location)
 
-        flow_evidence = self._build_flow_evidence(call_edges, source_finding, sink_finding, context, sanitizer)
         function_evidence = self._build_function_evidence(chain_methods, method_defs, sanitizer)
         verdict = source_location is not None and sink_location is not None
 
-        notes = [
-            "static backend: joern",
-            f"joern script: {self._config.joern_script_path.name}",
-            "joern import scope: preprocessed full case file group",
-            "joern evidence: call-chain + full function bodies",
-            f"joern project: {project_name}",
-            f"joern workspace root: {self._config.joern_workspace_root}",
-            f"joern case input root: {self._config.joern_case_temp_root}",
-        ]
-        notes.extend(preprocess_notes)
-        if function_evidence:
-            notes.append(f"call-chain functions exported: {len(function_evidence)}")
-
-        source_snippet = sanitizer.sanitize_code(source_finding.code) if source_finding else ""
-        sink_snippet = sanitizer.sanitize_code(sink_finding.code) if sink_finding else ""
-
         return StaticEvidence(
             is_vulnerable=verdict,
-            confidence=0.99 if verdict else 0.70,
             primary_location=primary_location,
             source_location=source_location,
             sink_location=sink_location,
-            source_snippet=source_snippet,
-            sink_snippet=sink_snippet,
-            notes=notes,
-            flow_evidence=flow_evidence,
             function_evidence=function_evidence,
         )
 
@@ -191,7 +169,7 @@ class JoernStaticAnalyzer:
         case_temp_root: Path,
         project_name: str,
         context: CaseContext,
-    ) -> tuple[Path, list[str], dict[str, dict[int, int]]]:
+    ) -> tuple[Path, dict[str, dict[int, int]]]:
         case_dir = case_temp_root / project_name
         if case_dir.exists():
             shutil.rmtree(str(case_dir), ignore_errors=True)
@@ -199,14 +177,12 @@ class JoernStaticAnalyzer:
 
         selected_files = self._select_case_files(context)
         include_dirs = sorted({str(item.parent.resolve()) for item in selected_files})
-        notes: list[str] = []
         line_maps: dict[str, dict[int, int]] = {}
 
         for file_path in selected_files:
             target = case_dir / file_path.name
             if file_path.suffix.lower() in self._CODE_EXTENSIONS:
-                ok, detail, line_map = self._preprocess_code_file(file_path, target, include_dirs)
-                notes.append(detail)
+                ok, line_map = self._preprocess_code_file(file_path, target, include_dirs)
                 if line_map:
                     line_maps[file_path.name] = line_map
                 if not ok:
@@ -214,14 +190,14 @@ class JoernStaticAnalyzer:
             else:
                 shutil.copy2(str(file_path), str(target))
 
-        return case_dir, notes, line_maps
+        return case_dir, line_maps
 
     def _preprocess_code_file(
         self,
         source: Path,
         target: Path,
         include_dirs: list[str],
-    ) -> tuple[bool, str, dict[int, int]]:
+    ) -> tuple[bool, dict[int, int]]:
         compiler = "g++" if source.suffix.lower() in {".cpp", ".cxx", ".cc"} else "gcc"
         raw = source.read_text(encoding="utf-8", errors="ignore")
         raw_lines = raw.splitlines()
@@ -251,20 +227,20 @@ class JoernStaticAnalyzer:
             )
         except FileNotFoundError:
             self._safe_unlink(temp_input)
-            return False, f"preprocess fallback: {source.name} ({compiler} not found)", {}
+            return False, {}
         except subprocess.TimeoutExpired:
             self._safe_unlink(temp_input)
-            return False, f"preprocess fallback: {source.name} ({compiler} timeout)", {}
+            return False, {}
 
         self._safe_unlink(temp_input)
 
         if completed.returncode != 0:
-            return False, f"preprocess fallback: {source.name} ({compiler} failed)", {}
+            return False, {}
 
         aliases = {source.name, temp_input.name}
         preprocessed, line_map = self._strip_markers_and_build_line_map(completed.stdout, aliases, temp_to_original_line)
         target.write_text(preprocessed, encoding="utf-8")
-        return True, f"preprocess ok: {source.name} ({compiler} -E)", line_map
+        return True, line_map
 
     @staticmethod
     def _safe_unlink(path: Path) -> None:
@@ -536,50 +512,6 @@ class JoernStaticAnalyzer:
             methods.append(edge.callee if is_forward else edge.caller)
         return methods
 
-    def _build_flow_evidence(
-        self,
-        call_edges: List[_JoernCallEdge],
-        source_finding: Optional[_JoernFinding],
-        sink_finding: Optional[_JoernFinding],
-        context: CaseContext,
-        sanitizer: "_JulietFunctionSanitizer",
-    ) -> List[str]:
-        evidence: List[str] = []
-        if source_finding is not None:
-            evidence.append("joern source method: {0}".format(sanitizer.sanitize_method_name(source_finding.method_name)))
-        if sink_finding is not None:
-            evidence.append("joern sink method: {0}".format(sanitizer.sanitize_method_name(sink_finding.method_name)))
-
-        if source_finding is None or sink_finding is None:
-            return evidence
-
-        if source_finding.method_name == sink_finding.method_name:
-            evidence.append(
-                "joern same-method evidence: source and sink both appear in {0}".format(
-                    sanitizer.sanitize_method_name(source_finding.method_name)
-                )
-            )
-            return evidence
-
-        directed_path = self._find_method_path(call_edges, source_finding.method_name, sink_finding.method_name, directed=True)
-        if directed_path:
-            evidence.extend(self._render_path_evidence("joern call path", directed_path, sanitizer))
-            return evidence
-
-        reverse_path = self._find_method_path(call_edges, sink_finding.method_name, source_finding.method_name, directed=True)
-        if reverse_path:
-            evidence.extend(self._render_path_evidence("joern reverse call path", reverse_path, sanitizer))
-            return evidence
-
-        structural_path = self._find_method_path(call_edges, source_finding.method_name, sink_finding.method_name, directed=False)
-        if structural_path:
-            evidence.extend(self._render_path_evidence("joern structural path", structural_path, sanitizer))
-            return evidence
-
-        evidence.append("joern call path: no path recovered from internal call edges")
-        evidence.append("benchmark flow chain: {0}".format(" -> ".join(context.flow_chain)))
-        return evidence
-
     def _build_function_evidence(
         self,
         chain_methods: list[str],
@@ -638,39 +570,6 @@ class JoernStaticAnalyzer:
                 queue.append((next_method, path + [(edge, is_forward)]))
 
         return []
-
-    def _render_path_evidence(
-        self,
-        label: str,
-        path: List[tuple[_JoernCallEdge, bool]],
-        sanitizer: "_JulietFunctionSanitizer",
-    ) -> List[str]:
-        if not path:
-            return []
-
-        methods = [path[0][0].caller if path[0][1] else path[0][0].callee]
-        for edge, is_forward in path:
-            methods.append(edge.callee if is_forward else edge.caller)
-
-        evidence = [
-            "{0}: {1}".format(
-                label,
-                " -> ".join(sanitizer.sanitize_method_name(method_name) for method_name in methods),
-            )
-        ]
-        for edge, is_forward in path:
-            arrow = "->" if is_forward else "<-"
-            evidence.append(
-                "joern call edge: {0}:{1} {2} {3} {4} | {5}".format(
-                    edge.path,
-                    edge.line,
-                    sanitizer.sanitize_method_name(edge.caller),
-                    arrow,
-                    sanitizer.sanitize_method_name(edge.callee),
-                    sanitizer.sanitize_code(edge.code),
-                )
-            )
-        return evidence
 
     @staticmethod
     def _sanitize_name(value: str) -> str:

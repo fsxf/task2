@@ -28,7 +28,6 @@ def main(argv: Optional[list[str]] = None) -> int:
 
     config = AppConfig.from_env(dataset_root=args.dataset_root, results_dir=args.results_dir)
     if args.show_config:
-        print("static_backend={0}".format(config.static_analysis_backend))
         print("java_home={0}".format(config.java_home or "NOT_SET"))
         print("joern_cli_path={0}".format(config.joern_cli_path or "AUTO_DETECT"))
         print("joern_script_path={0}".format(config.joern_script_path))

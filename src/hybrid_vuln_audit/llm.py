@@ -81,13 +81,10 @@ class DeepSeekReviewer:
 
         return LLMReview(
             verdict=verdict,
-            confidence=_parse_confidence(parsed.get("confidence"), evidence.confidence),
             reason=str(parsed.get("reason", "")).strip() or "DeepSeek-R1 reviewed the compressed evidence.",
             prompt_tokens=used_prompt_tokens,
             completion_tokens=completion_tokens,
             total_tokens=total_tokens,
-            model=self._config.deepseek_model,
-            mode="deepseek-r1",
         )
 
 
@@ -107,26 +104,3 @@ def _parse_verdict(value) -> bool:
         if normalized in {"true", "false"}:
             return normalized == "true"
     raise ValueError("Model verdict must be a JSON boolean true/false.")
-
-
-def _parse_confidence(value, fallback: float) -> float:
-    if value is None:
-        return float(fallback)
-    if isinstance(value, (int, float)):
-        return float(value)
-    normalized = str(value).strip().lower()
-    if not normalized:
-        return float(fallback)
-    aliases = {
-        "very high": 0.95,
-        "high": 0.85,
-        "medium": 0.60,
-        "low": 0.35,
-        "very low": 0.15,
-    }
-    if normalized in aliases:
-        return aliases[normalized]
-    try:
-        return float(normalized)
-    except ValueError:
-        return float(fallback)

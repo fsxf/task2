@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass, field
+from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Optional
 
@@ -36,41 +36,19 @@ class CaseContext:
 @dataclass
 class StaticEvidence:
     is_vulnerable: bool
-    confidence: float
     primary_location: Optional[CodeLocation]
     source_location: Optional[CodeLocation]
     sink_location: Optional[CodeLocation]
-    source_snippet: str
-    sink_snippet: str
-    notes: list[str] = field(default_factory=list)
-    flow_evidence: list[str] = field(default_factory=list)
-    function_evidence: list[str] = field(default_factory=list)
-
-    def to_dict(self) -> dict:
-        return {
-            "is_vulnerable": self.is_vulnerable,
-            "confidence": self.confidence,
-            "primary_location": self.primary_location.to_dict() if self.primary_location else None,
-            "source_location": self.source_location.to_dict() if self.source_location else None,
-            "sink_location": self.sink_location.to_dict() if self.sink_location else None,
-            "source_snippet": self.source_snippet,
-            "sink_snippet": self.sink_snippet,
-            "notes": self.notes,
-            "flow_evidence": self.flow_evidence,
-            "function_evidence": self.function_evidence,
-        }
+    function_evidence: list[str]
 
 
 @dataclass
 class LLMReview:
     verdict: bool
-    confidence: float
     reason: str
     prompt_tokens: int
     completion_tokens: int
     total_tokens: int
-    model: str
-    mode: str
 
     def to_dict(self) -> dict:
         return asdict(self)

@@ -17,14 +17,12 @@ class AppConfig:
     deepseek_model: str
     deepseek_api_key: Optional[str]
     deepseek_timeout_seconds: int
-    static_analysis_backend: str
     java_home: Optional[Path]
     joern_cli_path: Optional[Path]
     joern_script_path: Path
     joern_workspace_root: Path
     joern_case_temp_root: Path
     joern_keep_projects: bool
-    prompt_window_radius: int = 3
 
     @property
     def deepseek_enabled(self) -> bool:
@@ -47,7 +45,6 @@ class AppConfig:
             deepseek_model=_get_config_value(file_config, "deepseek_model", "DEEPSEEK_MODEL", "deepseek-reasoner"),
             deepseek_api_key=_normalize_optional_string(_get_config_value(file_config, "deepseek_api_key", "DEEPSEEK_API_KEY", "")),
             deepseek_timeout_seconds=int(_get_config_value(file_config, "deepseek_timeout_seconds", "DEEPSEEK_TIMEOUT_SECONDS", "180")),
-            static_analysis_backend=_get_config_value(file_config, "static_analysis_backend", "STATIC_ANALYSIS_BACKEND", "joern").strip().lower(),
             java_home=_normalize_optional_path(project_root, _get_config_value(file_config, "java_home", "JAVA_HOME", "")),
             joern_cli_path=_normalize_optional_path(project_root, _get_config_value(file_config, "joern_cli_path", "JOERN_CLI_PATH", "")),
             joern_script_path=_normalize_path(project_root, _get_config_value(file_config, "joern_script_path", "JOERN_SCRIPT_PATH", "joern_scripts/find_case_findings.sc")),
